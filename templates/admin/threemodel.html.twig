@@ -1,0 +1,36 @@
+{% set form = hookable_metadata.context.form %}
+{% set product = form.vars.value %}
+
+{% block javascripts %}
+    {% if product.model3dPath %}
+        <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    {% endif %}
+{% endblock %}
+
+<div class="row"
+    {{ sylius_test_html_attribute('images') }}
+    {{ sylius_test_html_attribute('image-subforms') }}
+>
+    {% if product.model3dPath %}
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <model-viewer
+                src="{{ asset(product.model3dPath) }}"
+                alt="Model 3D produktu"
+                auto-rotate
+                camera-controls
+                style="width: 60%; height: 400px;">
+            </model-viewer>
+
+            <button type="button"
+                    class="btn btn-outline-danger ml-3"
+                    onclick="document.querySelector('[data-remove-model]').value = '1'; this.closest('form').submit();">
+                Usuń model 3D
+            </button>
+        </div>
+    {% endif %}
+
+    <div class="form-group">
+        {{ form_row(form.threeDModel, {'attr': {'accept': '.glb,.gltf'}}) }}
+        {{ form_widget(form.removeThreeDModel) }}
+    </div>
+</div>

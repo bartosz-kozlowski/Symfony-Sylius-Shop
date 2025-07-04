@@ -1,0 +1,19 @@
+sylius_twig_hooks:
+    hooks:
+        # sylius_shop.base.header.content.logo:
+        #     - _name: content
+        #       template: 'shop/header/content/logo/content/logo.html.twig'
+        #       priority: 100
+        sylius_shop.base.header.top_bar:
+            - _name: info_message
+              template: 'shop/top_bar/info_message.html.twig'
+              priority: 200
+        sylius_admin.product.update.content.form.sections.media:
+          threemodel:
+            template: 'admin/threemodel.html.twig'
+            priority: 100
+        sylius_admin.product.create.content.form.sections.media:
+            threemodel:
+                template: 'admin/threemodel.html.twig'
+                priority: 100
+        
