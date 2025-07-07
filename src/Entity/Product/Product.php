@@ -31,7 +31,7 @@ class Product extends BaseProduct implements ProductInterface
 
     #[ORM\Column(type: 'float', nullable: true)]
     private ?float $weight = null;
-    
+
     public function setWeight(?float $weight): void{
         $this->weight=$weight;
     }
@@ -39,7 +39,7 @@ class Product extends BaseProduct implements ProductInterface
     public function getWeight(): ?float{
         return $this->weight;
     }
-    
+
     private $threeDModel;
 
     public function getThreeDModel()
@@ -51,6 +51,20 @@ class Product extends BaseProduct implements ProductInterface
     {
         $this->threeDModel = $threeDModel;
     }
+
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private ?int $model3dPosition = null;
+
+    public function getModel3dPosition(): ?int
+    {
+        return $this->model3dPosition;
+    }
+
+    public function setModel3dPosition(?int $position): void
+    {
+        $this->model3dPosition = $position;
+    }
+
 
     protected function createTranslation(): ProductTranslationInterface
     {

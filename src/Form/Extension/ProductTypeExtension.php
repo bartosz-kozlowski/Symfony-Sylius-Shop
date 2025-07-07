@@ -1,6 +1,7 @@
 <?php
 namespace App\Form\Extension;
 
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -30,6 +31,10 @@ final class ProductTypeExtension extends AbstractTypeExtension
                 'mapped' => false,
                 'required' => false,
                 'attr' => ['data-remove-model' => ''],
+            ])
+            ->add('model3dPosition', IntegerType::class, [
+                'label' => 'Pozycja modelu 3D',
+                'required' => false,
             ])
             ->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
                 $form    = $event->getForm();

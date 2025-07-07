@@ -27,10 +27,9 @@ services:
             $projectDir: '%kernel.project_dir%'
         tags:
             - { name: form.type_extension }
-#    App\EventSubscriber\ProductModel3DUploadListener:
-#        tags:
-#            #- { name: kernel.event_subscriber }
-#            - { name: kernel.event_listener, event: sylius.product.pre_update, method: onPostSubmit }
+    App\EventListener\AdminMenuSubscriber:
+        tags:
+            - { name: kernel.event_subscriber }
     # Controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
     App\Controller\:

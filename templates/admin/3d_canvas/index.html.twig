@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="pl_PL">
+<head>
+    <!-- BEGIN HOOK | name: "sylius_admin.base#metatags" -->
+    <!-- BEGIN HOOKABLE | hook: "sylius_admin.base#metatags", name: "metatags", template: "@SyliusAdmin/shared/layout/base/metatags.html.twig", priority: 0 -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="preload" href="/build/admin/fonts/InterVariable.c504db5c.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href="/build/admin/fonts/InterVariable-Italic.01dcbad1.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--  END HOOKABLE  | hook: "sylius_admin.base#metatags", name: "metatags", template: "@SyliusAdmin/shared/layout/base/metatags.html.twig", priority: 0 -->
+    <!--  END HOOK  | name: "sylius_admin.base#metatags" -->
+    <title>Canvas 3D | Sylius</title>
+    <!-- BEGIN HOOK | name: "sylius_admin.base#stylesheets" -->
+    <!-- BEGIN HOOKABLE | hook: "sylius_admin.base#stylesheets", name: "styles", template: "@SyliusAdmin/shared/layout/base/stylesheets.html.twig", priority: 0 -->
+    <link rel="stylesheet" href="/build/admin/admin-entry.css">
+    <!--  END HOOKABLE  | hook: "sylius_admin.base#stylesheets", name: "styles", template: "@SyliusAdmin/shared/layout/base/stylesheets.html.twig", priority: 0 -->
+    <!-- BEGIN HOOKABLE | hook: "sylius_admin.base#stylesheets", name: "app_styles", template: "admin/stylesheets.html.twig", priority: 0 -->
+    <link rel="stylesheet" href="/build/app/admin/app-admin-entry.css">
+    <!--  END HOOKABLE  | hook: "sylius_admin.base#stylesheets", name: "app_styles", template: "admin/stylesheets.html.twig", priority: 0 -->
+    <!--  END HOOK  | name: "sylius_admin.base#stylesheets" -->
+    <!-- BEGIN HOOK | name: "sylius_admin.product_association_type.index#stylesheets, sylius_admin.common.index#stylesheets" -->
+    <!--  END HOOK  | name: "sylius_admin.product_association_type.index#stylesheets, sylius_admin.common.index#stylesheets" -->    </head>
+<body class="">
+<div class="page">
+    <!-- BEGIN HOOK | name: "sylius_admin.product_association_type.index, sylius_admin.common.index" -->
+    <!-- BEGIN HOOKABLE | hook: "sylius_admin.common.index", name: "sidebar", template: "@SyliusAdmin/shared/crud/common/sidebar.html.twig", priority: 200 -->
+    <aside class="navbar navbar-vertical navbar-expand-lg d-print-none" data-bs-theme="dark">
+        <div class="container-fluid">
+            <!-- BEGIN HOOK | name: "sylius_admin.common.component.sidebar" -->
+            <!-- BEGIN HOOKABLE | hook: "sylius_admin.common.component.sidebar", name: "logo", template: "@SyliusAdmin/shared/crud/common/sidebar/logo.html.twig", priority: 200 -->
+            <h1 class="navbar-brand">
+                <a href="/admin/">
+                    <!-- BEGIN HOOK | name: "sylius_admin.common.component.sidebar.logo" -->
+                    <!-- BEGIN HOOKABLE | hook: "sylius_admin.common.component.sidebar.logo", name: "image", template: "@SyliusAdmin/shared/crud/common/sidebar/logo/image.html.twig", priority: 0 -->
+                    <img src="/build/admin/images/sylius-logo.33ca6b62.svg" alt="Sylius" class="navbar-brand-image" />
+                    <!--  END HOOKABLE  | hook: "sylius_admin.common.component.sidebar.logo", name: "image", template: "@SyliusAdmin/shared/crud/common/sidebar/logo/image.html.twig", priority: 0 -->
+                    <!--  END HOOK  | name: "sylius_admin.common.component.sidebar.logo" -->    </a>
+            </h1>
+            <!--  END HOOKABLE  | hook: "sylius_admin.common.component.sidebar", name: "logo", template: "@SyliusAdmin/shared/crud/common/sidebar/logo.html.twig", priority: 200 -->
+            <!-- BEGIN HOOKABLE | hook: "sylius_admin.common.component.sidebar", name: "toggle_button", template: "@SyliusAdmin/shared/crud/common/sidebar/toggle_button.html.twig", priority: 100 -->
+            <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar-menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!--  END HOOKABLE  | hook: "sylius_admin.common.component.sidebar", name: "toggle_button", template: "@SyliusAdmin/shared/crud/common/sidebar/toggle_button.html.twig", priority: 100 -->
+            <!-- BEGIN HOOKABLE | hook: "sylius_admin.common.component.sidebar", name: "menu", template: "@SyliusAdmin/shared/crud/common/sidebar/menu.html.twig", priority: 0 -->
+            <div class="collapse navbar-collapse" id="sidebar-menu">
+                <div class="input-group ps-2 pt-2 pb-3 menu-search">
+                    <button class="btn btn-sm" type="button" disabled data-menu-search-icon><svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon mx-1" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0-14 0m18 11l-6-6"/></svg></button>
+                    <button class="btn btn-sm" type="button" data-menu-search-clear><svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon mx-1" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 6L6 18M6 6l12 12"/></svg></button>
+                    <input class="form-control form-control-sm" placeholder="Search menu..." type="text" data-menu-search>
+                </div>
+                <ul class="sidebar navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/">
+                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                            <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a2 2 0 1 0 4 0a2 2 0 1 0-4 0m3.45-1.45L15.5 9.5"/><path d="M6.4 20a9 9 0 1 1 11.2 0z"/></g></svg>
+                </span>
+                            <span class="nav-link-title">
+                    Panel
+                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item current_ancestor">
+                        <a class="nav-link dropdown-toggle show" href="#navbar-catalog" data-bs-toggle="dropdown" data-bs-auto-close="false" role="button" aria-expanded="true">
+                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                            <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5h8m-8 4h5m-5 6h8m-8 4h5M3 5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1zm0 10a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/></svg>
+                </span>
+                            <span class="nav-link-title">Katalog</span>
+                        </a>
+                        <div class="dropdown-menu show">
+                            <div class="dropdown-menu-columns">
+                                <div class="dropdown-menu-column">
+                                    <a class="dropdown-item justify-content-lg-between gap-2 current_ancestor" href="/admin/taxons/new" target="_self">
+                                        Taksonomie
+                                    </a>
+                                    <a class="dropdown-item justify-content-lg-between gap-2 current_ancestor" href="/admin/products/" target="_self">
+                                        Produkty
+                                    </a>
+                                    <a class="dropdown-item justify-content-lg-between gap-2 current_ancestor" href="/admin/inventory/" target="_self">
+                                        Zapasy
+                                    </a>
+                                    <a class="dropdown-item justify-content-lg-between gap-2 current_ancestor" href="/admin/product-attributes/" target="_self">
+                                        Cechy
+                                    </a>
+                                    <a class="dropdown-item justify-content-lg-between gap-2 current_ancestor" href="/admin/product-options/" target="_self">
+                                        Warianty
+                                    </a>
+                                    <a class="dropdown-item justify-content-lg-between gap-2 current_ancestor" href="/admin/product-association-types/" target="_self">
+                                        Typy powiązań
+                                    </a>
+                                    <a class="dropdown-item justify-content-lg-between gap-2 active" href="/admin/3d-canvas" target="_self">
+                                        Canvas 3D
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link dropdown-toggle show" href="#navbar-sales" data-bs-toggle="dropdown" data-bs-auto-close="false" role="button" aria-expanded="true">
+                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                            <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M6.331 8H17.67a2 2 0 0 1 1.977 2.304l-1.255 8.152A3 3 0 0 1 15.426 21H8.574a3 3 0 0 1-2.965-2.544l-1.255-8.152A2 2 0 0 1 6.331 8"/><path d="M9 11V6a3 3 0 0 1 6 0v5"/></g></svg>
+                </span>
+                            <span class="nav-link-title">Sprzedaż</span>
+                        </a>
+                        <div class="dropdown-menu show">
+                            <div class="dropdown-menu-columns">
+                                <div class="dropdown-menu-column">
+                                    <a class="dropdown-item justify-content-lg-between gap-2 " href="/admin/orders/" target="_self">
+                                        Zamówienia
+                                    </a>
+                                    <a class="dropdown-item justify-content-lg-between gap-2 " href="/admin/payments/" target="_self">
+                                        Płatności
+                                    </a>
+                                    <a class="dropdown-item justify-content-lg-between gap-2 " href="/admin/shipments/" target="_self">
+                                        Przesyłki
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link dropdown-toggle show" href="#navbar-customers" data-bs-toggle="dropdown" data-bs-auto-close="false" role="button" aria-expanded="true">
+                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                            <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0-8 0M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2m1-17.87a4 4 0 0 1 0 7.75M21 21v-2a4 4 0 0 0-3-3.85"/></svg>
+                </span>
+                            <span class="nav-link-title">Klient</span>
+                        </a>
+                        <div class="dropdown-menu show">
+                            <div class="dropdown-menu-columns">
+                                <div class="dropdown-menu-column">
+                                    <a class="dropdown-item justify-content-lg-between gap-2 " href="/admin/customers/" target="_self">
+                                        Klienci
+                                    </a>
+                                    <a class="dropdown-item justify-content-lg-between gap-2 " href="/admin/customer-groups/" target="_self">
+                                        Grupy
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="nav-item ">
+                        <a class="nav-link dropdown-toggle " href="#navbar-marketing" data-bs-toggle="dropdown" data-bs-auto-close="false" role="button" aria-expanded="false">
+                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                            <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 17a1 1 0 1 0 2 0a1 1 0 1 0-2 0M6 7a1 1 0 1 0 2 0a1 1 0 1 0-2 0m0 11L18 6"/></svg>
+                </span>
+                            <span class="nav-link-title">Marketing</span>
+                        </a>
+                        <div class="dropdown-menu ">
+                            <div class="dropdown-menu-columns">
+                                <div class="dropdown-menu-column">
+                                    <a class="dropdown-item justify-content-lg-between gap-2 " href="/admin/promotions/" target="_self">
+                                        Cart promotions
+                                    </a>
+
+                                    <a class="dropdown-item justify-content-lg-between gap-2 " href="/admin/catalog-promotions/" target="_self">
+                                        Catalog promotions
+                                    </a>
+
+                                    <a class="dropdown-item justify-content-lg-between gap-2 " href="/admin/product-reviews/" target="_self">
+                                        Recenzje produktu
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="nav-item ">
+                        <a class="nav-link dropdown-toggle " href="#navbar-configuration" data-bs-toggle="dropdown" data-bs-auto-close="false" role="button" aria-expanded="false">
+                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                            <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 10a2 2 0 1 0 4 0a2 2 0 0 0-4 0m2-6v4m0 4v8m4-4a2 2 0 1 0 4 0a2 2 0 0 0-4 0m2-12v10m0 4v2m4-13a2 2 0 1 0 4 0a2 2 0 0 0-4 0m2-3v1m0 4v11"/></svg>
+                </span>
+                            <span class="nav-link-title">Konfiguracja</span>
+                        </a>
+                        <div class="dropdown-menu ">
+                            <div class="dropdown-menu-columns">
+                                <div class="dropdown-menu-column">
+                                    <a class="dropdown-item justify-content-lg-between gap-2 " href="/admin/channels/" target="_self">
+                                        Kanały
+                                    </a>
+                                    <a class="dropdown-item justify-content-lg-between gap-2 " href="/admin/countries/" target="_self">
+                                        Kraje
+                                    </a>
+                                    <a class="dropdown-item justify-content-lg-between gap-2 " href="/admin/zones/" target="_self">
+                                        Strefy
+                                    </a>
+                                    <a class="dropdown-item justify-content-lg-between gap-2 " href="/admin/currencies/" target="_self">
+                                        Waluty
+                                    </a>
+                                    <a class="dropdown-item justify-content-lg-between gap-2 " href="/admin/exchange-rates/" target="_self">
+                                        Kursy wymiany walut
+                                    </a>
+                                    <a class="dropdown-item justify-content-lg-between gap-2 " href="/admin/locales/" target="_self">
+                                        Ustawienia regionalne
+                                    </a>
+                                    <a class="dropdown-item justify-content-lg-between gap-2 " href="/admin/payment-methods/" target="_self">
+                                        Metody płatności
+                                    </a>
+                                    <a class="dropdown-item justify-content-lg-between gap-2 " href="/admin/shipping-methods/" target="_self">
+                                        Sposoby wysyłki
+                                    </a>
+                                    <a class="dropdown-item justify-content-lg-between gap-2 " href="/admin/shipping-categories/" target="_self">
+                                        Kategorie wysyłki
+                                    </a>
+                                    <a class="dropdown-item justify-content-lg-between gap-2 " href="/admin/tax-categories/" target="_self">
+                                        Kategorie podatkowe
+                                    </a>
+                                    <a class="dropdown-item justify-content-lg-between gap-2 " href="/admin/tax-rates/" target="_self">
+                                        Stawki podatkowe
+                                    </a>
+                                    <a class="dropdown-item justify-content-lg-between gap-2 " href="/admin/users/" target="_self">
+                                        Administratorzy
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="nav-item ">
+                        <a class="nav-link dropdown-toggle " href="#navbar-official_support" data-bs-toggle="dropdown" data-bs-auto-close="false" role="button" aria-expanded="false">
+                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                            <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0-18 0m9-3h.01"/><path d="M11 12h1v4h1"/></g></svg>
+                </span>
+                            <span class="nav-link-title">Oficjalne wsparcie</span>
+                        </a>
+                        <div class="dropdown-menu ">
+                            <div class="dropdown-menu-columns">
+                                <div class="dropdown-menu-column">
+                                    <a class="dropdown-item justify-content-lg-between gap-2 " href="https://sylius.com/plus/" target="_blank">
+                                        Sylius Plus
+                                        <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon icon-sm ms-1 mb-2 opacity-75" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6m-7 1l9-9m-5 0h5v5"/></svg>
+                                    </a>
+                                    <a class="dropdown-item justify-content-lg-between gap-2 " href="https://store.sylius.com/" target="_blank">
+                                        Przeglądaj wtyczki
+                                        <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon icon-sm ms-1 mb-2 opacity-75" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6m-7 1l9-9m-5 0h5v5"/></svg>
+                                    </a>
+                                    <a class="dropdown-item justify-content-lg-between gap-2 " href="https://sylius.com/services/" target="_blank">
+                                        Profesjonalne usługi
+                                        <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon icon-sm ms-1 mb-2 opacity-75" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6m-7 1l9-9m-5 0h5v5"/></svg>
+                                    </a>
+                                    <a class="dropdown-item justify-content-lg-between gap-2 " href="https://sylius.com/find-a-partner/" target="_blank">
+                                        Znajdź partnera
+                                        <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon icon-sm ms-1 mb-2 opacity-75" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6m-7 1l9-9m-5 0h5v5"/></svg>
+                                    </a>
+                                    <a class="dropdown-item justify-content-lg-between gap-2 " href="https://sylius.com/certification/" target="_blank">
+                                        Sylius certification
+                                        <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon icon-sm ms-1 mb-2 opacity-75" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6m-7 1l9-9m-5 0h5v5"/></svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link dropdown-toggle " href="#navbar-sylius.ui.administration" data-bs-toggle="dropdown" data-bs-auto-close="false" role="button" aria-expanded="false">
+                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                            <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M5 13a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z"/><path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0-2 0m-3-5V7a4 4 0 1 1 8 0v4"/></g></svg>
+                </span>
+                            <span class="nav-link-title">Administracja</span>
+                        </a>
+                        <div class="dropdown-menu ">
+                            <div class="dropdown-menu-columns">
+                                <div class="dropdown-menu-column">
+                                    <a class="dropdown-item justify-content-lg-between gap-2 " href="https://sylius.com/plus/?utm_source=product&amp;utm_medium=placeholder&amp;utm_campaign=rbac-placeholder" target="_blank">
+                                        Role
+                                        <img src="/build/admin/images/sylius-plus-sidebar.609c3389.svg" alt="Sylius Plus" class="navbar-plus-badge" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item last">
+                        <a class="nav-link dropdown-toggle show" href="#navbar-mollie" data-bs-toggle="dropdown" data-bs-auto-close="false" role="button" aria-expanded="true">
+                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                            <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3zm0 2h18M7 15h.01M11 15h2"/></svg>
+                </span>
+                            <span class="nav-link-title">Mollie</span>
+                        </a>
+                        <div class="dropdown-menu show">
+                            <div class="dropdown-menu-columns">
+                                <div class="dropdown-menu-column">
+                                    <a class="dropdown-item justify-content-lg-between gap-2 last" href="/admin/mollie/logger/" target="_self">
+                                        Logger
+                                    </a>
+                                    <a class="dropdown-item justify-content-lg-between gap-2 last" href="/admin/product-types/" target="_self">
+                                        Product type
+                                    </a>
+                                    <a class="dropdown-item justify-content-lg-between gap-2 last" href="/admin/mollie/email-template/" target="_self">
+                                        Email templates
+                                    </a>
+                                    <a class="dropdown-item justify-content-lg-between gap-2 last" href="/admin/mollie/subscription/" target="_self">
+                                        Subscriptions
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!--  END HOOKABLE  | hook: "sylius_admin.common.component.sidebar", name: "menu", template: "@SyliusAdmin/shared/crud/common/sidebar/menu.html.twig", priority: 0 -->
+            <!--  END HOOK  | name: "sylius_admin.common.component.sidebar" -->    </div>
+    </aside>
+    <!--  END HOOKABLE  | hook: "sylius_admin.common.index", name: "sidebar", template: "@SyliusAdmin/shared/crud/common/sidebar.html.twig", priority: 200 -->
+    <!-- BEGIN HOOKABLE | hook: "sylius_admin.common.index", name: "navbar", template: "@SyliusAdmin/shared/crud/common/navbar.html.twig", priority: 100 -->
+    <header class="navbar d-print-none">
+        <div class="container-xl d-flex gap-2 flex-nowrap">
+            <!-- BEGIN HOOK | name: "sylius_admin.common.component.navbar" -->
+            <!-- BEGIN HOOKABLE | hook: "sylius_admin.common.component.navbar", name: "menu", template: "@SyliusAdmin/shared/crud/common/navbar/menu.html.twig", priority: 100 -->
+            <div class="d-flex flex-wrap gap-3 flex-shrink-1" id="navbar-menu">
+                <!-- BEGIN HOOK | name: "sylius_admin.common.component.navbar.menu" -->
+                <!-- BEGIN HOOKABLE | hook: "sylius_admin.common.component.navbar.menu", name: "search", template: "@SyliusAdmin/shared/crud/common/navbar/menu/search.html.twig", priority: 0 -->
+                <form action="/admin/products/" method="get" data-test-navbar-product-search="">
+                    <div class="input-group">
+                        <input type="text" name="criteria[search][value]" placeholder="Szukaj produktów..." class="form-control">
+                        <button type="submit" class="btn">
+                            <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon mx-1" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0-14 0m18 11l-6-6"/></svg>
+                        </button>
+                    </div>
+                </form>
+                <!--  END HOOKABLE  | hook: "sylius_admin.common.component.navbar.menu", name: "search", template: "@SyliusAdmin/shared/crud/common/navbar/menu/search.html.twig", priority: 0 -->
+                <!--  END HOOK  | name: "sylius_admin.common.component.navbar.menu" --></div>
+            <!--  END HOOKABLE  | hook: "sylius_admin.common.component.navbar", name: "menu", template: "@SyliusAdmin/shared/crud/common/navbar/menu.html.twig", priority: 100 -->
+            <!-- BEGIN HOOKABLE | hook: "sylius_admin.common.component.navbar", name: "items", template: "@SyliusAdmin/shared/crud/common/navbar/items.html.twig", priority: 0 -->
+            <div class="nav align-items-center gap-3 flex-nowrap flex-shrink-0">
+                <!-- BEGIN HOOK | name: "sylius_admin.common.component.navbar.items" -->
+                <!-- BEGIN HOOKABLE | hook: "sylius_admin.common.component.navbar.items", name: "shop_preview", component: "sylius_admin:navbar:shop_preview", priority: 200 -->
+                <div class="dropdown">
+                    <div type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <span data-bs-toggle="tooltip" data-bs-title="Wyświetl swój sklep" data-bs-placement="right">
+                <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 7L7 17M8 7h9v9"/></svg>
+            </span>
+                    </div>
+                    <ul class="dropdown-menu dropdown-menu-sm-end">
+                        <li><a class="dropdown-item" href="http://localhost/pl_PL/">Brand Shop</a></li>
+                        <li><a class="dropdown-item" href="http://WEB_EUR.localhost/pl_PL/">Euro Web Store</a></li>
+                    </ul>
+                </div>
+                <!--  END HOOKABLE  | hook: "sylius_admin.common.component.navbar.items", name: "shop_preview", component: "sylius_admin:navbar:shop_preview", priority: 200 -->
+                <!-- BEGIN HOOKABLE | hook: "sylius_admin.common.component.navbar.items", name: "notifications", component: "sylius_admin:navbar:notifications", priority: 100 -->
+                <div class="nav-item">
+                    <div class="dropdown">
+                        <div data-bs-toggle="dropdown">                    <div class="nav-link px-0 text-body">
+                                <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3H4a4 4 0 0 0 2-3v-3a7 7 0 0 1 4-6M9 17v1a3 3 0 0 0 6 0v-1"/></svg>
+                            </div>
+                        </div>
+                        <div class="dropdown-menu dropdown-menu-end dropdown-menu-card">
+                            <div class="card" style="min-width: 15rem; max-width: 25rem">
+                                <div class="card-header">
+                                    <h3 class="card-title">Brak nowych powiadomień</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!--  END HOOKABLE  | hook: "sylius_admin.common.component.navbar.items", name: "notifications", component: "sylius_admin:navbar:notifications", priority: 100 -->
+                <!-- BEGIN HOOKABLE | hook: "sylius_admin.common.component.navbar.items", name: "user_dropdown", template: "@SyliusAdmin/shared/crud/common/navbar/items/user.html.twig", priority: 0 -->
+                <div class="nav-item">
+
+                    <div class="dropdown">
+                        <div data-bs-toggle="dropdown">    <div class="d-flex lh-1 text-reset p-0 cursor-pointer">
+                                <div data-test-user-avatar="d0/69/0a63dc8796cc80194cd5028a37d9.webp">
+                                    <span class="sylius avatar avatar-sm "  style="background-image: url(http://localhost:8000/media/cache/sylius_admin_avatar/d0/69/0a63dc8796cc80194cd5028a37d9.webp)" >
+            </span>
+                                </div>
+                                <div class="d-none d-xl-block ps-2">
+                                    <div class="mb-1 small text-muted">Witaj</div>
+                                    <div>John</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dropdown-menu dropdown-menu-end ">
+                            <a class="dropdown-item" href="/admin/users/1/edit" data-test-user-dropdown-item="My account" >
+                                <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon dropdown-item-icon " aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0-8 0M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg>
+                                Moje konto
+                            </a>
+                            <a class="dropdown-item" href="/admin/logout" data-test-user-dropdown-item="Logout" >
+                                <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon dropdown-item-icon " aria-hidden="true"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M14 8V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2v-2"/><path d="M9 12h12l-3-3m0 6l3-3"/></g></svg>
+                                Wyloguj
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a class="dropdown-item small text-muted" href="https://docs.sylius.com" data-test-user-dropdown-item="Documentation" >
+                                Dokumentacja
+                            </a>
+
+                            <a class="dropdown-item small text-muted" href="https://sylius.com/slack" data-test-user-dropdown-item="Join Slack" >
+                                Dołącz do Slacka
+                            </a>
+
+                            <a class="dropdown-item small text-muted" href="https://github.com/Sylius/Sylius/issues" data-test-user-dropdown-item="Report an issue" >
+                                Report an issue
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+                <!--  END HOOKABLE  | hook: "sylius_admin.common.component.navbar.items", name: "user_dropdown", template: "@SyliusAdmin/shared/crud/common/navbar/items/user.html.twig", priority: 0 -->
+                <!--  END HOOK  | name: "sylius_admin.common.component.navbar.items" --></div>
+            <!--  END HOOKABLE  | hook: "sylius_admin.common.component.navbar", name: "items", template: "@SyliusAdmin/shared/crud/common/navbar/items.html.twig", priority: 0 -->
+            <!--  END HOOK  | name: "sylius_admin.common.component.navbar" -->    </div>
+    </header>
+    <!--  END HOOKABLE  | hook: "sylius_admin.common.index", name: "navbar", template: "@SyliusAdmin/shared/crud/common/navbar.html.twig", priority: 100 -->
+    <!-- BEGIN HOOKABLE | hook: "sylius_admin.common.index", name: "content", template: "@SyliusAdmin/shared/crud/common/content.html.twig", priority: 0 -->
+    <div class="page-wrapper">
+        <!-- BEGIN HOOK | name: "sylius_admin.product_association_type.index.content, sylius_admin.common.index.content" -->
+        <!-- BEGIN HOOKABLE | hook: "sylius_admin.common.index.content", name: "flashes", template: "@SyliusAdmin/shared/crud/common/content/flashes.html.twig", priority: 300 -->
+        <div class="container-xl" data-test-sylius-flashes-container="">
+        </div>
+        <!--  END HOOKABLE  | hook: "sylius_admin.common.index.content", name: "flashes", template: "@SyliusAdmin/shared/crud/common/content/flashes.html.twig", priority: 300 -->
+        <!-- BEGIN HOOKABLE | hook: "sylius_admin.common.index.content", name: "header", template: "@SyliusAdmin/shared/crud/common/content/header.html.twig", priority: 200 -->
+        <div class="page-header" data-sticky-header>
+            <div class="container-xl">
+                <!-- BEGIN HOOK | name: "sylius_admin.product_association_type.index.content.header, sylius_admin.common.index.content.header" -->
+                <!-- BEGIN HOOKABLE | hook: "sylius_admin.common.index.content.header", name: "breadcrumbs", template: "@SyliusAdmin/shared/crud/index/content/header/breadcrumbs.html.twig", priority: 100 -->
+                <ol class="breadcrumb" aria-label="breadcrumbs">
+                    <li class="breadcrumb-item ">
+                        <a href="/admin/">Panel</a>
+                    </li>
+                    <li class="breadcrumb-item active">
+                        Canvas 3D
+                    </li>
+                </ol>
+                <!--  END HOOKABLE  | hook: "sylius_admin.common.index.content.header", name: "breadcrumbs", template: "@SyliusAdmin/shared/crud/index/content/header/breadcrumbs.html.twig", priority: 100 -->
+                <!-- BEGIN HOOKABLE | hook: "sylius_admin.common.index.content.header", name: "title_block", template: "@SyliusAdmin/shared/crud/common/content/header/title_block.html.twig", priority: 0 -->
+                <div class="row mt-3 row-gap-2">
+                    <!-- BEGIN HOOK | name: "sylius_admin.product_association_type.index.content.header.title_block, sylius_admin.common.index.content.header.title_block" -->
+                    <!-- BEGIN HOOKABLE | hook: "sylius_admin.common.index.content.header.title_block", name: "title", template: "@SyliusAdmin/shared/crud/common/content/header/title_block/title.html.twig", priority: 100 -->
+                    <div class="col-12 col-md" >
+                        <div class="d-md-flex gap-2 align-items-center">
+                            <div class="d-flex gap-3 align-items-center">
+                                <div class="d-flex flex-column gap-2">
+                                    <h1 class="page-title">
+                                        Canvas 3D
+                                    </h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  END HOOKABLE  | hook: "sylius_admin.common.index.content.header.title_block", name: "title", template: "@SyliusAdmin/shared/crud/common/content/header/title_block/title.html.twig", priority: 100 -->
+                    <!-- BEGIN HOOKABLE | hook: "sylius_admin.common.index.content.header.title_block", name: "actions", template: "@SyliusAdmin/shared/crud/common/content/header/title_block/actions.html.twig", priority: 0 -->
+                    <div class="col-12 col-md-auto ms-auto d-print-none">
+{#                        <div class="btn-list">#}
+{#                            <!-- BEGIN HOOK | name: "sylius_admin.product_association_type.index.content.header.title_block.actions, sylius_admin.common.index.content.header.title_block.actions" -->#}
+{#                            <!--  END HOOK  | name: "sylius_admin.product_association_type.index.content.header.title_block.actions, sylius_admin.common.index.content.header.title_block.actions" -->#}
+{#                            <a href="/admin/product-association-types/new" class="btn">#}
+{#                                <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon dropdown-item-icon" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v14m-7-7h14"/></svg>#}
+{#                                Utwórz#}
+{#                            </a>#}
+{#                        </div>#}
+                    </div>
+                    <!--  END HOOKABLE  | hook: "sylius_admin.common.index.content.header.title_block", name: "actions", template: "@SyliusAdmin/shared/crud/common/content/header/title_block/actions.html.twig", priority: 0 -->
+                    <!--  END HOOK  | name: "sylius_admin.product_association_type.index.content.header.title_block, sylius_admin.common.index.content.header.title_block" --></div>
+                <!--  END HOOKABLE  | hook: "sylius_admin.common.index.content.header", name: "title_block", template: "@SyliusAdmin/shared/crud/common/content/header/title_block.html.twig", priority: 0 -->
+                <!--  END HOOK  | name: "sylius_admin.product_association_type.index.content.header, sylius_admin.common.index.content.header" -->    </div>
+        </div>
+        <!--  END HOOKABLE  | hook: "sylius_admin.common.index.content", name: "header", template: "@SyliusAdmin/shared/crud/common/content/header.html.twig", priority: 200 -->
+        <!-- BEGIN HOOKABLE | hook: "sylius_admin.common.index.content", name: "grid", template: "@SyliusAdmin/shared/crud/index/content/grid.html.twig", priority: 100 -->
+        <script type="module"
+                src="https://unpkg.com/@google/model-viewer@^3/dist/model-viewer.min.js">
+        </script>
+
+        <div class="page-body">
+            <div class="container-xl">
+                <div class="position-relative z-1 bg-white mb-5">
+                    <div class="accordion" id="699811880">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
+                            <span class="d-flex gap-2">
+                                <span class="d-flex align-items-center">
+                                    <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon" aria-hidden="true">
+                                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 10a2 2 0 1 0 4 0a2 2 0 0 0-4 0m2-6v4m0 4v8m4-4a2 2 0 1 0 4 0a2 2 0 0 0-4 0m2-12v10m0 4v2m4-13a2 2 0 1 0 4 0a2 2 0 0 0-4 0m2-3v1m0 4v11"/>
+                                    </svg>
+                                </span>
+                                Filtry
+                            </span>
+                                    <span class="accordion-button-toggle">
+                                <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon" aria-hidden="true">
+                                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m6 9l6 6l6-6"/>
+                                </svg>
+                            </span>
+                                </button>
+                            </h2>
+                            <div id="collapse1" class="accordion-collapse collapse" data-bs-parent="#699811880">
+                                <div class="accordion-body">
+                                    <form method="get" action="" novalidate>
+                                        <div class="sylius-filters">
+                                            <div class="sylius-filters__item">
+                                                <div class="sylius-filters__string">
+                                                    <div class="mb-3 field">
+                                                        <label class="form-label" for="criteria_code_type">Kod</label>
+                                                        <select id="criteria_code_type" name="criteria[code][type]" class="form-select">
+                                                            <option value="contains">Zawiera</option>
+                                                            <option value="not_contains">Nie zawiera</option>
+                                                            <option value="equal">Równe</option>
+                                                            <option value="not_equal">Różne od</option>
+                                                            <option value="empty">Brak</option>
+                                                            <option value="not_empty">Nie pusty</option>
+                                                            <option value="starts_with">Rozpoczyna się od</option>
+                                                            <option value="ends_with">Kończy się na</option>
+                                                            <option value="in">W</option>
+                                                            <option value="not_in">Nie w</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="mb-3 field">
+                                                        <label for="criteria_code_value" class="form-label">Wartość</label>
+                                                        <input type="text" id="criteria_code_value" name="criteria[code][value]" placeholder="Wartość" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="sylius-filters__item">
+                                                <div class="sylius-filters__string">
+                                                    <div class="mb-3 field">
+                                                        <label class="form-label" for="criteria_name_type">Nazwa</label>
+                                                        <select id="criteria_name_type" name="criteria[name][type]" class="form-select">
+                                                            <option value="contains">Zawiera</option>
+                                                            <option value="not_contains">Nie zawiera</option>
+                                                            <option value="equal">Równe</option>
+                                                            <option value="not_equal">Różne od</option>
+                                                            <option value="empty">Brak</option>
+                                                            <option value="not_empty">Nie pusty</option>
+                                                            <option value="starts_with">Rozpoczyna się od</option>
+                                                            <option value="ends_with">Kończy się na</option>
+                                                            <option value="in">W</option>
+                                                            <option value="not_in">Nie w</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="mb-3 field">
+                                                        <label for="criteria_name_value" class="form-label">Wartość</label>
+                                                        <input type="text" id="criteria_name_value" name="criteria[name][value]" placeholder="Wartość" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <button type="submit" class="btn btn-primary">
+                                                <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon" aria-hidden="true">
+                                                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 10a2 2 0 1 0 4 0a2 2 0 0 0-4 0m2-6v4m0 4v8m4-4a2 2 0 1 0 4 0a2 2 0 0 0-4 0m2-12v10m0 4v2m4-13a2 2 0 1 0 4 0a2 2 0 0 0-4 0m2-3v1m0 4v11"/>
+                                                </svg>
+                                                Filtruj
+                                            </button>
+                                            <a href="/admin/3d-canvas" class="btn">
+                                                Zresetuj
+                                            </a>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kontener na model 3D i listę produktów -->
+                <div class="card">
+                    <div class="row g-0">
+                        <aside class="col-12 col-md-3 border-end" style="max-height:calc(100vh - 200px); overflow:auto;">
+                            <ul class="list-group list-group-flush" id="productList">
+                                {% for product in products %}
+                                    {% set image = product.images|first %}
+                                    {% set path = image.path is not null
+                                        ? image.path|imagine_filter('sylius_shop_product_small_thumbnail')
+                                        : asset('build/shop/images/200x200.png') %}
+
+                                    <li class="list-group-item p-2">
+                                        <a href="#" class="d-flex align-items-center text-reset text-decoration-none"
+                                           data-model="{{ asset(product.model3dPath) }}">
+                                            <img src="{{ path }}" width="60" height="60" class="rounded me-2" alt="">
+                                            <div class="fw-medium">{{ product.translation.name }}</div>
+{#                                            <span>{{ product.translation.name }}</span>#}
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </aside>
+
+                        <main class="col-12 col-md-9 d-flex justify-content-center align-items-center bg-light"
+                              style="min-height:70vh;">
+                            <model-viewer id="viewer"
+                                          style="width:75%; height:75%;"
+                                          alt="Podgląd 3D"
+                                          ar
+                                          environment-image="neutral"
+                                          auto-rotate
+                                          camera-controls>
+                            </model-viewer>
+
+                            <div id="placeholder" class="position-absolute text-muted fs-4">
+                                ← Wybierz produkt po lewej
+                            </div>
+                            <div class="position-absolute bottom-0 end-0 m-3">
+                                <button id="exportBtn" onclick="exportGLB()" class="btn btn-outline-primary shadow-sm d-none">
+                                    Wyeksportuj model 3D produktu
+                                </button>
+                            </div>
+                        </main>
+
+                        <script>
+                            const productLinks = document.querySelectorAll('#productList a');
+                            const modelViewer = document.getElementById("viewer");
+                            const exportBtn = document.getElementById("exportBtn");
+                            const placeholder = document.getElementById("placeholder");
+
+                            productLinks.forEach(link => {
+                                link.addEventListener('click', (e) => {
+                                    e.preventDefault();
+                                    const modelUrl = link.getAttribute('data-model');
+
+                                    if (modelUrl) {
+                                        modelViewer.setAttribute('src', modelUrl);
+                                        placeholder.style.display = 'none';
+                                        exportBtn.classList.remove('d-none');
+                                    }
+                                });
+                            });
+
+                            async function exportGLB() {
+                                const glTF = await modelViewer.exportScene();
+                                const file = new File([glTF], "export.glb");
+                                const link = document.createElement("a");
+                                link.download = file.name;
+                                link.href = URL.createObjectURL(file);
+                                link.click();
+                            }
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            document.querySelectorAll('#productList [data-model]').forEach(el => {
+                el.addEventListener('click', e => {
+                    e.preventDefault();
+                    const viewer = document.getElementById('viewer');
+                    viewer.src = el.dataset.model;
+                    document.getElementById('placeholder').style.display = 'none';
+                });
+            });
+        </script>
+        <!--  END HOOKABLE  | hook: "sylius_admin.common.index.content", name: "grid", template: "@SyliusAdmin/shared/crud/index/content/grid.html.twig", priority: 100 -->
+        <!-- BEGIN HOOKABLE | hook: "sylius_admin.common.index.content", name: "footer", template: "@SyliusAdmin/shared/crud/common/content/footer.html.twig", priority: -100 -->
+        <footer class="footer footer-transparent d-print-none">
+            <div class="container-xl">
+                <div class="row text-center align-items-center">
+                    <div class="col-12 col-lg-12">
+                        <ul class="list-inline list-inline-dots">
+                            <li class="list-inline-item">
+                                Copyright © 2025
+                                <a href="https://sylius.com/" target="_blank" class="link-secondary">Sylius</a>.
+                                All rights reserved.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-12 ms-lg-auto">
+                        <ul class="list-inline list-inline-dots m-1">
+                            <li class="list-inline-item">
+                                <a href="https://docs.sylius.com" target="_blank" class="link-secondary" rel="noopener">
+                                    Dokumentacja
+                                </a></li>
+                            <li class="list-inline-item">
+                                <a href="https://github.com/Sylius/Sylius?tab=MIT-1-ov-file#readme" target="_blank"
+                                   class="link-secondary" rel="noopener">
+                                    License
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="https://github.com/Sylius/Sylius" target="_blank" class="link-secondary"
+                                   rel="noopener">
+                                    Source code
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="https://github.com/Sylius/Sylius/issues" target="_blank" class="link-secondary"
+                                   rel="noopener">
+                                    Zobacz problem? Zgłoś!
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                Zasilany przez Sylius v2.1.2.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!--  END HOOKABLE  | hook: "sylius_admin.common.index.content", name: "footer", template: "@SyliusAdmin/shared/crud/common/content/footer.html.twig", priority: -100 -->
+        <!--  END HOOK  | name: "sylius_admin.product_association_type.index.content, sylius_admin.common.index.content" --></div>
+    <!--  END HOOKABLE  | hook: "sylius_admin.common.index", name: "content", template: "@SyliusAdmin/shared/crud/common/content.html.twig", priority: 0 -->
+    <!--  END HOOK  | name: "sylius_admin.product_association_type.index, sylius_admin.common.index" -->        </div>
+
+<!-- BEGIN HOOK | name: "sylius_admin.base#javascripts" -->
+<!-- BEGIN HOOKABLE | hook: "sylius_admin.base#javascripts", name: "javascripts", template: "@SyliusAdmin/shared/layout/base/javascripts.html.twig", priority: 0 -->
+<script src="/build/admin/admin-entry.js"></script>
+<!--  END HOOKABLE  | hook: "sylius_admin.base#javascripts", name: "javascripts", template: "@SyliusAdmin/shared/layout/base/javascripts.html.twig", priority: 0 -->
+<!-- BEGIN HOOKABLE | hook: "sylius_admin.base#javascripts", name: "app_javascripts", template: "admin/javascripts.html.twig", priority: 0 -->
+<script src="/build/app/admin/app-admin-entry.js"></script>
+<!--  END HOOKABLE  | hook: "sylius_admin.base#javascripts", name: "app_javascripts", template: "admin/javascripts.html.twig", priority: 0 -->
+<!--  END HOOK  | name: "sylius_admin.base#javascripts" -->
+<!-- BEGIN HOOK | name: "sylius_admin.product_association_type.index#javascripts, sylius_admin.common.index#javascripts" -->
+
+<!--  END HOOK  | name: "sylius_admin.product_association_type.index#javascripts, sylius_admin.common.index#javascripts" -->
+<!-- START of Symfony Web Debug Toolbar --><div id="sfwdt9b3957" class="sf-toolbar sf-toolbar-opened" role="region" aria-label="Symfony Web Debug Toolbar">    <div id="sfToolbarClearer-9b3957" class="sf-toolbar-clearer"></div><div id="sfToolbarMainContent-9b3957" class="sf-toolbarreset notranslate clear-fix" data-no-turbolink data-turbo="false">                                                    <div class="sf-toolbar-block sf-toolbar-block-request sf-toolbar-status-normal " >    <a href="http://localhost:8000/_profiler/9b3957?panel=request">        <div class="sf-toolbar-icon">        <svg xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Symfony" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .9C5.8.9.9 5.8.9 12a11 11 0 1 0 22.2 0A11 11 0 0 0 12 .9zm6.5 6c-.6 0-.9-.3-.9-.8 0-.2 0-.4.2-.6l.2-.4c0-.3-.5-.4-.6-.4-1.8.1-2.3 2.5-2.7 4.4l-.2 1c1 .2 1.8 0 2.2-.3.6-.4-.2-.7-.1-1.2.1-.3.5-.5.7-.6.5 0 .7.5.7.9 0 .7-1 1.8-3 1.8l-.6-.1-.6 2.4c-.4 1.6-.8 3.8-2.4 5.7-1.4 1.7-2.9 1.9-3.5 1.9-1.2 0-1.9-.6-2-1.5 0-.8.7-1.3 1.2-1.3.6 0 1.1.5 1.1 1s-.2.6-.4.6c-.1.1-.3.2-.3.4 0 .1.1.3.4.3.5 0 .8-.3 1.1-.5 1.2-.9 1.6-2.7 2.2-5.7l.1-.7.7-3.2c-.8-.6-1.3-1.4-2.4-1.7-.6-.1-1.1.1-1.5.5-.4.5-.2 1.1.2 1.5l.7.6c.7.8 1.2 1.6 1 2.5-.3 1.5-2 2.6-4 1.9-1.8-.6-2-1.8-1.8-2.5.2-.6.6-.7 1.1-.6.5.2.6.7.6 1.2l-.1.3c-.2.1-.3.3-.3.4-.1.4.4.6.7.7.7.3 1.6-.2 1.8-.8a1 1 0 0 0-.4-1.1l-.7-.8c-.4-.4-1.1-1.4-.7-2.6.1-.5.4-.9.7-1.3a4 4 0 0 1 2.8-.6c1.2.4 1.8 1.1 2.6 1.8.5-1.2 1-2.4 1.8-3.5.9-.9 1.9-1.6 3.1-1.7 1.3.2 2.2.7 2.2 1.6 0 .4-.2 1.1-.9 1.1z"/></svg>        <span class="sf-toolbar-value sf-toolbar-ajax-request-counter">            Loading&hellip;        </span>    </div>    </a>        <div class="sf-toolbar-info">        <div class="sf-toolbar-info-piece">            <b>Loading the web debug toolbar&hellip;</b>        </div>        <div class="sf-toolbar-info-piece">            Attempt #<span id="sfLoadCounter-9b3957"></span>        </div>        <div class="sf-toolbar-info-piece">            <b>                <button class="sf-cancel-button" type="button" id="sfLoadCancel-9b3957" title="Cancel loading">Cancel</button>            </b>        </div>    </div></div>                                <button class="sf-toolbar-toggle-button" type="button" id="sfToolbarToggleButton-9b3957" title="Close Toolbar" accesskey="D" aria-expanded="true" aria-controls="sfToolbarMainContent-9b3957">        <i class="sf-toolbar-icon-opened"><svg xmlns="http://www.w3.org/2000/svg" data-icon-name="icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>    <line x1="18" y1="6" x2="6" y2="18"></line>    <line x1="6" y1="6" x2="18" y2="18"></line></svg></i>        <i class="sf-toolbar-icon-closed"><svg xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Symfony" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .9C5.8.9.9 5.8.9 12a11 11 0 1 0 22.2 0A11 11 0 0 0 12 .9zm6.5 6c-.6 0-.9-.3-.9-.8 0-.2 0-.4.2-.6l.2-.4c0-.3-.5-.4-.6-.4-1.8.1-2.3 2.5-2.7 4.4l-.2 1c1 .2 1.8 0 2.2-.3.6-.4-.2-.7-.1-1.2.1-.3.5-.5.7-.6.5 0 .7.5.7.9 0 .7-1 1.8-3 1.8l-.6-.1-.6 2.4c-.4 1.6-.8 3.8-2.4 5.7-1.4 1.7-2.9 1.9-3.5 1.9-1.2 0-1.9-.6-2-1.5 0-.8.7-1.3 1.2-1.3.6 0 1.1.5 1.1 1s-.2.6-.4.6c-.1.1-.3.2-.3.4 0 .1.1.3.4.3.5 0 .8-.3 1.1-.5 1.2-.9 1.6-2.7 2.2-5.7l.1-.7.7-3.2c-.8-.6-1.3-1.4-2.4-1.7-.6-.1-1.1.1-1.5.5-.4.5-.2 1.1.2 1.5l.7.6c.7.8 1.2 1.6 1 2.5-.3 1.5-2 2.6-4 1.9-1.8-.6-2-1.8-1.8-2.5.2-.6.6-.7 1.1-.6.5.2.6.7.6 1.2l-.1.3c-.2.1-.3.3-.3.4-.1.4.4.6.7.7.7.3 1.6-.2 1.8-.8a1 1 0 0 0-.4-1.1l-.7-.8c-.4-.4-1.1-1.4-.7-2.6.1-.5.4-.9.7-1.3a4 4 0 0 1 2.8-.6c1.2.4 1.8 1.1 2.6 1.8.5-1.2 1-2.4 1.8-3.5.9-.9 1.9-1.6 3.1-1.7 1.3.2 2.2.7 2.2 1.6 0 .4-.2 1.1-.9 1.1z"/></svg></i>    </button></div></div><link rel="stylesheet" nonce="15faebeef0db66c1ee9487460234d713" href="http://localhost:8000/_wdt/styles" /><script nonce="8eafc435c68dc06b9b33e79e923712ad">/*<![CDATA[*/    if (typeof Sfjs === 'undefined' || typeof Sfjs.loadToolbar === 'undefined') {        Sfjs = (function() {            "use strict";            if ('classList' in document.documentElement) {                var hasClass = function (el, cssClass) { return el.classList.contains(cssClass); };                var removeClass = function(el, cssClass) { el.classList.remove(cssClass); };                var addClass = function(el, cssClass) { el.classList.add(cssClass); };                var toggleClass = function(el, cssClass) { el.classList.toggle(cssClass); };            } else {                var hasClass = function (el, cssClass) { return el.className.match(new RegExp('\\b' + cssClass + '\\b')); };                var removeClass = function(el, cssClass) { el.className = el.className.replace(new RegExp('\\b' + cssClass + '\\b'), ' '); };                var addClass = function(el, cssClass) { if (!hasClass(el, cssClass)) { el.className += " " + cssClass; } };                var toggleClass = function(el, cssClass) { hasClass(el, cssClass) ? removeClass(el, cssClass) : addClass(el, cssClass); };            }            var noop = function() {};            var profilerStorageKey = 'symfony/profiler/';            var addEventListener;            var el = document.createElement('div');            if (!('addEventListener' in el)) {                addEventListener = function (element, eventName, callback) {                    element.attachEvent('on' + eventName, callback);                };            } else {                addEventListener = function (element, eventName, callback) {                    element.addEventListener(eventName, callback, false);                };            }            var request = function(url, onSuccess, onError, payload, options, tries) {                url = new URL(url);                url.searchParams.set('XDEBUG_IGNORE', '1');                url = url.toString();                var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');                options = options || {};                options.retry = options.retry || false;                tries = tries || 1;                /* this delays for 125, 375, 625, 875, and 1000, ... */                var delay = tries < 5 ? (tries - 0.5) * 250 : 1000;                xhr.open(options.method || 'GET', url, true);                xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');                xhr.onreadystatechange = function(state) {                    if (4 !== xhr.readyState) {                        return null;                    }                    if (xhr.status == 404 && options.retry && !options.stop) {                        setTimeout(function() {                            if (options.stop) {                                return;                            }                            request(url, onSuccess, onError, payload, options, tries + 1);                        }, delay);                        return null;                    }                    if (200 === xhr.status) {                        (onSuccess || noop)(xhr);                    } else {                        (onError || noop)(xhr);                    }                };                if (options.onSend) {                    options.onSend(tries);                }                xhr.send(payload || '');            };            var getPreference = function(name) {                if (!window.localStorage) {                    return null;                }                return localStorage.getItem(profilerStorageKey + name);            };            var setPreference = function(name, value) {                if (!window.localStorage) {                    return null;                }                localStorage.setItem(profilerStorageKey + name, value);            };            var requestStack = [];            var extractHeaders = function(xhr, stackElement) {                /* Here we avoid to call xhr.getResponseHeader in order to */                /* prevent polluting the console with CORS security errors */                var allHeaders = xhr.getAllResponseHeaders();                var ret;                if (ret = allHeaders.match(/^x-debug-token:\s+(.*)$/im)) {                    stackElement.profile = ret[1];                }                if (ret = allHeaders.match(/^x-debug-token-link:\s+(.*)$/im)) {                    stackElement.profilerUrl = ret[1];                }                if (ret = allHeaders.match(/^Symfony-Debug-Toolbar-Replace:\s+(.*)$/im)) {                    stackElement.toolbarReplaceFinished = false;                    stackElement.toolbarReplace = '1' === ret[1];                }            };            var successStreak = 4;            var pendingRequests = 0;            var renderAjaxRequests = function() {                var requestCounter = document.querySelector('.sf-toolbar-ajax-request-counter');                if (!requestCounter) {                    return;                }                requestCounter.textContent = requestStack.length;                var infoSpan = document.querySelector(".sf-toolbar-ajax-info");                if (infoSpan) {                    infoSpan.textContent = requestStack.length + ' AJAX request' + (requestStack.length !== 1 ? 's' : '');                }                var ajaxToolbarPanel = document.querySelector('.sf-toolbar-block-ajax');                if (requestStack.length) {                    ajaxToolbarPanel.style.display = '';                } else {                    ajaxToolbarPanel.style.display = 'none';                }                if (pendingRequests > 0) {                    addClass(ajaxToolbarPanel, 'sf-ajax-request-loading');                } else if (successStreak < 4) {                    addClass(ajaxToolbarPanel, 'sf-toolbar-status-red');                    removeClass(ajaxToolbarPanel, 'sf-ajax-request-loading');                } else {                    removeClass(ajaxToolbarPanel, 'sf-ajax-request-loading');                    removeClass(ajaxToolbarPanel, 'sf-toolbar-status-red');                }            };            var startAjaxRequest = function(index) {                var tbody = document.querySelector('.sf-toolbar-ajax-request-list');                if (!tbody) {                    return;                }                var nbOfAjaxRequest = tbody.rows.length;                if (nbOfAjaxRequest >= 100) {                    tbody.deleteRow(0);                }                var request = requestStack[index];                pendingRequests++;                var row = document.createElement('tr');                request.DOMNode = row;                var requestNumberCell = document.createElement('td');                requestNumberCell.textContent = index + 1;                row.appendChild(requestNumberCell);                var profilerCell = document.createElement('td');                profilerCell.textContent = 'n/a';                row.appendChild(profilerCell);                var methodCell = document.createElement('td');                methodCell.textContent = request.method;                row.appendChild(methodCell);                var typeCell = document.createElement('td');                typeCell.textContent = request.type;                row.appendChild(typeCell);                var statusCodeCell = document.createElement('td');                var statusCode = document.createElement('span');                statusCode.textContent = 'n/a';                statusCodeCell.appendChild(statusCode);                row.appendChild(statusCodeCell);                var pathCell = document.createElement('td');                pathCell.className = 'sf-ajax-request-url';                if ('GET' === request.method) {                    var pathLink = document.createElement('a');                    pathLink.setAttribute('href', request.url);                    pathLink.textContent = request.url;                    pathCell.appendChild(pathLink);                } else {                    pathCell.textContent = request.url;                }                pathCell.setAttribute('title', request.url);                row.appendChild(pathCell);                var durationCell = document.createElement('td');                durationCell.className = 'sf-ajax-request-duration';                durationCell.textContent = 'n/a';                row.appendChild(durationCell);                request.liveDurationHandle = setInterval(function() {                    durationCell.textContent = (new Date() - request.start) + ' ms';                }, 100);                row.className = 'sf-ajax-request sf-ajax-request-loading';                tbody.insertBefore(row, null);                var toolbarInfo = document.querySelector('.sf-toolbar-block-ajax .sf-toolbar-info');                toolbarInfo.scrollTop = toolbarInfo.scrollHeight;                renderAjaxRequests();            };            var finishAjaxRequest = function(index) {                var request = requestStack[index];                clearInterval(request.liveDurationHandle);                if (!request.DOMNode) {                    return;                }                if (request.toolbarReplace && !request.toolbarReplaceFinished && request.profile) {                    /* Flag as complete because finishAjaxRequest can be called multiple times. */                    request.toolbarReplaceFinished = true;                    /* Search up through the DOM to find the toolbar's container ID. */                    for (var elem = request.DOMNode; elem && elem !== document; elem = elem.parentNode) {                        if (elem.id.match(/^sfwdt/)) {                            Sfjs.loadToolbar(elem.id.replace(/^sfwdt/, ''), request.profile);                            break;                        }                    }                }                pendingRequests--;                var row = request.DOMNode;                /* Unpack the children from the row */                var profilerCell = row.children[1];                var methodCell = row.children[2];                var statusCodeCell = row.children[4];                var statusCodeElem = statusCodeCell.children[0];                var durationCell = row.children[6];                if (request.error) {                    row.className = 'sf-ajax-request sf-ajax-request-error';                    methodCell.className = 'sf-ajax-request-error';                    successStreak = 0;                } else {                    row.className = 'sf-ajax-request sf-ajax-request-ok';                    successStreak++;                }                if (request.statusCode) {                    if (request.statusCode < 300) {                        statusCodeElem.setAttribute('class', 'sf-toolbar-status');                    } else if (request.statusCode < 400) {                        statusCodeElem.setAttribute('class', 'sf-toolbar-status sf-toolbar-status-yellow');                    } else {                        statusCodeElem.setAttribute('class', 'sf-toolbar-status sf-toolbar-status-red');                    }                    statusCodeElem.textContent = request.statusCode;                } else {                    statusCodeElem.setAttribute('class', 'sf-toolbar-status sf-toolbar-status-red');                }                if (request.duration) {                    durationCell.textContent = request.duration + ' ms';                }                if (request.profilerUrl) {                    profilerCell.textContent = '';                    var profilerLink = document.createElement('a');                    profilerLink.setAttribute('href', request.profilerUrl);                    profilerLink.textContent = request.profile;                    profilerCell.appendChild(profilerLink);                }                renderAjaxRequests();            };                        if (window.fetch && window.fetch.polyfill === undefined) {                var oldFetch = window.fetch;                window.fetch = function () {                    var promise = oldFetch.apply(this, arguments);                    var url = arguments[0];                    var params = arguments[1];                    var paramType = Object.prototype.toString.call(arguments[0]);                    if (paramType === '[object Request]') {                        url = arguments[0].url;                        params = {                            method: arguments[0].method,                            credentials: arguments[0].credentials,                            headers: arguments[0].headers,                            mode: arguments[0].mode,                            redirect: arguments[0].redirect                        };                    } else {                        url = String(url);                    }                    if (!url.match(new RegExp("^\/((index|app(_[\\w]+)?)\\.php\/)?_wdt"))) {                        var method = 'GET';                        if (params && params.method !== undefined) {                            method = params.method;                        }                        var stackElement = {                            error: false,                            url: url,                            method: method,                            type: 'fetch',                            start: new Date()                        };                        var idx = requestStack.push(stackElement) - 1;                        promise.then(function (r) {                            stackElement.duration = new Date() - stackElement.start;                            stackElement.error = r.status < 200 || r.status >= 400;                            stackElement.statusCode = r.status;                            stackElement.profile = r.headers.get('x-debug-token');                            stackElement.profilerUrl = r.headers.get('x-debug-token-link');                            stackElement.toolbarReplaceFinished = false;                            stackElement.toolbarReplace = '1' === r.headers.get('Symfony-Debug-Toolbar-Replace');                            finishAjaxRequest(idx);                        }, function (e){                            stackElement.error = true;                            finishAjaxRequest(idx);                        });                        startAjaxRequest(idx);                    }                    return promise;                };            }            if (window.XMLHttpRequest && XMLHttpRequest.prototype.addEventListener) {                var proxied = XMLHttpRequest.prototype.open;                XMLHttpRequest.prototype.open = function(method, url, async, user, pass) {                    var self = this;                    /* prevent logging AJAX calls to static and inline files, like templates */                    var path = url;                    if (url.slice(0, 1) === '/') {                        if (0 === url.indexOf('')) {                            path = url.slice(0);                        }                    }                    else if (0 === url.indexOf('http\u003A\/\/localhost\u003A8000')) {                        path = url.slice(21);                    }                    if (!path.match(new RegExp("^\/((index|app(_[\\w]+)?)\\.php\/)?_wdt"))) {                        var stackElement = {                            error: false,                            url: url,                            method: method,                            type: 'xhr',                            start: new Date()                        };                        var idx = requestStack.push(stackElement) - 1;                        this.addEventListener('readystatechange', function() {                            if (self.readyState == 4) {                                stackElement.duration = new Date() - stackElement.start;                                stackElement.error = self.status < 200 || self.status >= 400;                                stackElement.statusCode = self.status;                                extractHeaders(self, stackElement);                                finishAjaxRequest(idx);                            }                        }, false);                        startAjaxRequest(idx);                    }                    proxied.apply(this, Array.prototype.slice.call(arguments));                };            }                        return {                hasClass: hasClass,                removeClass: removeClass,                addClass: addClass,                toggleClass: toggleClass,                getPreference: getPreference,                setPreference: setPreference,                addEventListener: addEventListener,                request: request,                renderAjaxRequests: renderAjaxRequests,                getSfwdt: function(token) {                    if (!this.sfwdt) {                        this.sfwdt = document.getElementById('sfwdt' + token);                    }                    return this.sfwdt;                },                load: function(selector, url, onSuccess, onError, options) {                    var el = document.getElementById(selector);                    if (el && el.getAttribute('data-sfurl') !== url) {                        request(                            url,                            function(xhr) {                                el.innerHTML = xhr.responseText;                                el.setAttribute('data-sfurl', url);                                removeClass(el, 'loading');                                var pending = pendingRequests;                                for (var i = 0; i < requestStack.length; i++) {                                    startAjaxRequest(i);                                    if (requestStack[i].duration) {                                        finishAjaxRequest(i);                                    }                                }                                /* Revert the pending state in case there was a start called without a finish above. */                                pendingRequests = pending;                                (onSuccess || noop)(xhr, el);                            },                            function(xhr) { (onError || noop)(xhr, el); },                            '',                            options                        );                    }                    return this;                },                showToolbar: function(token) {                    var sfwdt = this.getSfwdt(token);                    if ('closed' === getPreference('toolbar/displayState')) {                        addClass(sfwdt, 'sf-toolbar-closed');                        removeClass(sfwdt, 'sf-toolbar-opened');                    } else {                        addClass(sfwdt, 'sf-toolbar-opened');                        removeClass(sfwdt, 'sf-toolbar-closed');                    }                },                hideToolbar: function(token) {                    var sfwdt = this.getSfwdt(token);                    addClass(sfwdt, 'sf-toolbar-closed');                    removeClass(sfwdt, 'sf-toolbar-opened');                },                initToolbar: function(token) {                    this.showToolbar(token);                    var toggleButton = document.querySelector(`#sfToolbarToggleButton-${token}`);                    addEventListener(toggleButton, 'click', function (event) {                        event.preventDefault();                        const newState = 'opened' === getPreference('toolbar/displayState') ? 'closed' : 'opened';                        setPreference('toolbar/displayState', newState);                        'opened' === newState ? Sfjs.showToolbar(token) : Sfjs.hideToolbar(token);                    });                },                loadToolbar: function(token, newToken) {                    var that = this;                    var triesCounter = document.getElementById('sfLoadCounter-' + token);                    var options = {                        retry: true,                        onSend: function (count) {                            if (count === 3) {                                that.initToolbar(token);                            }                            if (triesCounter) {                                triesCounter.textContent = count;                            }                        },                    };                    var cancelButton = document.getElementById('sfLoadCancel-' + token);                    if (cancelButton) {                        addEventListener(cancelButton, 'click', function (event) {                            event.preventDefault();                            options.stop = true;                            that.hideToolbar(token);                        });                    }                    newToken = (newToken || token);                    this.load(                        'sfwdt' + token,                        'http\u003A\/\/localhost\u003A8000\/_wdt\/xxxxxx'.replace(/xxxxxx/, newToken),                        function(xhr, el) {                            /* Do nothing in the edge case where the toolbar has already been replaced with a new one */                            if (!document.getElementById('sfToolbarMainContent-' + newToken)) {                                return;                            }                            /* Evaluate in global scope scripts embedded inside the toolbar */                            var i, scripts = [].slice.call(el.querySelectorAll('script'));                            for (i = 0; i < scripts.length; ++i) {                                if (scripts[i].firstChild) {                                    eval.call({}, scripts[i].firstChild.nodeValue);                                }                            }                            el.style.display = -1 !== xhr.responseText.indexOf('sf-toolbarreset') ? 'block' : 'none';                            if (el.style.display == 'none') {                                return;                            }                            that.initToolbar(newToken);                            /* Handle toolbar-info position */                            var toolbarBlocks = [].slice.call(el.querySelectorAll('.sf-toolbar-block'));                            for (i = 0; i < toolbarBlocks.length; ++i) {                                toolbarBlocks[i].onmouseover = function () {                                    var toolbarInfo = this.querySelectorAll('.sf-toolbar-info')[0];                                    var pageWidth = document.body.clientWidth;                                    var elementWidth = toolbarInfo.offsetWidth;                                    var leftValue = (elementWidth + this.offsetLeft) - pageWidth;                                    var rightValue = (elementWidth + (pageWidth - this.offsetLeft)) - pageWidth;                                    /* Reset right and left value, useful on window resize */                                    toolbarInfo.style.right = '';                                    toolbarInfo.style.left = '';                                    if (elementWidth > pageWidth) {                                        toolbarInfo.style.left = 0;                                    }                                    else if (leftValue > 0 && rightValue > 0) {                                        toolbarInfo.style.right = (rightValue * -1) + 'px';                                    } else if (leftValue < 0) {                                        toolbarInfo.style.left = 0;                                    } else {                                        toolbarInfo.style.right = '0px';                                    }                                };                            }                            renderAjaxRequests();                            addEventListener(document.querySelector('.sf-toolbar-ajax-clear'), 'click', function() {                                requestStack = [];                                renderAjaxRequests();                                successStreak = 4;                                document.querySelector('.sf-toolbar-ajax-request-list').innerHTML = '';                            });                            addEventListener(document.querySelector('.sf-toolbar-block-ajax'), 'mouseenter', function (event) {                                var elem = document.querySelector('.sf-toolbar-block-ajax .sf-toolbar-info');                                elem.scrollTop = elem.scrollHeight;                            });                            addEventListener(document.querySelector('.sf-toolbar-block-ajax > .sf-toolbar-icon'), 'click', function (event) {                                event.preventDefault();                                toggleClass(this.parentNode, 'hover');                            });                            var dumpInfo = document.querySelector('.sf-toolbar-block-dump .sf-toolbar-info');                            if (null !== dumpInfo) {                                addEventListener(dumpInfo, 'sfbeforedumpcollapse', function () {                                    dumpInfo.style.minHeight = dumpInfo.getBoundingClientRect().height+'px';                                });                                addEventListener(dumpInfo, 'mouseleave', function () {                                    dumpInfo.style.minHeight = '';                                });                            }                        },                        function(xhr) {                            if (xhr.status !== 0 && !options.stop) {                                var sfwdt = that.getSfwdt(token);                                sfwdt.innerHTML = '\                                <div class="sf-toolbarreset notranslate">\                                    <div class="sf-toolbar-icon"><svg width="26" height="28" xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" viewBox="0 0 26 28" enable-background="new 0 0 26 28" xml:space="preserve"><path fill="#FFFFFF" d="M13 0C5.8 0 0 5.8 0 13c0 7.2 5.8 13 13 13c7.2 0 13-5.8 13-13C26 5.8 20.2 0 13 0z M20 7.5 c-0.6 0-1-0.3-1-0.9c0-0.2 0-0.4 0.2-0.6c0.1-0.3 0.2-0.3 0.2-0.4c0-0.3-0.5-0.4-0.7-0.4c-2 0.1-2.5 2.7-2.9 4.8l-0.2 1.1 c1.1 0.2 1.9 0 2.4-0.3c0.6-0.4-0.2-0.8-0.1-1.3C18 9.2 18.4 9 18.7 8.9c0.5 0 0.8 0.5 0.8 1c0 0.8-1.1 2-3.3 1.9 c-0.3 0-0.5 0-0.7-0.1L15 14.1c-0.4 1.7-0.9 4.1-2.6 6.2c-1.5 1.8-3.1 2.1-3.8 2.1c-1.3 0-2.1-0.6-2.2-1.6c0-0.9 0.8-1.4 1.3-1.4 c0.7 0 1.2 0.5 1.2 1.1c0 0.5-0.2 0.6-0.4 0.7c-0.1 0.1-0.3 0.2-0.3 0.4c0 0.1 0.1 0.3 0.4 0.3c0.5 0 0.9-0.3 1.2-0.5 c1.3-1 1.7-2.9 2.4-6.2l0.1-0.8c0.2-1.1 0.5-2.3 0.8-3.5c-0.9-0.7-1.4-1.5-2.6-1.8c-0.8-0.2-1.3 0-1.7 0.4C8.4 10 8.6 10.7 9 11.1 l0.7 0.7c0.8 0.9 1.3 1.7 1.1 2.7c-0.3 1.6-2.1 2.8-4.3 2.1c-1.9-0.6-2.2-1.9-2-2.7c0.2-0.6 0.7-0.8 1.2-0.6 c0.5 0.2 0.7 0.8 0.6 1.3c0 0.1 0 0.1-0.1 0.3C6 15 5.9 15.2 5.9 15.3c-0.1 0.4 0.4 0.7 0.8 0.8c0.8 0.3 1.7-0.2 1.9-0.9 c0.2-0.6-0.2-1.1-0.4-1.2l-0.8-0.9c-0.4-0.4-1.2-1.5-0.8-2.8c0.2-0.5 0.5-1 0.9-1.4c1-0.7 2-0.8 3-0.6c1.3 0.4 1.9 1.2 2.8 1.9 c0.5-1.3 1.1-2.6 2-3.8c0.9-1 2-1.7 3.3-1.8C20 4.8 21 5.4 21 6.3C21 6.7 20.8 7.5 20 7.5z"/></svg></div>\                                    An error occurred while loading the web debug toolbar. <a href="http\u003A\/\/localhost\u003A8000\/_profiler\/' + newToken + '">Open the web profiler.</a>\                                </div>\                            ';                                sfwdt.setAttribute('class', 'sf-toolbar sf-error-toolbar');                            }                        },                        options                    );                    return this;                },                toggle: function(selector, elOn, elOff) {                    var tmp = elOn.style.display,                        el = document.getElementById(selector);                    elOn.style.display = elOff.style.display;                    elOff.style.display = tmp;                    if (el) {                        el.style.display = 'none' === tmp ? 'none' : 'block';                    }                    return this;                },            };        })();    }    Sfjs.loadToolbar('9b3957');/*]]>*/</script><!-- END of Symfony Web Debug Toolbar -->
+</body>
+</html>
