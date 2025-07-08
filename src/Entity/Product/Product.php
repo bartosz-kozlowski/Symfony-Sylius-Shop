@@ -65,7 +65,6 @@ class Product extends BaseProduct implements ProductInterface
         $this->model3dPosition = $position;
     }
 
-
     protected function createTranslation(): ProductTranslationInterface
     {
         return new ProductTranslation();

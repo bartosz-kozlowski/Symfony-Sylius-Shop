@@ -1,77 +1,51 @@
 {% set product = hookable_metadata.context.product %}
-
 <style>
     .model3d-zoom-btn {
         display: inline-block;
         z-index: 5;
     }
-</style>
 
+</style>
 {% if product.images|length > 0 or product.model3dPath is not empty %}
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
     <div class="col-12 col-sm-3 mb-3">
         <div class="d-flex flex-column gap-3 gap-xxl-4" {{ sylius_test_html_attribute('thumbnails') }}>
 
-            {# Zbieramy wszystkie elementy do jednej listy #}
-            {% set thumbnails = [] %}
-
-            {# Dodajemy zdjęcia z pozycjami #}
             {% for image in product.images %}
-                {% set thumbnails = thumbnails|merge([{
-                    'type': 'image',
-                    'position': image.position ?? loop.index,
-                    'path': image.path is not null ? image.path|imagine_filter('sylius_shop_product_small_thumbnail') : asset('build/shop/images/200x200.png'),
-                    'image': image
-                }]) %}
+                {% set path = image.path is not null ? image.path|imagine_filter('sylius_shop_product_small_thumbnail') : asset('build/shop/images/200x200.png') %}
+                <div>
+                    {% hook 'thumbnails' with {image, path} %}
+                </div>
             {% endfor %}
 
-            {# Dodajemy model 3D z jego pozycją #}
             {% if product.model3dPath is not empty %}
-                {% set thumbnails = thumbnails|merge([{
-                    'type': 'model3d',
-                    'position': product.model3dPosition ?? 9999,
-                    'path': asset(product.model3dPath)
-                }]) %}
+                <div class="model3d-thumbnail-wrapper position-relative">
+                    <model-viewer
+                        src="{{ asset(product.model3dPath) }}"
+                        alt="Model 3D produktu"
+                        auto-rotate
+                        camera-controls
+                        style="width: 100%; height: 250px; background: #f8f9fa;">
+                    </model-viewer>
+
+                    <button type="button"
+                            class="btn btn-sm btn-light position-absolute model3d-zoom-btn"
+                            style="bottom: 5px; right: 5px;"
+                            data-bs-toggle="modal"
+                            data-bs-target="#model3dModal"
+                            title="Powiększ model 3D">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                        </svg>
+                    </button>
+                </div>
             {% endif %}
 
-            {# Sortujemy wszystkie elementy po polu 'position' #}
-            {% set sortedThumbnails = thumbnails|sort((a, b) => a.position <=> b.position) %}
-
-            {# Wyświetlamy posortowane elementy #}
-            {% for thumb in sortedThumbnails %}
-                {% if thumb.type == 'image' %}
-                    <div>
-                        {% hook 'thumbnails' with { image: thumb.image, path: thumb.path } %}
-                    </div>
-                {% elseif thumb.type == 'model3d' %}
-                    <div class="model3d-thumbnail-wrapper position-relative">
-                        <model-viewer
-                            src="{{ thumb.path }}"
-                            alt="Model 3D produktu"
-                            auto-rotate
-                            camera-controls
-                            style="width: 100%; height: 250px; background: #f8f9fa;">
-                        </model-viewer>
-
-                        <button type="button"
-                                class="btn btn-sm btn-light position-absolute model3d-zoom-btn"
-                                style="bottom: 5px; right: 5px;"
-                                data-bs-toggle="modal"
-                                data-bs-target="#model3dModal"
-                                title="Powiększ model 3D">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-                            </svg>
-                        </button>
-                    </div>
-                {% endif %}
-            {% endfor %}
         </div>
     </div>
 {% endif %}
 
-{# Modal do powiększenia modelu 3D #}
 {% if product.model3dPath is not empty %}
     <div class="modal fade" id="model3dModal" tabindex="-1" aria-labelledby="model3dModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-centered">

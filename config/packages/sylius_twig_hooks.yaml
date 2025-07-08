@@ -5,11 +5,16 @@ sylius_twig_hooks:
               template: 'shop/top_bar/info_message.html.twig'
               priority: 200
         sylius_admin.product.update.content.form.sections.media:
-          threemodel:
-            template: 'admin/threemodel.html.twig'
-            priority: 100
+            threemodel:
+                template: 'admin/threemodel.html.twig'
+                priority: 100
         sylius_admin.product.create.content.form.sections.media:
             threemodel:
                 template: 'admin/threemodel.html.twig'
                 priority: 100
-        
+#        sylius_shop.product.index.content.body.main:
+#            products:
+#                template: 'shop/configurator.html.twig'
+#                priority: 100
+#                context:
+#                    products: '@=service("sylius.repository.product").findAll()'

@@ -25,7 +25,7 @@ final class AdminMenuSubscriber implements EventSubscriberInterface
                 ->addChild('admin_3d_canvas', [
                     'route' => 'admin_3d_canvas',
                 ])
-                ->setLabel('Canvas 3D')
+                ->setLabel('Przegląd modeli 3D')
                 ->setLabelAttribute('icon', 'cube');
         }
     }
