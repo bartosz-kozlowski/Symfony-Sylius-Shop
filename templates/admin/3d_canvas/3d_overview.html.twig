@@ -108,7 +108,9 @@
 
                                 <li class="list-group-item p-2">
                                     <a href="#" class="d-flex align-items-center text-reset text-decoration-none"
-                                       data-model="{{ asset(product.model3dPath) }}">
+                                       data-model="{{ asset(product.model3dPath) }}"
+                                       data-code="{{ product.code }}"
+                                       >
                                         <img src="{{ path }}" width="60" height="60" class="rounded me-2" alt="">
                                         <div class="fw-medium">{{ product.translation.name }}</div>
 {#                                        <span>{{ product.translation.name }}</span>#}
@@ -118,7 +120,7 @@
                         </ul>
                     </aside>
 
-                    <main class="col-12 col-md-9 d-flex justify-content-center align-items-center bg-light"
+                    <main class="col-12 col-md-9 d-flex justify-content-center align-items-center bg-light position-relative"
                           style="min-height:70vh;">
                         <model-viewer id="viewer"
                                       style="width:75%; height:75%;"
@@ -128,58 +130,156 @@
                                       auto-rotate
                                       camera-controls>
                         </model-viewer>
+{#                        <canvas id="viewerCanvas" style="width: 75%; height: 75%;"></canvas>#}
 
                         <div id="placeholder" class="position-absolute text-muted fs-4">
                             ← Wybierz produkt po lewej
                         </div>
                         <div class="position-absolute bottom-0 end-0 m-3">
+                            <button id="saveBtn" class="btn btn-outline-primary shadow-sm d-none">Zapisz zmiany</button>
                             <button id="exportBtn" onclick="exportGLB()" class="btn btn-outline-primary shadow-sm d-none">
                                 Wyeksportuj model 3D produktu
                             </button>
                         </div>
+                        <input type="color" id="colorPicker"
+                               class="position-absolute top-0 end-0 m-3 form-control form-control-color d-none"
+                               value="#ff0000" title="Wybierz kolor" />
                     </main>
-
-                    <script>
-                        const productLinks = document.querySelectorAll('#productList a');
-                        const modelViewer = document.getElementById("viewer");
+                    <script type="module">
+                        const viewer = document.getElementById('viewer');
+                        const picker = document.getElementById('colorPicker');
                         const exportBtn = document.getElementById("exportBtn");
+                        const saveBtn = document.getElementById("saveBtn");
                         const placeholder = document.getElementById("placeholder");
+                        const productLinks = document.querySelectorAll('#productList a');
 
-                        productLinks.forEach(link => {
-                            link.addEventListener('click', (e) => {
-                                e.preventDefault();
-                                const modelUrl = link.getAttribute('data-model');
+                        function hexToRGBA(hex) {
+                            return [
+                                parseInt(hex.slice(1, 3), 16) / 255,
+                                parseInt(hex.slice(3, 5), 16) / 255,
+                                parseInt(hex.slice(5, 7), 16) / 255,
+                                1
+                            ];
+                        }
 
-                                if (modelUrl) {
-                                    modelViewer.setAttribute('src', modelUrl);
-                                    placeholder.style.display = 'none';
-                                    exportBtn.classList.remove('d-none');
-                                }
-                            });
-                        });
+                        function rgbaToHex([r, g, b]) {
+                            return "#" + [r, g, b].map(x => {
+                                const hex = Math.round(x * 255).toString(16);
+                                return hex.padStart(2, '0');
+                            }).join('');
+                        }
 
+                        // Funkcja do eksportu modelu
                         async function exportGLB() {
-                            const glTF = await modelViewer.exportScene();
+                            const glTF = await viewer.exportScene();
                             const file = new File([glTF], "export.glb");
                             const link = document.createElement("a");
                             link.download = file.name;
                             link.href = URL.createObjectURL(file);
                             link.click();
                         }
+
+                        window.exportGLB = exportGLB;
+
+                        // Obsługa wyboru produktu
+                        productLinks.forEach(link => {
+                            link.addEventListener('click', async (e) => {
+                                e.preventDefault();
+                                productLinks.forEach(a => a.classList.remove('active'));
+                                link.classList.add('active');
+
+                                const modelUrl = link.getAttribute('data-model');
+                                const code = link.getAttribute('data-code');
+
+                                if (!modelUrl || !code) return;
+
+                                // Resetuj widok
+                                viewer.removeAttribute('src');
+                                // placeholder.style.display = 'block';
+                                exportBtn.classList.add('d-none');
+                                saveBtn.classList.add('d-none');
+
+                                let colorHex = null;
+
+                                // Pobierz kolor z backendu
+                                try {
+                                    const res = await fetch(`/admin/3d-canvas/get-color/${code}`);
+                                    if (res.ok) {
+                                        const data = await res.json();
+                                        if (data.color) {
+                                            colorHex = data.color;
+                                        }
+                                    }
+                                } catch (err) {
+                                    console.warn("Nie udało się pobrać koloru:", err);
+                                }
+
+                                // Załaduj model
+                                viewer.setAttribute('src', modelUrl);
+
+                                // Obsługa po załadowaniu modelu
+                                viewer.addEventListener('load', () => {
+                                    const material = viewer.model?.materials?.[0];
+                                    if (material?.pbrMetallicRoughness) {
+                                        if (colorHex) {
+                                            const rgba = hexToRGBA(colorHex);
+                                            material.pbrMetallicRoughness.setBaseColorFactor(rgba);
+                                            picker.value = colorHex;
+                                        } else {
+                                            const currentColor = material.pbrMetallicRoughness.baseColorFactor;
+                                            if (currentColor) {
+                                                picker.value = rgbaToHex(currentColor);
+                                            }
+                                        }
+
+                                        // Obsługa zmiany koloru
+                                        picker.oninput = () => {
+                                            const rgba = hexToRGBA(picker.value);
+                                            material.pbrMetallicRoughness.setBaseColorFactor(rgba);
+                                        };
+                                    }
+
+                                    placeholder.style.display = 'none';
+                                    picker.classList.remove('d-none');
+                                    exportBtn.classList.remove('d-none');
+                                    saveBtn.classList.remove('d-none');
+                                }, { once: true });
+                            });
+                        });
+
+                        // Obsługa zapisu koloru
+                        saveBtn.addEventListener('click', async () => {
+                            const activeLink = document.querySelector('#productList a.active');
+                            if (!activeLink) {
+                                alert("Nie wybrano produktu!");
+                                return;
+                            }
+
+                            const code = activeLink.getAttribute('data-code');
+                            const colorHex = picker.value;
+
+                            try {
+                                const res = await fetch('/admin/3d-canvas/set-color', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                        'X-Requested-With': 'XMLHttpRequest',
+                                    },
+                                    body: JSON.stringify({ code, color: colorHex })
+                                });
+
+                                if (!res.ok) throw new Error("Błąd zapisu");
+
+                                const data = await res.json();
+                                alert("Zapisano kolor: " + data.color);
+                            } catch (err) {
+                                console.error(err);
+                                alert("Nie udało się zapisać koloru.");
+                            }
+                        });
                     </script>
                 </div>
             </div>
         </div>
     </div>
-
-    <script>
-        document.querySelectorAll('#productList [data-model]').forEach(el => {
-            el.addEventListener('click', e => {
-                e.preventDefault();
-                const viewer = document.getElementById('viewer');
-                viewer.src = el.dataset.model;
-                document.getElementById('placeholder').style.display = 'none';
-            });
-        });
-    </script>
 {% endblock %}

@@ -32,10 +32,10 @@ final class ProductTypeExtension extends AbstractTypeExtension
                 'required' => false,
                 'attr' => ['data-remove-model' => ''],
             ])
-            ->add('model3dPosition', IntegerType::class, [
-                'label' => 'Pozycja modelu 3D',
-                'required' => false,
-            ])
+//            ->add('model3dPosition', IntegerType::class, [
+//                'label' => 'Pozycja modelu 3D',
+//                'required' => false,
+//            ])
             ->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
                 $form    = $event->getForm();
                 $product = $event->getData();

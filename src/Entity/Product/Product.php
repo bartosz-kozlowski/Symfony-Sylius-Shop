@@ -65,6 +65,20 @@ class Product extends BaseProduct implements ProductInterface
         $this->model3dPosition = $position;
     }
 
+    #[ORM\Column(type: 'string', length: 7, nullable: true)]
+    private ?string $modelColor = null;
+
+    public function getModelColor(): ?string
+    {
+        return $this->modelColor;
+    }
+
+    public function setModelColor(?string $modelColor): void
+    {
+        $this->modelColor = $modelColor;
+    }
+
+
     protected function createTranslation(): ProductTranslationInterface
     {
         return new ProductTranslation();
