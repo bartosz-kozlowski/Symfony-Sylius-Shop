@@ -101,8 +101,7 @@ final class CanvController extends AbstractController
         }
 
         $products = $queryBuilder->getQuery()->getResult();
-
-        return $this->render('admin/3d_canvas/index.html.twig', [
+        return $this->render('admin/3d_canvas/redirect.html.twig', [
             'products' => $products,
         ]);
     }

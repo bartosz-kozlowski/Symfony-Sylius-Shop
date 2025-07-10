@@ -4,6 +4,62 @@ sylius_twig_hooks:
             - _name: info_message
               template: 'shop/top_bar/info_message.html.twig'
               priority: 200
+        'sylius_admin.overview3d.index':
+            sidebar:
+                template: '@SyliusAdmin/shared/crud/common/sidebar.html.twig'
+                priority: 200
+            navbar:
+                template: '@SyliusAdmin/shared/crud/common/navbar.html.twig'
+                priority: 100
+            content:
+                template: '@SyliusAdmin/shared/crud/common/content.html.twig'
+                priority: 0
+        'sylius_admin.overview3d.index.content':
+            header:
+                template: '@SyliusAdmin/shared/crud/common/content/header.html.twig'
+                priority: 200
+            grid:
+                enabled: false
+            latest_statistics:
+                configuration:
+                    products: products
+                template: 'admin/3d_canvas/3d_overview.html.twig'
+                priority: 0
+        'sylius_admin.over.index.content':
+            flashes:
+                template: '@SyliusAdmin/shared/crud/common/content/flashes.html.twig'
+                priority: 300
+            header:
+                template: '@SyliusAdmin/shared/crud/common/content/header.html.twig'
+                priority: 200
+            grid:
+                template: '@SyliusAdmin/shared/crud/index/content/grid.html.twig'
+                priority: 100
+            footer:
+                template: '@SyliusAdmin/shared/crud/common/content/footer.html.twig'
+                priority: -100
+        'sylius_admin.over.index.content.header':
+            breadcrumbs:
+#                enabled: false
+                template: 'admin/breadcrumbs.html.twig'
+                priority: 0
+            title_block:
+#                enabled: false
+                template: '@SyliusAdmin/shared/crud/common/content/header/title_block.html.twig'
+                priority: 0
+        'sylius_admin.overview3d.index.content.header.title_block':
+            title:
+                template: 'admin/title.html.twig'
+        'sylius_admin.over.index.content.grid':
+            filters:
+                template: '@SyliusAdmin/shared/crud/index/content/grid/filters.html.twig'
+                priority: 200
+            data_table:
+                template: '@SyliusAdmin/shared/crud/index/content/grid/data_table.html.twig'
+                priority: 100
+            no_data_block:
+                template: '@SyliusAdmin/shared/crud/index/content/grid/no_results.html.twig'
+                priority: 0
         sylius_admin.product.update.content.form.sections.media:
             threemodel:
                 template: 'admin/threemodel.html.twig'
@@ -12,9 +68,3 @@ sylius_twig_hooks:
             threemodel:
                 template: 'admin/threemodel.html.twig'
                 priority: 100
-#        sylius_shop.product.index.content.body.main:
-#            products:
-#                template: 'shop/configurator.html.twig'
-#                priority: 100
-#                context:
-#                    products: '@=service("sylius.repository.product").findAll()'

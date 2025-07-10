@@ -1,0 +1,185 @@
+{% set products = hookable_metadata.context.products %}
+
+{% block body %}
+    <script type="module"
+            src="https://unpkg.com/@google/model-viewer@^3/dist/model-viewer.min.js">
+    </script>
+    <div class="page-body">
+        <div class="container-xl">
+            <div class="position-relative z-1 bg-white mb-5">
+                <div class="accordion" id="699811880">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
+                            <span class="d-flex gap-2">
+                                <span class="d-flex align-items-center">
+                                    <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon" aria-hidden="true">
+                                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 10a2 2 0 1 0 4 0a2 2 0 0 0-4 0m2-6v4m0 4v8m4-4a2 2 0 1 0 4 0a2 2 0 0 0-4 0m2-12v10m0 4v2m4-13a2 2 0 1 0 4 0a2 2 0 0 0-4 0m2-3v1m0 4v11"/>
+                                    </svg>
+                                </span>
+                                Filtry
+                            </span>
+                                <span class="accordion-button-toggle">
+                                <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon" aria-hidden="true">
+                                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m6 9l6 6l6-6"/>
+                                </svg>
+                            </span>
+                            </button>
+                        </h2>
+                        <div id="collapse1" class="accordion-collapse collapse" data-bs-parent="#699811880">
+                            <div class="accordion-body">
+                                <form method="get" action="" novalidate>
+                                    <div class="sylius-filters">
+                                        <div class="sylius-filters__item">
+                                            <div class="sylius-filters__string">
+                                                <div class="mb-3 field">
+                                                    <label class="form-label" for="criteria_code_type">Kod</label>
+                                                    <select id="criteria_code_type" name="criteria[code][type]" class="form-select">
+                                                        <option value="contains">Zawiera</option>
+                                                        <option value="not_contains">Nie zawiera</option>
+                                                        <option value="equal">Równe</option>
+                                                        <option value="not_equal">Różne od</option>
+                                                        <option value="empty">Brak</option>
+                                                        <option value="not_empty">Nie pusty</option>
+                                                        <option value="starts_with">Rozpoczyna się od</option>
+                                                        <option value="ends_with">Kończy się na</option>
+                                                        <option value="in">W</option>
+                                                        <option value="not_in">Nie w</option>
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3 field">
+                                                    <label for="criteria_code_value" class="form-label">Wartość</label>
+                                                    <input type="text" id="criteria_code_value" name="criteria[code][value]" placeholder="Wartość" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="sylius-filters__item">
+                                            <div class="sylius-filters__string">
+                                                <div class="mb-3 field">
+                                                    <label class="form-label" for="criteria_name_type">Nazwa</label>
+                                                    <select id="criteria_name_type" name="criteria[name][type]" class="form-select">
+                                                        <option value="contains">Zawiera</option>
+                                                        <option value="not_contains">Nie zawiera</option>
+                                                        <option value="equal">Równe</option>
+                                                        <option value="not_equal">Różne od</option>
+                                                        <option value="empty">Brak</option>
+                                                        <option value="not_empty">Nie pusty</option>
+                                                        <option value="starts_with">Rozpoczyna się od</option>
+                                                        <option value="ends_with">Kończy się na</option>
+                                                        <option value="in">W</option>
+                                                        <option value="not_in">Nie w</option>
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3 field">
+                                                    <label for="criteria_name_value" class="form-label">Wartość</label>
+                                                    <input type="text" id="criteria_name_value" name="criteria[name][value]" placeholder="Wartość" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button type="submit" class="btn btn-primary">
+                                            <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon" aria-hidden="true">
+                                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 10a2 2 0 1 0 4 0a2 2 0 0 0-4 0m2-6v4m0 4v8m4-4a2 2 0 1 0 4 0a2 2 0 0 0-4 0m2-12v10m0 4v2m4-13a2 2 0 1 0 4 0a2 2 0 0 0-4 0m2-3v1m0 4v11"/>
+                                            </svg>
+                                            Filtruj
+                                        </button>
+                                        <a href="/admin/3d-canvas" class="btn">
+                                            Zresetuj
+                                        </a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kontener na model 3D i listę produktów -->
+            <div class="card">
+                <div class="row g-0">
+                    <aside class="col-12 col-md-3 border-end" style="max-height:calc(100vh - 200px); overflow:auto;">
+                        <ul class="list-group list-group-flush" id="productList">
+                            {% for product in products %}
+                                {% set image = product.images|first %}
+                                {% set path = image.path is not null
+                                    ? image.path|imagine_filter('sylius_shop_product_small_thumbnail')
+                                    : asset('build/shop/images/200x200.png') %}
+
+                                <li class="list-group-item p-2">
+                                    <a href="#" class="d-flex align-items-center text-reset text-decoration-none"
+                                       data-model="{{ asset(product.model3dPath) }}">
+                                        <img src="{{ path }}" width="60" height="60" class="rounded me-2" alt="">
+                                        <div class="fw-medium">{{ product.translation.name }}</div>
+{#                                        <span>{{ product.translation.name }}</span>#}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </aside>
+
+                    <main class="col-12 col-md-9 d-flex justify-content-center align-items-center bg-light"
+                          style="min-height:70vh;">
+                        <model-viewer id="viewer"
+                                      style="width:75%; height:75%;"
+                                      alt="Podgląd 3D"
+                                      ar
+                                      environment-image="neutral"
+                                      auto-rotate
+                                      camera-controls>
+                        </model-viewer>
+
+                        <div id="placeholder" class="position-absolute text-muted fs-4">
+                            ← Wybierz produkt po lewej
+                        </div>
+                        <div class="position-absolute bottom-0 end-0 m-3">
+                            <button id="exportBtn" onclick="exportGLB()" class="btn btn-outline-primary shadow-sm d-none">
+                                Wyeksportuj model 3D produktu
+                            </button>
+                        </div>
+                    </main>
+
+                    <script>
+                        const productLinks = document.querySelectorAll('#productList a');
+                        const modelViewer = document.getElementById("viewer");
+                        const exportBtn = document.getElementById("exportBtn");
+                        const placeholder = document.getElementById("placeholder");
+
+                        productLinks.forEach(link => {
+                            link.addEventListener('click', (e) => {
+                                e.preventDefault();
+                                const modelUrl = link.getAttribute('data-model');
+
+                                if (modelUrl) {
+                                    modelViewer.setAttribute('src', modelUrl);
+                                    placeholder.style.display = 'none';
+                                    exportBtn.classList.remove('d-none');
+                                }
+                            });
+                        });
+
+                        async function exportGLB() {
+                            const glTF = await modelViewer.exportScene();
+                            const file = new File([glTF], "export.glb");
+                            const link = document.createElement("a");
+                            link.download = file.name;
+                            link.href = URL.createObjectURL(file);
+                            link.click();
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('#productList [data-model]').forEach(el => {
+            el.addEventListener('click', e => {
+                e.preventDefault();
+                const viewer = document.getElementById('viewer');
+                viewer.src = el.dataset.model;
+                document.getElementById('placeholder').style.display = 'none';
+            });
+        });
+    </script>
+{% endblock %}

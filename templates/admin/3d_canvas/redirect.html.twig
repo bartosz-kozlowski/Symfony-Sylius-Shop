@@ -1,0 +1,8 @@
+{% extends '@SyliusAdmin/shared/layout/base.html.twig' %}
+
+{% block title %} Modele 3D | Sylius{% endblock %}
+{#{% set header = 'elo' %}#}
+
+{% block body %}
+    {% hook ['sylius_admin.overview3d.index', 'sylius_admin.over.index'] with { products: products } %}
+{% endblock %}

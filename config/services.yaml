@@ -19,6 +19,8 @@ services:
 
     # Makes classes in src/ available to be used as services;
     # this creates a service per class whose id is the fully-qualified class name
+    Sylius\Component\Core\Factory\CartItemFactoryInterface: '@sylius.custom_factory.order_item'
+    Sylius\Component\Core\Repository\ProductVariantRepositoryInterface: '@sylius.repository.product_variant'
     App\:
         resource: '../src/*'
         exclude: '../src/{Entity,Kernel.php}'

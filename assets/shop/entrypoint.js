@@ -1,8 +1,5 @@
 import '@vendor/sylius/mollie-plugin/assets/shop/entrypoint';
 import './bootstrap.js';
-
-// In this file you can import assets like images or stylesheets
-console.log('Hello Webpack Encore! Edit me in assets/shop/entrypoint.js');
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
@@ -13,13 +10,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const checkoutBtn = document.getElementById('checkoutBtn');
 
   let cartScene, cartCamera, cartRenderer, cartControls;
-
-  const cartModelMap = new Map(); // Mapowanie ID produktu → obiekt 3D
+  const cartModelMap = new Map();
+  let placedX = -3;
+  const groundY = -1.2; // wysokość, na której obiekty mają się zatrzymać
 
   function initViewer(container) {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
-    camera.position.z = 2;
+    camera.position.set(0, 1.5, 8);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(container.clientWidth, container.clientHeight);
@@ -32,24 +30,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.dampingFactor = 0.05;
-    controls.target.set(0, 0, 0);
+    controls.target.set(0, 0.5, 0);
     controls.update();
 
     function animate() {
       requestAnimationFrame(animate);
       controls.update();
 
-      // Opadanie produktów
       scene.traverse(obj => {
         if (!obj.userData.fallSpeed) return;
 
-        if (!basketBox) return;
-
-        const modelBottom = obj.position.y - 0.5;
-        const basketY = basketBox.max.y - 4.85;
-
-        if (modelBottom <= basketY) {
-          obj.position.y = basketY + 0.5;
+        const modelBottom = obj.position.y - 0.5; // zakładamy wysokość modelu ~1
+        if (modelBottom <= groundY) {
+          obj.position.y = groundY + 0.5;
           obj.userData.fallSpeed = 0;
         } else {
           obj.position.y -= obj.userData.fallSpeed;
@@ -68,53 +61,99 @@ document.addEventListener('DOMContentLoaded', () => {
 
     return { scene, camera, renderer, controls };
   }
+
   function normalizeModel(model, targetHeight = 1) {
     const bbox = new THREE.Box3().setFromObject(model);
     const size = new THREE.Vector3();
     bbox.getSize(size);
-
-    const scale = targetHeight / size.y; // y = wysokość
-    model.scale.setScalar(scale); // jednolita skala
+    const scale = targetHeight / size.y;
+    model.scale.setScalar(scale);
   }
+
+  function encodeCartToQueryParam(cartMap) {
+    const payload = [];
+
+    for (const [productId, { variantCode, productName }] of cartMap.entries()) {
+      payload.push({ productId, variantCode, productName, quantity: 1 });
+    }
+
+    return btoa(encodeURIComponent(JSON.stringify(payload)));
+  }
+
   function loadModel(path, id, onLoad) {
     const loader = new GLTFLoader();
     loader.load(path, gltf => {
-      gltf.scene.userData.productId = id; // zapamiętaj ID
+      gltf.scene.userData.productId = id;
       onLoad(gltf.scene);
     }, undefined, error => {
       console.error('Błąd ładowania modelu:', error);
     });
   }
+  function updateCamera() {
+    if (cartModelMap.size === 0) {
+      cartControls.target.set(0, 0.5, 0);
+      cartCamera.position.set(0, 1.6, 4.5);
+    } else {
+      const spacing = 2;
+      const midX = -3 + (cartModelMap.size - 1) * spacing / 2;
+      cartControls.target.set(midX, 0.5, 0);
+      cartCamera.position.set(midX, 1.6, 4.5);
+    }
+    cartControls.update();
+  }
 
-  let basketBox = null;
+  function relayoutModels() {
+    let x = -3;                 // punkt startowy
+    const spacing = 2;          // odstęp między modelami
+
+    for (const { model } of cartModelMap.values()) {
+      model.position.x = x;
+      x += spacing;
+    }
+
+    placedX = x;                // nową wartość dla kolejnych dodatków
+
+    // przesuwamy cel kamery tak, aby patrzyła na środek „stosu”
+    const midX = -3 + (cartModelMap.size - 1) * spacing / 2;
+    cartControls.target.set(midX, 0.5, 0);
+    cartCamera.position.set(midX, 1.8, 5);
+    cartControls.update();
+    updateCamera();
+  }
+
+
   ({ scene: cartScene, camera: cartCamera, renderer: cartRenderer, controls: cartControls } = initViewer(cartViewer));
-  loadModel('/media/models/trolley.gltf', 'basket', model => {
-    model.name = 'basket';
-    model.position.set(0, -1.5, 0); // pozycja koszyka
-    model.scale.set(6, 6, 6);
-    cartScene.add(model);
-    const box = new THREE.Box3().setFromObject(model);
-    basketBox = box; // zapamiętaj do kolizji
+
+  checkoutBtn.addEventListener('click', () => {
+    if (cartModelMap.size === 0) return;
+
+    const encodedCart = encodeCartToQueryParam(cartModelMap);
+    window.location.href = `/custom-add-to-cart?cart=${encodedCart}`;
   });
+
+
+
   document.querySelectorAll('.add-to-stack').forEach(button => {
-    button.addEventListener('click', e => {
+    button.addEventListener('click', async e => {
       const anchor = e.target.closest('li').querySelector('a');
       const modelPath = anchor.dataset.model;
       const productId = anchor.dataset.productId;
       const productName = anchor.dataset.productName;
+      const variantCode = anchor.dataset.variantId; // Zakładamy, że to kod wariantu
 
-      // Unikaj duplikatów
       if (cartModelMap.has(productId)) return;
 
       loadModel(modelPath, productId, model => {
         normalizeModel(model, 1);
-        const spread = 1.5; // rozrzut
-        const offsetX = (Math.random() - 0.5) * spread * 1.2;
-        const offsetZ = (Math.random() - 0.5) * spread * 1.2;
-        model.position.set(offsetX, 10, offsetZ);
-        model.userData.fallSpeed = 0.04; // prędkość opadania
+        model.position.set(placedX, 5, 0);
+        model.userData.fallSpeed = 0.03;
         cartScene.add(model);
-        cartModelMap.set(productId, model);
+        cartModelMap.set(productId, { model, variantCode, productName });
+        placedX += 2;
+        // cartControls.target.set(placedX - 1, 0.5, 0);
+        // cartCamera.position.set(placedX - 1, 1.8, 5);
+        updateCamera();
+        cartControls.update();
 
         if (!cartList.querySelector('ul')) {
           const ul = document.createElement('ul');
@@ -127,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const li = document.createElement('li');
         li.className = 'list-group-item d-flex justify-content-between align-items-center';
         li.innerHTML = `<span>${productName}</span>
-        <button class="btn btn-sm btn-outline-danger ms-auto remove-from-cart" data-id="${productId}">&times;</button>`;
+      <button class="btn btn-sm btn-outline-danger ms-auto remove-from-cart" data-id="${productId}">Usuń&nbsp;z&nbsp;zestawu</button>`;
         ul.appendChild(li);
 
         checkoutBtn.classList.remove('d-none');
@@ -139,22 +178,26 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.target.classList.contains('remove-from-cart')) {
       const productId = e.target.dataset.id;
 
-      // Usuń z DOM
       const li = e.target.closest('li');
       li.remove();
 
-      // Usuń z Three.js sceny
-      const model = cartModelMap.get(productId);
-      if (model) {
-        cartScene.remove(model);
+      const entry = cartModelMap.get(productId);
+      if (entry) {
+        cartScene.remove(entry.model);
         cartModelMap.delete(productId);
       }
 
-      // Sprawdź, czy lista jest pusta
       const remainingItems = cartList.querySelectorAll('li');
       if (remainingItems.length === 0) {
         cartList.innerHTML = 'Brak dodanych produktów';
         checkoutBtn.classList.add('d-none');
+        placedX = -3;
+        cartControls.target.set(-4, 0.5, 0);
+        cartCamera.position.set(-4, 1.6, 4.5);
+        cartControls.update();
+      }
+      else{
+        relayoutModels();
       }
     }
   });

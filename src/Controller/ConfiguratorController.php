@@ -9,7 +9,9 @@ use Symfony\Component\Routing\Annotation\Route;
 
 final class ConfiguratorController extends AbstractController
 {
-    public function __construct(private ProductRepositoryInterface $productRepository) {}
+    public function __construct(
+        private ProductRepositoryInterface $productRepository,
+    ) {}
 
     #[Route('pl_PL/taxons/panel-konfiguracji', name: 'panel-konfiguracji')]
     public function index(): Response
@@ -22,7 +24,7 @@ final class ConfiguratorController extends AbstractController
 
         $products = $queryBuilder->getQuery()->getResult();
 
-        return $this->render('shop/configurator.html.twig', [
+        return $this->render('shop/config.html.twig', [
             'products' => $products,
         ]);
     }

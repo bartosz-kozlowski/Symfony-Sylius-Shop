@@ -1,0 +1,52 @@
+{% extends '@SyliusShop/shared/layout/base.html.twig' %}
+
+{% block content %}
+    <div class="container px-0 my-5">
+        <div class="card shadow rounded-4 p-3">
+            <div class="row g-0">
+
+                <!-- Lista produktów -->
+                <aside class="col-12 col-md-4 border-end" style="max-height:calc(100vh - 160px); overflow:auto;">
+                    <h5 class="fw-semibold text-muted mb-3 ms-1">Produkty</h5>
+                    <ul class="list-group list-group-flush" id="productList">
+                        {% for product in products %}
+                            {#                                        {{ dump(product.variants.first.code) }}#}
+                            {% set image = product.images|first %}
+                            {% set path = image.path is not null
+                                ? image.path|imagine_filter('sylius_shop_product_small_thumbnail')
+                                : asset('build/shop/images/200x200.png') %}
+
+                            <li class="list-group-item p-2">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <a href="#" class="d-flex align-items-center text-reset text-decoration-none flex-grow-1 me-2"
+                                       data-model="{{ asset(product.model3dPath) }}"
+                                       data-product-id="{{ product.id }}"
+                                       data-product-name="{{ product.translation.name }}"
+                                       data-variant-id="{{ product.variants.first.code }}">
+                                        <img src="{{ path }}" width="60" height="60" class="rounded me-2" alt="">
+                                        <div class="fw-medium">{{ product.translation.name }}</div>
+                                    </a>
+                                    <button class="btn btn-sm btn-outline-success add-to-stack" data-variant-code="{{ product.variants.first.code }}">
+                                        Dodaj</button>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </aside>
+
+                <!-- Zestaw użytkownika -->
+                <aside class="col-12 col-md-8 bg-white border-start" id="cartPanel" style="max-height:calc(100vh - 160px); overflow:auto;">
+                    <h5 class="fw-semibold text-muted mb-3 ms-2">Twój zestaw</h5>
+                    <div id="cartViewer" style="width:100%; height:400px;"></div>
+                    <div id="cartList" class="text-muted medium text-center">
+                        Brak dodanych produktów
+                    </div>
+                    <button class="btn btn-success w-100 mt-4 d-none" id="checkoutBtn">
+                        Dodaj do koszyka
+                    </button>
+                </aside>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
