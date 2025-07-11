@@ -69,7 +69,10 @@ final class ProductTypeExtension extends AbstractTypeExtension
                             );
                         }
 
-                        $filename = uniqid('', true) . '.' . $file->guessExtension();
+//                        $filename = uniqid('', true) . '.' . $file->guessExtension();
+                        $productCode = $product->getCode();
+                        $extension = $file->guessExtension(); // np. 'glb' lub 'gltf'
+                        $filename = $productCode . '.' . $extension;
                         $file->move($destination, $filename);
                         $product->setModel3dPath('/media/models/' . $filename);
                     }

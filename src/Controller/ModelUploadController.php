@@ -2,36 +2,52 @@
 
 namespace App\Controller;
 
+use Sylius\Bundle\CoreBundle\Doctrine\ORM\ProductRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 class ModelUploadController
 {
-    #[Route('/api/upload-model', name: 'api_upload_model', methods: ['POST'])]
-    public function __invoke(Request $request): Response
+    private string $projectDir;
+
+    public function __construct(ParameterBagInterface $params)
     {
-        $file = $request->files->get('file');
+        $this->projectDir = $params->get('kernel.project_dir');
+    }
 
-        if (!$file) {
-            return new JsonResponse(['error' => 'Brak pliku'], Response::HTTP_BAD_REQUEST);
+    #[Route('/admin/3d-canvas/upload-model/{code}', name: 'admin_3d_canvas_upload_model', methods: ['POST'])]
+    public function uploadModel(Request $request, string $code, ProductRepository $productRepository): JsonResponse
+    {
+        $file = $request->files->get('model');
+        if (!$file || !$file->isValid()) {
+            return new JsonResponse(['error' => 'Nieprawidłowy plik'], 400);
         }
 
-        $originalFilename = $request->request->get('filename');
-        dump($originalFilename);
-
-        $uploadDir = __DIR__ . '/../../../public/media/models';
-
-        if (!is_dir($uploadDir)) {
-            mkdir($uploadDir, 0777, true);
+        $product = $productRepository->findOneBy(['code' => $code]);
+        if (!$product) {
+            return new JsonResponse(['error' => 'Nie znaleziono produktu'], 404);
         }
 
-        $file->move($uploadDir, $originalFilename);
+        // Ścieżka docelowa (np. public/media/models/{code}.glb)
+        $targetDir = $this->projectDir . '/public/media/models';
+        if (!is_dir($targetDir)) {
+            mkdir($targetDir, 0775, true);
+        }
+
+        $targetPath = $targetDir . '/' . $code . '.glb';
+        $file->move($targetDir, $code . '.glb');
+
+        // Aktualizacja ścieżki modelu w produkcie
+        $modelRelativePath = '/media/models/' . $code . '.glb';
+        $product->setModel3dPath($modelRelativePath);
+        $productRepository->add($product, true);
 
         return new JsonResponse([
-            'success' => true,
-            'path' => '/media/models/' . $originalFilename
+            'status' => 'OK',
+            'modelPath' => $modelRelativePath,
         ]);
     }
 }

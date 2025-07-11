@@ -108,7 +108,7 @@
 
                                 <li class="list-group-item p-2">
                                     <a href="#" class="d-flex align-items-center text-reset text-decoration-none"
-                                       data-model="{{ asset(product.model3dPath) }}"
+                                       data-model="{{ asset(product.model3dPath) ~ '?v=' ~ random(100000) }}"
                                        data-code="{{ product.code }}"
                                        >
                                         <img src="{{ path }}" width="60" height="60" class="rounded me-2" alt="">
@@ -162,13 +162,6 @@
                             ];
                         }
 
-                        function rgbaToHex([r, g, b]) {
-                            return "#" + [r, g, b].map(x => {
-                                const hex = Math.round(x * 255).toString(16);
-                                return hex.padStart(2, '0');
-                            }).join('');
-                        }
-
                         // Funkcja do eksportu modelu
                         async function exportGLB() {
                             const glTF = await viewer.exportScene();
@@ -190,49 +183,25 @@
 
                                 const modelUrl = link.getAttribute('data-model');
                                 const code = link.getAttribute('data-code');
-
                                 if (!modelUrl || !code) return;
 
-                                // Resetuj widok
                                 viewer.removeAttribute('src');
-                                // placeholder.style.display = 'block';
                                 exportBtn.classList.add('d-none');
                                 saveBtn.classList.add('d-none');
 
-                                let colorHex = null;
+                                // Załaduj model z cache-busterem
+                                viewer.setAttribute('src', modelUrl + '?t=' + Date.now());
 
-                                // Pobierz kolor z backendu
-                                try {
-                                    const res = await fetch(`/admin/3d-canvas/get-color/${code}`);
-                                    if (res.ok) {
-                                        const data = await res.json();
-                                        if (data.color) {
-                                            colorHex = data.color;
-                                        }
-                                    }
-                                } catch (err) {
-                                    console.warn("Nie udało się pobrać koloru:", err);
-                                }
-
-                                // Załaduj model
-                                viewer.setAttribute('src', modelUrl);
-
-                                // Obsługa po załadowaniu modelu
                                 viewer.addEventListener('load', () => {
                                     const material = viewer.model?.materials?.[0];
                                     if (material?.pbrMetallicRoughness) {
-                                        if (colorHex) {
-                                            const rgba = hexToRGBA(colorHex);
-                                            material.pbrMetallicRoughness.setBaseColorFactor(rgba);
-                                            picker.value = colorHex;
-                                        } else {
-                                            const currentColor = material.pbrMetallicRoughness.baseColorFactor;
-                                            if (currentColor) {
-                                                picker.value = rgbaToHex(currentColor);
-                                            }
+                                        const currentColor = material.pbrMetallicRoughness.baseColorFactor;
+                                        if (currentColor) {
+                                            picker.value = "#" + [0, 1, 2].map(i =>
+                                                Math.round(currentColor[i] * 255).toString(16).padStart(2, '0')
+                                            ).join('');
                                         }
 
-                                        // Obsługa zmiany koloru
                                         picker.oninput = () => {
                                             const rgba = hexToRGBA(picker.value);
                                             material.pbrMetallicRoughness.setBaseColorFactor(rgba);
@@ -247,7 +216,7 @@
                             });
                         });
 
-                        // Obsługa zapisu koloru
+                        // Zapis modelu z kolorem
                         saveBtn.addEventListener('click', async () => {
                             const activeLink = document.querySelector('#productList a.active');
                             if (!activeLink) {
@@ -256,25 +225,28 @@
                             }
 
                             const code = activeLink.getAttribute('data-code');
-                            const colorHex = picker.value;
+                            const modelUrl = activeLink.getAttribute('data-model');
+                            console.log(modelUrl);
 
                             try {
-                                const res = await fetch('/admin/3d-canvas/set-color', {
+                                const glbBlob = await viewer.exportScene();
+                                const formData = new FormData();
+                                formData.append('model', new File([glbBlob], `${code}.glb`, { type: 'model/gltf-binary' }));
+
+                                const resUpload = await fetch(`/admin/3d-canvas/upload-model/${code}`, {
                                     method: 'POST',
-                                    headers: {
-                                        'Content-Type': 'application/json',
-                                        'X-Requested-With': 'XMLHttpRequest',
-                                    },
-                                    body: JSON.stringify({ code, color: colorHex })
+                                    body: formData
                                 });
 
-                                if (!res.ok) throw new Error("Błąd zapisu");
+                                if (!resUpload.ok) throw new Error("Błąd przesyłania modelu");
 
-                                const data = await res.json();
-                                alert("Zapisano kolor: " + data.color);
+                                // Po zapisie wymuś reload z cache-busterem
+                                viewer.setAttribute('src', modelUrl + '?t=' + Date.now());
+
+                                alert("Zapisano i zaktualizowano model 3D.");
                             } catch (err) {
                                 console.error(err);
-                                alert("Nie udało się zapisać koloru.");
+                                alert("Wystąpił błąd podczas zapisu.");
                             }
                         });
                     </script>

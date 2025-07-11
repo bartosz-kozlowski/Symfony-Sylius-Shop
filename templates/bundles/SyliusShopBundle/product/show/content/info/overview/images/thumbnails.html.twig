@@ -56,7 +56,7 @@
                 </div>
                 <div class="modal-body text-center">
                     <model-viewer
-                        src="{{ asset(product.model3dPath) }}"
+                        src="{{ asset(product.model3dPath) ~ '?v=' ~ random(100000) }}"
                         alt="Model 3D produktu"
                         auto-rotate
                         ar

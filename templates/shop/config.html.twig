@@ -19,7 +19,7 @@
                             <li class="list-group-item p-2">
                                 <div class="d-flex align-items-center justify-content-between">
                                     <a href="#" class="d-flex align-items-center text-reset text-decoration-none flex-grow-1 me-2"
-                                       data-model="{{ asset(product.model3dPath) }}"
+                                       data-model="{{ asset(product.model3dPath) ~ '?v=' ~ random(100000) }}"
                                        data-product-id="{{ product.id }}"
                                        data-product-name="{{ product.translation.name }}"
                                        data-variant-id="{{ product.variants.first.code }}">

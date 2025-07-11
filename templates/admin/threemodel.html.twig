@@ -14,7 +14,7 @@
     {% if product.model3dPath %}
         <div class="d-flex justify-content-between align-items-center mb-3">
             <model-viewer
-                src="{{ asset(product.model3dPath) }}"
+                src="{{ asset(product.model3dPath) ~ '?v=' ~ random(100000) }}"
                 alt="Model 3D produktu"
                 auto-rotate
                 camera-controls
