@@ -201,8 +201,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const ul = cartList.querySelector('ul');
         const li = document.createElement('li');
         li.className = 'list-group-item d-flex justify-content-between align-items-center';
-        li.innerHTML = `<span>${productName}</span>
-      <button class="btn btn-sm btn-outline-danger ms-auto remove-from-cart" data-id="${productId}">Usuń&nbsp;z&nbsp;zestawu</button>`;
+        li.innerHTML = `
+        <span class="me-2">${productName}</span>
+        <button class="btn btn-sm btn-outline-danger d-flex align-items-center gap-1 remove-from-cart" data-id="${productId}" title="Usuń z zestawu">
+          <i class="bi bi-trash"></i><span class="d-none d-sm-inline">Usuń</span>
+        </button>`;
         ul.appendChild(li);
 
         checkoutBtn.classList.remove('d-none');
@@ -211,10 +214,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   document.addEventListener('click', function (e) {
-    if (e.target.classList.contains('remove-from-cart')) {
-      const productId = e.target.dataset.id;
+    const removeBtn = e.target.closest('.remove-from-cart');
+    if (removeBtn) {
+      const productId = removeBtn.dataset.id;
 
-      const li = e.target.closest('li');
+      const li = removeBtn.closest('li');
       li.remove();
 
       const entry = cartModelMap.get(productId);
@@ -231,10 +235,12 @@ document.addEventListener('DOMContentLoaded', () => {
         cartControls.target.set(-4, 0.5, 0);
         cartCamera.position.set(-4, 1.6, 4.5);
         cartControls.update();
-      }
-      else{
+      } else {
         relayoutModels();
       }
     }
   });
+
+  const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+  tooltipTriggerList.map(el => new bootstrap.Tooltip(el));
 });

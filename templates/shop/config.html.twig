@@ -1,32 +1,38 @@
 {% extends '@SyliusShop/shared/layout/base.html.twig' %}
 
 {% block content %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <div class="container px-0 my-5">
-        <div class="card shadow rounded-4 p-3">
+        <div class="card shadow-lg rounded-4 overflow-hidden">
             <div class="row g-0">
                 <!-- Lista produktów -->
-                <aside class="col-12 col-md-4 border-end" style="max-height:calc(100vh - 160px); overflow:auto;">
-                    <h5 class="fw-semibold text-muted mb-3 ms-1">Produkty</h5>
+                <aside class="col-12 col-md-4 border-end bg-light" style="max-height:calc(100vh - 160px); overflow-y:auto;">
+                    <div class="px-3 pt-4 pb-2 border-bottom d-flex align-items-center">
+                        <i class="bi bi-box-seam fs-5 me-2 text-muted"></i>
+                        <h5 class="fw-semibold text-muted mb-0">Produkty</h5>
+                    </div>
                     <ul class="list-group list-group-flush" id="productList">
                         {% for product in products %}
-                            {#                                        {{ dump(product.variants.first.code) }}#}
                             {% set image = product.images|first %}
                             {% set path = image.path is not null
                                 ? image.path|imagine_filter('sylius_shop_product_small_thumbnail')
                                 : asset('build/shop/images/200x200.png') %}
 
-                            <li class="list-group-item p-2">
+                            <li class="list-group-item p-3 border-0 border-bottom hover-bg-light">
                                 <div class="d-flex align-items-center justify-content-between">
                                     <a href="#" class="d-flex align-items-center text-reset text-decoration-none flex-grow-1 me-2"
                                        data-model="{{ asset(product.model3dPath) ~ '?v=' ~ random(100000) }}"
                                        data-product-id="{{ product.id }}"
                                        data-product-name="{{ product.translation.name }}"
                                        data-variant-id="{{ product.variants.first.code }}">
-                                        <img src="{{ path }}" width="60" height="60" class="rounded me-2" alt="">
-                                        <div class="fw-medium">{{ product.translation.name }}</div>
+                                        <img src="{{ path }}" height="70" class="rounded-3 me-3 border" alt="">
+                                        <div class="fw-semibold small">{{ product.translation.name }}</div>
                                     </a>
-                                    <button class="btn btn-sm btn-outline-success add-to-stack" data-variant-code="{{ product.variants.first.code }}">
-                                        Dodaj</button>
+                                    <button class="btn btn-outline-success btn-sm add-to-stack" title="Dodaj produkt"
+                                            data-bs-toggle="tooltip"
+                                            data-variant-code="{{ product.variants.first.code }}">
+                                        <i class="bi bi-plus-lg"></i>
+                                    </button>
                                 </div>
                             </li>
                         {% endfor %}
@@ -34,15 +40,20 @@
                 </aside>
 
                 <!-- Zestaw użytkownika -->
-                <aside class="col-12 col-md-8 bg-white border-start" id="cartPanel" style="max-height:calc(100vh - 160px); overflow:auto;">
-                    <h5 class="fw-semibold text-muted mb-3 ms-2">Twój zestaw</h5>
-                    <div id="cartViewer" style="width:100%; height:400px;"></div>
-                    <div id="cartList" class="text-muted medium text-center">
+                <aside class="col-12 col-md-8 bg-white" id="cartPanel" style="max-height:calc(100vh - 160px); overflow-y:auto;">
+                    <div class="px-3 pt-4 pb-2 border-bottom d-flex align-items-center">
+                        <i class="bi bi-basket fs-5 me-2 text-muted"></i>
+                        <h5 class="fw-semibold text-muted mb-0">Twój zestaw</h5>
+                    </div>
+                    <div id="cartViewer" style="width:100%; height:400px;" class="bg-body border-bottom"></div>
+                    <div id="cartList" class="text-muted text-center py-4">
                         Brak dodanych produktów
                     </div>
-                    <button class="btn btn-success w-100 mt-4 d-none" id="checkoutBtn">
-                        Dodaj do koszyka
-                    </button>
+                    <div class="p-3">
+                        <button class="btn btn-success w-100 d-none" id="checkoutBtn">
+                            <i class="bi bi-cart-check me-1"></i> Dodaj do koszyka
+                        </button>
+                    </div>
                 </aside>
             </div>
         </div>
