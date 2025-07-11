@@ -31,7 +31,6 @@ class ModelUploadController
             return new JsonResponse(['error' => 'Nie znaleziono produktu'], 404);
         }
 
-        // Ścieżka docelowa (np. public/media/models/{code}.glb)
         $targetDir = $this->projectDir . '/public/media/models';
         if (!is_dir($targetDir)) {
             mkdir($targetDir, 0775, true);
@@ -40,7 +39,6 @@ class ModelUploadController
         $targetPath = $targetDir . '/' . $code . '.glb';
         $file->move($targetDir, $code . '.glb');
 
-        // Aktualizacja ścieżki modelu w produkcie
         $modelRelativePath = '/media/models/' . $code . '.glb';
         $product->setModel3dPath($modelRelativePath);
         $productRepository->add($product, true);

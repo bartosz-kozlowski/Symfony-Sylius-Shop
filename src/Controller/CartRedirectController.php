@@ -79,7 +79,6 @@ final class CartRedirectController
             throw new \RuntimeException('Nieprawidłowa zawartość parametru "cart".');
         }
 
-        /** @var array<array{variantCode:string, quantity:int|null}> $items */
         $items = json_decode(urldecode($decoded), true, 512, \JSON_THROW_ON_ERROR);
 
         foreach ($items as $row) {
@@ -87,10 +86,9 @@ final class CartRedirectController
                 continue;
             }
 
-            /** @var ProductVariant|null $variant */
             $variant = $this->variantRepository->findOneBy(['code' => $row['variantCode']]);
             if (null === $variant) {
-                continue; // pomijamy nieistniejący wariant
+                continue;
             }
 
             $this->addVariantToCart($variant, (int) ($row['quantity'] ?? 1));
@@ -99,7 +97,6 @@ final class CartRedirectController
 
     private function dispatchAndFlush(object $addToCartCommand): void
     {
-        // wywołujemy eventy Syliusa (promocje, limity, itp.)
         $this->eventDispatcher->dispatch(
             new GenericEvent($addToCartCommand),
             SyliusCartEvents::CART_ITEM_ADD,
