@@ -1,0 +1,157 @@
+sylius:
+    menu:
+        admin:
+            main:
+                marketing:
+                    catalog_promotions: 'Promocje katalogowe'
+                    cart_promotions: 'Promocje koszykowe'
+    installer:
+        settings:
+            session:
+                auto_start_help: "Ustaw 'session.auto_start = Off' w pliku php.ini"
+            detect_unicode_help: "Ustaw 'detect_unicode = Off' w pliku php.ini"
+            version_help: "Sylius zaleca wersję PHP %recommended%, Twoja obecna wersja to %current%. Prosimy o aktualizację."
+            timezone_help: "Ustaw 'date.timezone' w pliku php.ini (np. date.timezone = \"Europe/Warsaw\")"
+    account:
+        dont_have_an_account: 'Nie masz jeszcze konta?'
+        register_here: 'Zarejestruj się'
+    homepage:
+        latest_deals: "Najnowsze oferty"
+        new_collection: "Nowa kolekcja"
+    form:
+        channel:
+            shop_billing_data: "Dane rozliczeniowe sklepu"
+        shipping_method:
+            rules_help: "Użyj reguł, aby określić, czy dana metoda wysyłki może zostać zastosowana do zamówienia.
+            Jeśli reguła jest spełniona, metoda wysyłki może być użyta. Pamiętaj, że jeśli dodasz wiele reguł,
+            wszystkie muszą zostać spełnione."
+    ui:
+        account_navigation_mobile: "Nawigacja konta (mobilna)"
+        account_button: "Przycisk konta"
+        account_navigation_desktop: "Nawigacja konta (desktop)"
+        loading: "Ładowanie"
+        channel_pricing_history: "Historia cen kanału"
+        phone: "Telefon"
+        omnibus: "Omnibus"
+        inactive: "Nieaktywne"
+        active: "Aktywne"
+        scopes: "Zakresy"
+        catalog_promotions: "Promocje katalogowe"
+        average_rating: "Średnia ocena"
+        account_credentials_details: "Ta sekcja jest opcjonalna. Jeśli podasz hasło, zostanie utworzone konto użytkownika dla klienta."
+        lowest_price_before_discount: "Najniższa cena przed obniżką"
+        original_price_details: "Cena oryginalna – to podstawowa cena wariantu produktu. Jest wyświetlana jako przekreślona w katalogu. Służy jako baza do obliczania aktualnej ceny. Jeśli ta wartość nie zostanie określona, logika Promocji Katalogowych skopiuje wartość z Ceny do Ceny Oryginalnej."
+        minimum_price_details: "Cena minimalna – to próg cenowy, poniżej którego bieżąca cena nie może zostać obniżona przez promocje katalogowe ani koszykowe. Użyj tej opcji, aby chronić rentowność sprzedaży."
+        taxon_navigation_desktop: "Nawigacja kategorii (desktop)"
+        footer_informational_links: "Informacje"
+        footer_help_links: "Pomoc"
+        price_details: "Cena – to aktualna cena wariantu produktu wyświetlana w katalogu. Może być modyfikowana bezpośrednio, np. przez promocje katalogowe."
+        search_menu: "Menu wyszukiwania"
+        search: "Szukaj"
+        price_history: "Historia cen"
+        to_approve: "Do zatwierdzenia"
+        to_process: "Do przetworzenia"
+        to_ship: "do wysyłki"
+        pending_actions: "Oczekujące akcje"
+        statistics:
+            day: "Dzień"
+            week: "Tydzień"
+            2weeks: "2 tygodnie"
+            month: "Miesiąc"
+            year: "Rok"
+            lifetime: "Całkowity czas"
+        country_code: "Kod kraju"
+        province_code: "Kod województwa"
+        list_payment_requests: "Lista żądań płatności"
+        full_screen: "Pełny ekran"
+        order:
+            date: "Data zamówienia"
+        ip_address: "Adres IP"
+        language: "Język"
+        account: "Konto"
+        notifications:
+            new_version_of_sylius_available: "Dostępna jest nowa wersja Syliusa. Skontaktuj się z administratorem w celu aktualizacji."
+        enabled_permission_checker: "Włączony mechanizm uprawnień"
+        payment_requests: "Żądania płatności"
+        response_data: "Dane odpowiedzi"
+        payload: "Ładunek (payload)"
+        hash: "Hash"
+        updated_at: "Zaktualizowano"
+        manage_product_positions: "Zarządzaj pozycjami produktów"
+        products_positions: "Pozycje produktów"
+        create_child: "Utwórz element podrzędny"
+        promotions: "Promocje koszykowe"
+        manage_product_positions_in_taxon: "Zarządzaj pozycjami produktów w kategorii %taxon_name%"
+        delete_avatar: "Usuń avatar"
+        role_super_admin: "Superadministrator"
+        role_product_manager: "Menedżer produktu"
+        role_fulfillment_worker: "Pracownik realizacji zamówień"
+        role_channel_admin: "Administrator kanału"
+        province_name: "Nazwa województwa"
+        copyright: "Prawa autorskie"
+        discounted_by: "Obniżone o"
+        no_main_taxon: "Brak głównej kategorii"
+        missing_translation: "Brak tłumaczenia"
+        no_height: "Brak wysokości"
+        no_weight: "Brak wagi"
+        no_depth: "Brak głębokości"
+        no_width: "Brak szerokości"
+        product:
+            product_not_active_in_channel: "Produkt nie jest jeszcze aktywny w tym kanale."
+        all_rights_reserved: "Wszelkie prawa zastrzeżone"
+        license: "Licencja"
+        source_code: "Kod źródłowy"
+        more: "Więcej"
+        check_all: 'Zaznacz wszystkie'
+        uncheck_all: 'Odznacz wszystkie'
+        login_to_your_account: "Zaloguj się"
+        apply_to_all: "Zastosuj do wszystkich"
+        channel_pricings: 'Ceny kanałów sprzedaży'
+        global: "Globalne"
+        no_results_adjust_your_search: "Dostosuj wyszukiwanie i spróbuj ponownie."
+        administration_reset_password: "Zresetuj hasło administratora"
+        view_in_store: "Zobacz w sklepie"
+        shipment_for_order: "Dostawa zamówienia"
+        page_not_found: "Strona nie została znaleziona"
+        back_to_dashboard: "Powrót do panelu"
+        pagination:
+            number_of_results: "Wyświetlane elementy od %from% do %to% z %total%"
+sylius_mollie:
+    order_checkout:
+        colliding_products: "Niektóre produkty w Twoim koszyku nie mogą być zakupione razem. Usuń je, aby kontynuować."
+    form:
+        channel_should_be_unique: "Kanał musi być unikalny dla tej konfiguracji Mollie."
+    ui:
+        search: 'Szukaj'
+        subscription:
+            grid:
+                filters:
+                    created_at: "Utworzono"
+                    started_at: "Rozpoczęto"
+            state:
+                new: "Nowa"
+                active: "Aktywna"
+                processing: "W przetwarzaniu"
+                paused: "Wstrzymana"
+                canceled: "Anulowana"
+                completed: "Zakończona"
+                aborted: "Anulowana automatycznie z powodu nieudanych płatności"
+        product_types: "Typy produktów"
+        mollie_gateway_label: "Mollie"
+        mollie_loggers: "Logi Mollie"
+        mollie_product_type: "Typ produktu"
+        template_mollie_emails: "Szablony e-maili"
+        mollie_subscriptions: "Subskrypcje"
+        credit_card_validations:
+            empty_card_number: "Wprowadź numer karty"
+            empty_card_holder: "Wprowadź imię i nazwisko posiadacza karty"
+            empty_expiry_date: "Wprowadź datę ważności"
+            empty_verification_code: "Wprowadź kod CVV/CVC"
+            one_or_more_invalid_fields: "Jedno lub więcej pól zawiera błędy"
+        no_api_key_provided: "Nie podano klucza API"
+        api_key_start_with_api_key_test: "Klucz testowy powinien zaczynać się od 'test_'"
+        api_key_start_with_api_key_live: "Klucz produkcyjny powinien zaczynać się od 'live_'"
+
+
+
+        
