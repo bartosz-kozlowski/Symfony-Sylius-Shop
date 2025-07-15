@@ -19,6 +19,9 @@ sylius:
         latest_deals: "Najnowsze oferty"
         new_collection: "Nowa kolekcja"
     form:
+        checkout:
+            addressing:
+                different_shipping_address: 'Użyć innego adresu do wysyłki?'
         tax_rate:
             start_date: 'Data rozpoczęcia'
             end_date: 'Data zakończenia'
@@ -172,7 +175,7 @@ sylius_mollie:
             payment_description_help: "Opis używany dla transakcji. Dostępne są następujące zmienne:<br>
             <strong>{ordernumber}:</strong> Numer zamówienia dla tej transakcji<br>
             <strong>{storename}:</strong> Nazwa sklepu<br><br>
-            
+
             (Uwaga: to działa tylko, gdy metoda jest ustawiona na API płatności)"
     ui:
         product_type: 'Typ produktu'

@@ -1,0 +1,7 @@
+{% set form = hookable_metadata.context.method_form %}
+{% set inner_payment_method = hookable_metadata.context.inner_payment_method %}
+
+<div class="form-check d-flex align-items-center gap-1">
+    {{ form_widget(form.enabled, { attr: { class: 'form-check-input' } }) }}
+    {{ form_label(form.enabled, null, { label_attr: { class: 'form-check-label mb-0' } }) }}
+</div>

@@ -1,0 +1,16 @@
+{% set form = hookable_metadata.context.form %}
+
+<td class="text-end align-middle">
+    {{ form_widget(form.quantity, {
+        attr: {
+            class: 'form-control form-control-sm text-end',
+            style: 'width: 60px; display: inline-block;'
+        }
+    }) }}
+</td>
+
+{#{% set form = hookable_metadata.context.form %}#}
+
+{#<td>#}
+{#    {{ form_row(form.quantity, sylius_test_form_attribute('cart-item-quantity')|sylius_merge_recursive({label: false, row_attr: {'class': 'mt-3'}})) }}#}
+{#</td>#}

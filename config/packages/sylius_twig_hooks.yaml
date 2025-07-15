@@ -1,5 +1,19 @@
 sylius_twig_hooks:
     hooks:
+        sylius_shop.cart.index.content.form.sections.general.items.head:
+            - _name: recurring
+              enabled: false
+            - _name: remove
+              priority: -100
+            - _name: colgroup
+              template: 'shop/cart/colgroup.html.twig'
+              priority: 400
+        sylius_shop.cart.index.content.form.sections.general.items.body:
+            - _name: recurring_settings
+              enabled: false
+            - _name: remove
+              template: 'shop/cart/index/content/form/sections/general/items/body/remove.html.twig'
+              priority: -100
         sylius_shop.base.header.top_bar:
             - _name: info_message
               template: 'shop/top_bar/info_message.html.twig'

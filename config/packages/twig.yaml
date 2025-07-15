@@ -2,6 +2,7 @@ twig:
     default_path: '%kernel.project_dir%/templates'
     paths:
         '%kernel.project_dir%/vendor/sylius/sylius/src/Sylius/Bundle/AdminBundle/templates': 'SyliusAdmin'
+        '%kernel.project_dir%/templates/shop': 'SyliusShop'
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
 
