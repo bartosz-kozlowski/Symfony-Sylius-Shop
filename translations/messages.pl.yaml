@@ -19,22 +19,56 @@ sylius:
         latest_deals: "Najnowsze oferty"
         new_collection: "Nowa kolekcja"
     form:
+        tax_rate:
+            start_date: 'Data rozpoczęcia'
+            end_date: 'Data zakończenia'
+        admin:
+            channel:
+                lowest_price_for_discounted_products_visible: 'Wyświetlić najniższą cenę produktu przed obniżką?'
+                period_for_which_the_lowest_price_is_calculated: 'Okres, dla którego obliczana jest najniższa cena'
+        catalog_promotion:
+            start_date: 'Data rozpoczęcia'
+            end_date: 'Data zakończenia'
+            enabled: 'Włączona'
+            label: 'Etykieta'
+        promotion:
+            applies_to_discounted: 'Dotyczy już przecenionych pozycji zamówienia'
+            applies_to_discounted_details: 'Po zaznaczeniu tej opcji promocja koszyka zostanie zastosowana także do pozycji zamówienia, które zostały już przecenione w ramach promocji katalogowej.'
+            label: 'Etykieta'
+        attribute:
+            translatable: 'Możliwy do przetłumaczenia'
         channel:
             shop_billing_data: "Dane rozliczeniowe sklepu"
+            contact_phone_number: 'Numer telefonu kontaktowego'
+            shipping_address_in_checkout_required: 'Wymagany adres dostawy podczas realizacji zamówienia'
+            billing_data:
+                tax_id: 'NIP'
+            menu_taxon: 'Kategoria menu'
         shipping_method:
             rules_help: "Użyj reguł, aby określić, czy dana metoda wysyłki może zostać zastosowana do zamówienia.
             Jeśli reguła jest spełniona, metoda wysyłki może być użyta. Pamiętaj, że jeśli dodasz wiele reguł,
             wszystkie muszą zostać spełnione."
     ui:
+        tax_rate: 'Stawka podatku'
+        taxons_for_which_the_lowest_price_is_not_displayed: 'Kategorie, dla których najniższa cena nie jest wyświetlana'
         account_navigation_mobile: "Nawigacja konta (mobilna)"
         account_button: "Przycisk konta"
         account_navigation_desktop: "Nawigacja konta (desktop)"
+        product_option: 'Opcja produktu'
+        product_association_type: 'Typ powiązania produktu'
         loading: "Ładowanie"
         channel_pricing_history: "Historia cen kanału"
         phone: "Telefon"
+        add_scope: 'Dodaj zakres'
+        for_products: 'Dla produktów'
+        for_taxons: 'Dla taksonów'
+        for_variants: 'Dla wariantów'
+        fixed_discount: 'Stały rabat'
+        percentage_discount: 'Rabat procentowy'
         omnibus: "Omnibus"
         inactive: "Nieaktywne"
         active: "Aktywne"
+        new: 'Utwórz'
         scopes: "Zakresy"
         catalog_promotions: "Promocje katalogowe"
         average_rating: "Średnia ocena"
@@ -49,9 +83,10 @@ sylius:
         search_menu: "Menu wyszukiwania"
         search: "Szukaj"
         price_history: "Historia cen"
-        to_approve: "Do zatwierdzenia"
-        to_process: "Do przetworzenia"
+        to_approve: "do zatwierdzenia"
+        to_process: "do przetworzenia"
         to_ship: "do wysyłki"
+        pending: 'Oczekujące'
         pending_actions: "Oczekujące akcje"
         statistics:
             day: "Dzień"
@@ -61,6 +96,7 @@ sylius:
             year: "Rok"
             lifetime: "Całkowity czas"
         country_code: "Kod kraju"
+        report_an_issue: 'Zgłoś problem'
         province_code: "Kod województwa"
         list_payment_requests: "Lista żądań płatności"
         full_screen: "Pełny ekran"
@@ -77,6 +113,7 @@ sylius:
         payload: "Ładunek (payload)"
         hash: "Hash"
         updated_at: "Zaktualizowano"
+        product_attribute: 'Atrybut produktu'
         manage_product_positions: "Zarządzaj pozycjami produktów"
         products_positions: "Pozycje produktów"
         create_child: "Utwórz element podrzędny"
@@ -94,8 +131,12 @@ sylius:
         missing_translation: "Brak tłumaczenia"
         no_height: "Brak wysokości"
         no_weight: "Brak wagi"
+        method: 'Metoda'
         no_depth: "Brak głębokości"
+        catalog_promotion: 'Promocja katalogowa'
         no_width: "Brak szerokości"
+        customer_group: "Grupa klientów"
+        promotion: 'Promocja koszyka'
         product:
             product_not_active_in_channel: "Produkt nie jest jeszcze aktywny w tym kanale."
         all_rights_reserved: "Wszelkie prawa zastrzeżone"
@@ -120,8 +161,76 @@ sylius_mollie:
     order_checkout:
         colliding_products: "Niektóre produkty w Twoim koszyku nie mogą być zakupione razem. Usuń je, aby kontynuować."
     form:
+        product_type: 'Typ produktu (wymagany przy bonach żywieniowych)'
+        product_type_none: 'Brak'
         channel_should_be_unique: "Kanał musi być unikalny dla tej konfiguracji Mollie."
+        enable_all: 'Włącz wszystkie'
+        amount_limit_help: 'Podaj minimalną i maksymalną kwotę do zastosowania w koszyku. Jeśli pole pozostanie puste, zostaną użyte domyślne ustawienia Mollie.'
+        disable_all: 'Wyłącz wszystkie'
+        payment_methods:
+            payment_description: 'Opis'
+            payment_description_help: "Opis używany dla transakcji. Dostępne są następujące zmienne:<br>
+            <strong>{ordernumber}:</strong> Numer zamówienia dla tej transakcji<br>
+            <strong>{storename}:</strong> Nazwa sklepu<br><br>
+            
+            (Uwaga: to działa tylko, gdy metoda jest ustawiona na API płatności)"
     ui:
+        product_type: 'Typ produktu'
+        template_type: 'Typ'
+        data_time: 'Data'
+        message: 'Wiadomość'
+        error_code: 'Kod'
+        level: 'Poziom'
+        template_mollie_email: 'Szablon e-maila'
+        payment_link: 'Link do płatności'
+        payment_link_abandoned: 'Porzucony link do płatności'
+        style_css: 'Styl CSS'
+        template_name: 'Nazwa szablonu'
+        template_subject: 'Temat'
+        template_content: 'Treść'
+        show_hide: 'Pokaż\Ukryj'
+        restart_tour: 'Rozpocznij ponownie przewodnik'
+        sylius_bundle: 'Odwiedź pakiet Sylius'
+        contact_mollie: 'Skontaktuj się z Mollie'
+        more_info_about_mollie: 'Więcej informacji o Mollie'
+        payment_fee: 'Opłata za płatność'
+        payment_fee_type: 'Typ'
+        no_fee: 'Brak opłaty'
+        min_amount: 'Kwota minimalna'
+        max_amount: 'Kwota maksymalna'
+        payment_type: 'Rodzaj płatności'
+        percentage_surcharge: 'Procentowa'
+        fix_amount_surcharge: 'Stała kwota'
+        percentage_and_fix_amount_surcharge: 'Stała kwota i procentowa'
+        surcharge_limit: 'Limit dopłaty'
+        min_max: 'Limity kwotowe'
+        payment_methods_doc: 'aby dowiedzieć się więcej o różnicach między API płatności a zamówień'
+        enable: 'Włącz'
+        payment_name: 'Nazwa metody płatności'
+        customize_image: 'Wybierz niestandardowy obraz'
+        country_level_restriction: 'Ograniczenia na poziomie kraju'
+        all_countries: 'Wszystkie kraje'
+        selected_countries: 'Wybrane kraje'
+        country_level_allow: 'Zezwól na płatności z wybranych krajów'
+        country_level_exclude: 'Wyklucz płatności z wybranych krajów'
+        order_expiration_days: 'Liczba dni do wygaśnięcia zamówienia'
+        load_methods_button: 'Wczytaj metody'
+        read_more_test_api_key: '<a target="_blank" href="https://www.mollie.com/dashboard/developers/api-keys">Mollie Profile</a> - twój API key zaczyna się od "test_"'
+        read_more_live_api_key: '<a target="_blank" href="https://www.mollie.com/dashboard/developers/api-keys">Mollie Profile</a> - twój API key zaczyna się od "live_"'
+        abandoned_email_enabled: 'Funkcja drugiej szansy'
+        abandoned_description: 'E-mail z przypomnieniem umożliwia klientowi opłacenie niezapłaconego zamówienia za pomocą bezpośredniego linku płatniczego.'
+        abandoned_hours: 'Po ilu godzinach wiadomość zostanie wysłana do klienta'
+        enable_components: 'Użyj komponentów Mollie dla kart kredytowych'
+        read_more_enable_components: 'Dowiedz się więcej o <a target="_blank" href="https://www.mollie.com/en/news/post/better-checkout-flows-with-mollie-components">Komponentach Mollie</a> i jak wpływają na konwersję.'
+        read_more_single_click_enabled: 'Dowiedz się więcej o <a target="_blank" href="https://help.mollie.com/hc/en-us/articles/115000671249-What-are-single-click-payments-and-how-does-it-work-">Płatnościach jednym kliknięciem</a> i jak wpływają na konwersję.'
+        single_click_enabled: 'Użyj płatności jednym kliknięciem dla kart kredytowych'
+        environment: "Środowisko"
+        debug_level_log: 'Poziom logowania'
+        nothing_log: 'Wyłączone'
+        errors: 'Błędy'
+        everything: 'Wszystko'
+        payment_mathod_conf_title: 'Konfiguracja metod płatności'
+        create_methods_before_loading: 'Aby skonfigurować metody płatności, wypełnij wymagane pola i kliknij przycisk „Utwórz”.'
         search: 'Szukaj'
         subscription:
             grid:
@@ -151,7 +260,17 @@ sylius_mollie:
         no_api_key_provided: "Nie podano klucza API"
         api_key_start_with_api_key_test: "Klucz testowy powinien zaczynać się od 'test_'"
         api_key_start_with_api_key_live: "Klucz produkcyjny powinien zaczynać się od 'live_'"
-
-
-
-        
+First name: 'Imię'
+Last name: 'Nazwisko'
+Provinces: 'Województwa'
+default: 'Domyślny'
+decimal: 'Dziesiętny'
+Name: 'Nazwa'
+meal: 'Posiłek'
+eco: 'Eko'
+gift: 'Prezent'
+app:
+    admin:
+        over: 'Modele 3D'
+        menu:
+            3d_canvas_overview: 'Przegląd modeli 3D'

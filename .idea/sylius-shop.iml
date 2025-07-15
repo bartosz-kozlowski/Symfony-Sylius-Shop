@@ -35,7 +35,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/dmore/behat-chrome-extension" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/dmore/chrome-mink-driver" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/annotations" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/cache" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/collections" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/common" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/data-fixtures" />
@@ -103,9 +102,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/paragonie/hidden-string" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/paragonie/random_compat" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/paragonie/sodium_compat" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/payum/core" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/payum/iso4217" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/payum/offline" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/payum/payum-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phar-io/manifest" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phar-io/version" />
@@ -265,6 +262,11 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/willdurand/jsonp-callback-validator" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/willdurand/negotiation" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/google-mailer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/knplabs/knp-snappy" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/knplabs/knp-snappy-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/myclabs/php-enum" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/payum/payum" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/sylius/refund-plugin" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

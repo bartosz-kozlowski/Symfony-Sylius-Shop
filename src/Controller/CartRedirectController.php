@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use RuntimeException;
 use Doctrine\ORM\EntityManagerInterface;
 use Sylius\Bundle\CoreBundle\Provider\FlashBagProvider;
 use Sylius\Bundle\OrderBundle\Factory\AddToCartCommandFactoryInterface;
@@ -76,7 +77,7 @@ final class CartRedirectController
     {
         $decoded = base64_decode($base64Payload, true);
         if (false === $decoded) {
-            throw new \RuntimeException('Nieprawidłowa zawartość parametru "cart".');
+            throw new RuntimeException('Nieprawidłowa zawartość parametru "cart".');
         }
 
         $items = json_decode(urldecode($decoded), true, 512, \JSON_THROW_ON_ERROR);

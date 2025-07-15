@@ -1,7 +1,8 @@
 <?php
 namespace App\Form\Extension;
 
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\FormError;
+use RuntimeException;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -56,7 +57,7 @@ final class ProductTypeExtension extends AbstractTypeExtension
                 if ($file !== null){
                     $extension = strtolower($file->getClientOriginalExtension());
                     if (!in_array($extension, ['glb', 'gltf'])) {
-                        $form->get('threeDModel')->addError(new \Symfony\Component\Form\FormError('Dozwolone są tylko pliki .glb i .gltf.'));
+                        $form->get('threeDModel')->addError(new FormError('Dozwolone są tylko pliki .glb i .gltf.'));
                         return;
                     }
                     if ($file instanceof UploadedFile) {
@@ -64,7 +65,7 @@ final class ProductTypeExtension extends AbstractTypeExtension
                         if (!is_dir($destination)
                             && !mkdir($destination, 0777, true)
                             && !is_dir($destination)) {
-                            throw new \RuntimeException(
+                            throw new RuntimeException(
                                 sprintf('Nie mogę utworzyć katalogu "%s"', $destination)
                             );
                         }
