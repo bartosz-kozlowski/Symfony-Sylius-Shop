@@ -23,6 +23,7 @@
     ],
     "require": {
         "php": "^8.2",
+        "knplabs/knp-paginator-bundle": "^6.8",
         "mollie/mollie-api-php": "^2.79",
         "payum/payum": "^1.7",
         "sylius/mollie-plugin": "^3.0",

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Knp\Component\Pager\PaginatorInterface;
 use Sylius\Component\Product\Repository\ProductRepositoryInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -11,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 final class CanvController extends AbstractController
 {
     #[Route('/admin/3d-canvas', name: 'admin_3d_canvas')]
-    public function index(Request $request, ProductRepositoryInterface $productRepository): Response
+    public function index(Request $request, ProductRepositoryInterface $productRepository, PaginatorInterface $paginator): Response
     {
         $criteria = $request->query->all('criteria');
 
@@ -99,10 +100,19 @@ final class CanvController extends AbstractController
                     break;
             }
         }
+        $pagination = $paginator->paginate(
+            $queryBuilder,
+            $request->query->getInt('page', 1),
+            10 // liczba produktów na stronę
+        );
 
-        $products = $queryBuilder->getQuery()->getResult();
         return $this->render('admin/3d_canvas/redirect.html.twig', [
-            'products' => $products,
+            'products' => $pagination,
         ]);
+
+//        $products = $queryBuilder->getQuery()->getResult();
+//        return $this->render('admin/3d_canvas/redirect.html.twig', [
+//            'products' => $products,
+//        ]);
     }
 }

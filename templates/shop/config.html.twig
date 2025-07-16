@@ -6,12 +6,12 @@
         <div class="card shadow-lg rounded-4 overflow-hidden">
             <div class="row g-0">
                 <!-- Lista produktów -->
-                <aside class="col-12 col-md-4 border-end bg-light" style="max-height:calc(100vh - 160px); overflow-y:auto;">
+                <aside class="col-12 col-md-4 border-end bg-light d-flex flex-column" style="height:calc(100vh - 160px);">
                     <div class="px-3 pt-4 pb-2 border-bottom d-flex align-items-center">
                         <i class="bi bi-box-seam fs-5 me-2 text-muted"></i>
                         <h5 class="fw-semibold text-muted mb-0">Produkty</h5>
                     </div>
-                    <ul class="list-group list-group-flush" id="productList">
+                    <ul class="list-group list-group-flush flex-grow-1 overflow-auto" id="productList">
                         {% for product in products %}
                             {% set image = product.images|first %}
                             {% set path = image.path is not null
@@ -37,11 +37,17 @@
                             </li>
                         {% endfor %}
                     </ul>
+                    {% if products.pageCount > 1 %}
+                        <div class="border-top bg-white px-3 py-2">
+                            <div class="d-flex justify-content-center">
+                                {{ knp_pagination_render(products, '_pagination.html.twig') }}
+                            </div>
+                        </div>
+                    {% endif %}
                 </aside>
 
                 <!-- Zestaw użytkownika -->
-                <aside class="col-12 col-md-8 bg-white" id="cartPanel" style="max-height:calc(100vh - 160px); overflow-y:auto;">
-                    <div class="px-3 pt-4 pb-2 border-bottom d-flex align-items-center">
+                <aside class="col-12 col-md-8 bg-white" id="cartPanel" style="max-height:calc(100vh - 160px); overflow-y:auto;">                    <div class="px-3 pt-4 pb-2 border-bottom d-flex align-items-center">
                         <i class="bi bi-basket fs-5 me-2 text-muted"></i>
                         <h5 class="fw-semibold text-muted mb-0">Twój zestaw</h5>
                     </div>

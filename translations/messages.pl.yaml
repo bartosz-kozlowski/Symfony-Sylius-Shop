@@ -1,4 +1,6 @@
 sylius:
+    cart:
+        not_recalculated: 'Z powodu nieprawidłowych wartości w Twoim koszyku, nie został on przeliczony.'
     menu:
         admin:
             main:

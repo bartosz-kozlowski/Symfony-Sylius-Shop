@@ -279,6 +279,8 @@
       <path value="$PROJECT_DIR$/vendor/payum/payum" />
       <path value="$PROJECT_DIR$/vendor/willdurand/js-translation-bundle" />
       <path value="$PROJECT_DIR$/vendor/sylius/mollie-plugin" />
+      <path value="$PROJECT_DIR$/vendor/knplabs/knp-paginator-bundle" />
+      <path value="$PROJECT_DIR$/vendor/knplabs/knp-components" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.2">

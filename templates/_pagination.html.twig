@@ -1,0 +1,43 @@
+{% if pageCount > 1 %}
+    <nav>
+        <ul class="pagination pagination-sm justify-content-center my-2">
+            {# Strzałka do poprzedniej strony #}
+            <li class="page-item {{ previous is not defined ? 'disabled' }}">
+                {% if previous is defined %}
+                    <a class="page-link" href="{{ path(route, query|merge({(pageParameterName): previous})) }}" aria-label="Poprzednia">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                {% else %}
+                    <span class="page-link" aria-hidden="true">&laquo;</span>
+                {% endif %}
+            </li>
+
+            {# Numery stron #}
+            {% for page in pagesInRange %}
+                <li class="page-item {{ page == current ? 'active' }}">
+                    {% if page == current %}
+                        <span class="page-link">
+                            {{ page }}
+                            <span class="visually-hidden">(aktualna)</span>
+                        </span>
+                    {% else %}
+                        <a class="page-link" href="{{ path(route, query|merge({(pageParameterName): page})) }}">
+                            {{ page }}
+                        </a>
+                    {% endif %}
+                </li>
+            {% endfor %}
+
+            {# Strzałka do następnej strony #}
+            <li class="page-item {{ next is not defined ? 'disabled' }}">
+                {% if next is defined %}
+                    <a class="page-link" href="{{ path(route, query|merge({(pageParameterName): next})) }}" aria-label="Następna">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                {% else %}
+                    <span class="page-link" aria-hidden="true">&raquo;</span>
+                {% endif %}
+            </li>
+        </ul>
+    </nav>
+{% endif %}
