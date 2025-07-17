@@ -20,6 +20,7 @@ Encore
     .setOutputPath('public/build/app/shop')
     .setPublicPath('/build/app/shop')
     .addEntry('app-shop-entry', './assets/shop/entrypoint.js')
+    .addEntry('shop/configurator', './assets/shop/configurator.js')
     .addAliases({
         '@vendor': path.resolve(__dirname, 'vendor'),
     })

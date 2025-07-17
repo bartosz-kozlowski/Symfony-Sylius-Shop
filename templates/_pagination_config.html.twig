@@ -1,0 +1,51 @@
+{# <script src="https://cdn.jsdelivr.net/npm/@hotwired/turbo@7.3.0/dist/turbo.es2017-umd.js" defer></script> #}
+{# <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"> #}
+
+{% if pageCount > 1 %}
+<nav>
+    <ul class="pagination pagination-sm justify-content-center my-2">
+            <li class="page-item {{ previous is not defined ? 'disabled' }}">
+                {% if previous is defined %}
+                    <a class="page-link"
+                       href="{{ path(route, query|merge({(pageParameterName): previous})) }}"
+                       aria-label="Poprzednia"
+                       data-turbo-frame="productListFrame">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                {% else %}
+                    <span class="page-link" aria-hidden="true">&laquo;</span>
+                {% endif %}
+            </li>
+
+            {% for page in pagesInRange %}
+                <li class="page-item {{ page == current ? 'active' }}">
+                    {% if page == current %}
+                        <span class="page-link">
+                            {{ page }}
+                            <span class="visually-hidden">(aktualna)</span>
+                        </span>
+                    {% else %}
+                        <a class="page-link"
+                           href="{{ path(route, query|merge({(pageParameterName): page})) }}"
+                           data-turbo-frame="productListFrame">
+                            {{ page }}
+                        </a>
+                    {% endif %}
+                </li>
+            {% endfor %}
+
+            <li class="page-item {{ next is not defined ? 'disabled' }}">
+                {% if next is defined %}
+                    <a class="page-link"
+                       href="{{ path(route, query|merge({(pageParameterName): next})) }}"
+                       aria-label="Następna"
+                       data-turbo-frame="productListFrame">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                {% else %}
+                    <span class="page-link" aria-hidden="true">&raquo;</span>
+                {% endif %}
+            </li>
+        </ul>
+    </nav>
+{% endif %}

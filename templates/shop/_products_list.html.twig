@@ -1,0 +1,43 @@
+<script src="https://cdn.jsdelivr.net/npm/@hotwired/turbo@7.3.0/dist/turbo.es2017-umd.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+<turbo-frame id="productListFrame" style="height: 100% !important">
+    <div class="d-flex flex-column justify-content-between" style="height: 100% !important">
+        <ul class="list-group list-group-flush flex-grow-1 overflow-auto" style="height: 1000px" id="productList">
+            {% for product in products %}
+                {% set image = product.images|first %}
+                {% set path = image.path is not null
+                    ? image.path|imagine_filter('sylius_shop_product_small_thumbnail')
+                    : asset('build/shop/images/200x200.png') %}
+
+                <li class="list-group-item p-3 border-0 border-bottom hover-bg-light">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <a href="#"
+                           class="d-flex align-items-center text-reset text-decoration-none flex-grow-1 me-2"
+                           data-model="{{ asset(product.model3dPath) ~ '?v=' ~ random(100000) }}"
+                           data-product-id="{{ product.id }}"
+                           data-product-name="{{ product.translation.name }}"
+                           data-variant-id="{{ product.variants.first.code }}">
+                            <img src="{{ path }}" height="70" class="rounded-3 me-3 border" alt="">
+                            <div class="fw-semibold small">{{ product.translation.name }}</div>
+                        </a>
+                        <button class="btn btn-outline-success btn-sm add-to-stack"
+                                title="Dodaj produkt"
+                                data-bs-toggle="tooltip"
+                                data-action="configurator#handleAddClick">
+                            <i class="bi bi-plus-lg"></i>
+                        </button>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+
+        {% if products.pageCount > 1 %}
+            <div class="border-top bg-white px-3 py-2 position-sticky bottom-0" style="z-index: 1;">
+                <nav class="d-flex justify-content-center">
+                    {{ knp_pagination_render(products, '_pagination_config.html.twig') }}
+                </nav>
+            </div>
+        {% endif %}
+    </div>
+</turbo-frame>

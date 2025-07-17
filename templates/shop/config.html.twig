@@ -2,65 +2,48 @@
 
 {% block content %}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/@hotwired/turbo@7.3.0/dist/turbo.es2017-umd.js"></script>
     <div class="container px-0 my-5">
-        <div class="card shadow-lg rounded-4 overflow-hidden">
-            <div class="row g-0">
+        <div class="card shadow-lg rounded-4 overflow-hidden" data-controller="configurator">
+            <div class="d-flex w-100 justify-content-between" style="height:calc(100vh - 160px);">
+
                 <!-- Lista produktów -->
-                <aside class="col-12 col-md-4 border-end bg-light d-flex flex-column" style="height:calc(100vh - 160px);">
+                <aside class="col-12 col-md-4 border-end bg-light d-flex flex-column h-100">
                     <div class="px-3 pt-4 pb-2 border-bottom d-flex align-items-center">
                         <i class="bi bi-box-seam fs-5 me-2 text-muted"></i>
                         <h5 class="fw-semibold text-muted mb-0">Produkty</h5>
                     </div>
-                    <ul class="list-group list-group-flush flex-grow-1 overflow-auto" id="productList">
-                        {% for product in products %}
-                            {% set image = product.images|first %}
-                            {% set path = image.path is not null
-                                ? image.path|imagine_filter('sylius_shop_product_small_thumbnail')
-                                : asset('build/shop/images/200x200.png') %}
 
-                            <li class="list-group-item p-3 border-0 border-bottom hover-bg-light">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <a href="#" class="d-flex align-items-center text-reset text-decoration-none flex-grow-1 me-2"
-                                       data-model="{{ asset(product.model3dPath) ~ '?v=' ~ random(100000) }}"
-                                       data-product-id="{{ product.id }}"
-                                       data-product-name="{{ product.translation.name }}"
-                                       data-variant-id="{{ product.variants.first.code }}">
-                                        <img src="{{ path }}" height="70" class="rounded-3 me-3 border" alt="">
-                                        <div class="fw-semibold small">{{ product.translation.name }}</div>
-                                    </a>
-                                    <button class="btn btn-outline-success btn-sm add-to-stack" title="Dodaj produkt"
-                                            data-bs-toggle="tooltip"
-                                            data-variant-code="{{ product.variants.first.code }}">
-                                        <i class="bi bi-plus-lg"></i>
-                                    </button>
-                                </div>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                    {% if products.pageCount > 1 %}
-                        <div class="border-top bg-white px-3 py-2">
-                            <div class="d-flex justify-content-center">
-                                {{ knp_pagination_render(products, '_pagination.html.twig') }}
-                            </div>
+                    <turbo-frame id="productListFrame"
+                                 src="{{ path(app.request.attributes.get('_route'), app.request.query.all) }}">
+                        <div class="text-center p-5">
                         </div>
-                    {% endif %}
+                    </turbo-frame>
                 </aside>
 
                 <!-- Zestaw użytkownika -->
-                <aside class="col-12 col-md-8 bg-white" id="cartPanel" style="max-height:calc(100vh - 160px); overflow-y:auto;">                    <div class="px-3 pt-4 pb-2 border-bottom d-flex align-items-center">
+                <aside class="col-12 col-md-8 bg-white" id="cartPanel" style="max-height:calc(100vh - 160px); overflow-y:auto;">
+                    <div class="px-3 pt-4 pb-2 border-bottom d-flex align-items-center">
                         <i class="bi bi-basket fs-5 me-2 text-muted"></i>
                         <h5 class="fw-semibold text-muted mb-0">Twój zestaw</h5>
                     </div>
-                    <div id="cartViewer" style="width:100%; height:400px;" class="bg-body border-bottom"></div>
-                    <div id="cartList" class="text-muted text-center py-4">
+
+                    <div data-configurator-target="viewer" id="cartViewer" style="width:100%; height:400px;" class="bg-body border-bottom"></div>
+
+                    <div data-configurator-target="list" id="cartList" class="text-muted text-center py-4">
                         Brak dodanych produktów
                     </div>
+
                     <div class="p-3">
-                        <button class="btn btn-success w-100 d-none" id="checkoutBtn">
+                        <button data-configurator-target="checkout"
+                                data-action="configurator#checkout"
+                                class="btn btn-success w-100 d-none"
+                                id="checkoutBtn">
                             <i class="bi bi-cart-check me-1"></i> Dodaj do koszyka
                         </button>
                     </div>
                 </aside>
+
             </div>
         </div>
     </div>
