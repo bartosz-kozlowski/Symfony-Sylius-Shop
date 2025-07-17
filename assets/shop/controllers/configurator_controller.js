@@ -35,6 +35,24 @@ export default class extends Controller {
     )
   }
 
+  removeModelCompletely (model) {
+    if (!model) return
+
+    model.traverse(obj => {
+      if (obj.geometry) obj.geometry.dispose()
+      if (obj.material) {
+        if (Array.isArray(obj.material)) {
+          obj.material.forEach(m => m.dispose())
+        } else {
+          obj.material.dispose()
+        }
+      }
+    })
+
+    this.cartScene.remove(model)
+  }
+
+
   /* ----------- Dodawanie ----------- */
   handleAddClick (e) {
     const btn = e.currentTarget
@@ -74,7 +92,7 @@ export default class extends Controller {
 
     const entry = this.cartModelMap.get(id)
     if (entry) {
-      this.cartScene.remove(entry.model)
+      this.removeModelCompletely(entry.model)
       this.cartModelMap.delete(id)
       this.saveCartToStorage()
       this.relayoutModels()
@@ -224,8 +242,8 @@ export default class extends Controller {
             data-action="configurator#handleRemoveClick">
       <i class="bi bi-trash"></i><span class="d-none d-sm-inline"> Usuń</span>
     </button>`
-    // ul.appendChild(li)
-    ul.prepend(li);
+    ul.appendChild(li)
+    // ul.prepend(li);
   }
 
 
