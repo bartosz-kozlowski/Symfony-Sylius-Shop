@@ -8,14 +8,15 @@
             <div class="d-flex w-100 justify-content-between" style="height:calc(100vh - 160px);">
 
                 <!-- Lista produktów -->
-                <aside class="col-12 col-md-4 border-end bg-light d-flex flex-column h-100">
+                <aside class="col-12 col-md-4 border-end bg-light d-flex flex-column h-100" style="min-height: 0;">
                     <div class="px-3 pt-4 pb-2 border-bottom d-flex align-items-center">
                         <i class="bi bi-box-seam fs-5 me-2 text-muted"></i>
                         <h5 class="fw-semibold text-muted mb-0">Produkty</h5>
                     </div>
 
                     <turbo-frame id="productListFrame"
-                                 src="{{ path(app.request.attributes.get('_route'), app.request.query.all) }}">
+                                 src="{{ path(app.request.attributes.get('_route'), app.request.query.all) }}"
+                                 style="height: 100%; overflow: hidden;">
                         <div class="text-center p-5">
                         </div>
                     </turbo-frame>
@@ -34,7 +35,7 @@
                         Brak dodanych produktów
                     </div>
 
-                    <div class="p-3">
+                    <div class="position-sticky bottom-0 bg-white p-3 border-top" style="z-index: 10;">
                         <button data-configurator-target="checkout"
                                 data-action="configurator#checkout"
                                 class="btn btn-success w-100 d-none"

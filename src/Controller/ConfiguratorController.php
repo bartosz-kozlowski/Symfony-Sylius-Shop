@@ -28,10 +28,10 @@ final class ConfiguratorController extends AbstractController
         $pagination = $this->paginator->paginate(
             $queryBuilder,
             $request->query->getInt('page', 1),
-            10 // liczba produktów na stronę
+            8 // liczba produktów na stronę
         );
 
-        $frameId = $request->headers->get('Turbo-Frame');   // null lub np. 'productListFrame'
+        $frameId = $request->headers->get('Turbo-Frame');
         if ($frameId === 'productListFrame') {
             return $this->render('shop/_products_list.html.twig', [
                 'products' => $pagination,
