@@ -1,0 +1,17 @@
+{% import '@SyliusShop/shared/buttons.html.twig' as buttons %}
+{% set form = hookable_metadata.context.form %}
+{% set variant = form.cartItem.vars.value.variant %}
+{% set enabled = form.vars.valid and variant is not null and variant.enabled %}
+
+<div class="mb-3">
+    <button
+        type="submit"
+        id="add-to-cart-button"
+        class="btn btn-primary"
+        {% if not enabled %}disabled{% endif %}
+        {{ sylius_test_html_attribute('add-to-cart-button') }}
+    >
+        <i class="bi bi-cart-plus me-1"></i>
+        {{ 'sylius.ui.add_to_cart'|trans }}
+    </button>
+</div>

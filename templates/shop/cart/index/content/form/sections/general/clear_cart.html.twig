@@ -1,0 +1,12 @@
+<div class="d-flex justify-content-end mb-3">
+    <button
+        class="btn btn-outline-danger d-flex align-items-center gap-2"
+        type="button"
+        data-action="live#action:prevent"
+        data-live-action-param="clearCart"
+        {{ sylius_test_html_attribute('clear-cart') }}
+    >
+        <i class="bi bi-trash3"></i>
+        {{ 'sylius.ui.clear_cart'|trans }}
+    </button>
+</div>

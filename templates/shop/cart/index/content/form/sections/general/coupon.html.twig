@@ -1,0 +1,53 @@
+{% set form = hookable_metadata.context.form %}
+{% set form_promotion_coupon = form.promotionCoupon %}
+
+{% if form_promotion_coupon is defined %}
+    <div class="mb-4">
+        <div class="bg-light p-4 rounded">
+            <div {{ sylius_test_html_attribute('cart-promotion-coupon') }}>
+                {% if form_promotion_coupon.vars.value is not empty and form_promotion_coupon.vars.valid %}
+                    <div class="card border-success shadow-sm">
+                        <div class="card-body d-flex justify-content-between align-items-center p-3">
+                            <div class="d-flex align-items-center gap-2 flex-wrap">
+                                <i class="bi bi-ticket-perforated-fill text-success fs-5"></i>
+                                <strong>{{ 'sylius.ui.applied_coupon'|trans }}:</strong>
+                                <span class="badge bg-success text-white px-2 py-1">
+                                    {{ form_promotion_coupon.vars.value }}
+                                </span>
+                            </div>
+                            <button type="button"
+                                    class="btn btn-outline-danger btn-sm"
+                                    data-action="live#action:prevent"
+                                    data-live-action-param="removeCoupon"
+                                {{ sylius_test_html_attribute('cart-promotion-remove-coupon') }}>
+                                <i class="bi bi-x-circle me-1"></i>{{ 'sylius.ui.remove'|trans }}
+                            </button>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="input-group">
+                        {{ form_widget(form_promotion_coupon, sylius_test_form_attribute('cart-promotion-coupon-input')|sylius_merge_recursive({
+                            'attr': {
+                                'class': 'form-control',
+                                'data-model': 'norender|sylius_shop_cart[promotionCoupon]',
+                                'form': form.vars.id,
+                                'placeholder': 'sylius.ui.enter_your_code'|trans ~ '...'
+                            }
+                        })) }}
+                        <button class="btn btn-outline-primary"
+                                type="button"
+                            {{ sylius_test_html_attribute('apply-coupon-button') }}
+                                data-action="live#$render">
+                            <i class="bi bi-check-circle me-1"></i>{{ 'sylius.ui.apply_coupon'|trans }}
+                        </button>
+                    </div>
+                    {% if form_promotion_coupon.vars.errors|length > 0 %}
+                        <div class="form-text text-danger mt-2">
+                            {{ form_errors(form_promotion_coupon) }}
+                        </div>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endif %}

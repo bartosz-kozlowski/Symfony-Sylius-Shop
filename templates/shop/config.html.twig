@@ -1,6 +1,8 @@
 {% extends '@SyliusShop/shared/layout/base.html.twig' %}
 
 {% block content %}
+{#    <meta name="turbo-cache-control" content="no-cache">#}
+    <meta name="turbo-cache-control" content="no-cache">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <div class="container px-0 my-5">
         <div class="card shadow-lg rounded-4 overflow-hidden">
@@ -14,12 +16,10 @@
                         <h5 class="fw-semibold text-muted mb-0">Produkty</h5>
                     </div>
 
-                    <turbo-frame id="productListFrame"
+                    <turbo-frame id="productListFrame" style="height: 100%; overflow: hidden;">
                         {{ include('shop/_products_list.html.twig', { products: products }) }}
-                                 style="height: 100%; overflow: hidden;">
-                        <div class="text-center p-5">
-                        </div>
                     </turbo-frame>
+
                 </aside>
 
                 <!-- Zestaw użytkownika -->
