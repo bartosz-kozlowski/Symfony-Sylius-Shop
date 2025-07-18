@@ -41,7 +41,6 @@ productLinks.forEach(link => {
     exportBtn.classList.add('d-none');
     saveBtn.classList.add('d-none');
 
-    // Załaduj model z cache-busterem
     viewer.setAttribute('src', modelUrl + '?t=' + Date.now());
 
     viewer.addEventListener('load', () => {
@@ -91,8 +90,7 @@ saveBtn.addEventListener('click', async () => {
     });
 
     if (!resUpload.ok) throw new Error("Błąd przesyłania modelu");
-
-    // Po zapisie wymuś reload z cache-busterem
+    
     viewer.setAttribute('src', modelUrl + '?t=' + Date.now());
 
     alert("Zapisano i zaktualizowano model 3D.");

@@ -11,6 +11,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CanvasColorController extends AbstractController
 {
+    //Ten kontroler jest aktualnie nieużywany ale można nim zrobić zapisywanie koloru danego modelu 3D
+
     #[Route('/admin/3d-canvas/set-color', name: 'admin_3d_canvas_set_color', methods: ['POST'])]
     public function setColor(Request $request, ProductRepository $productRepository, EntityManagerInterface $em): JsonResponse
     {
