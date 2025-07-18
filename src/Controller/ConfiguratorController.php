@@ -38,12 +38,6 @@ final class ConfiguratorController extends AbstractController
             ]);
         }
 
-//        if ($request->headers->get('Turbo-Frame') === 'productListFrame') {
-//            return $this->render('shop/_products_list.html.twig', [
-//                'products' => $pagination,
-//            ]);
-//        }
-
         return $this->render('shop/config.html.twig', [
             'products' => $pagination,
         ]);

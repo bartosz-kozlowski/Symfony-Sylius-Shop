@@ -55,6 +55,13 @@ sylius:
             wszystkie muszą zostać spełnione."
     ui:
         tax_rate: 'Stawka podatku'
+        delivery_and_shipping: 'Wysyłka i dostawa'
+        returns_policy: 'Polityka zwrotów'
+        contact_us: 'Skontaktuj się z nami'
+        faq: "FAQ"
+        privacy_policy: 'Polityka prywatności'
+        about: 'O nas'
+        terms_and_conditions: 'Regulamin'
         taxons_for_which_the_lowest_price_is_not_displayed: 'Kategorie, dla których najniższa cena nie jest wyświetlana'
         account_navigation_mobile: "Nawigacja konta (mobilna)"
         account_button: "Przycisk konta"
@@ -142,6 +149,7 @@ sylius:
         no_width: "Brak szerokości"
         customer_group: "Grupa klientów"
         promotion: 'Promocja koszyka'
+        payment_met: 'Metody płatności:'
         product:
             product_not_active_in_channel: "Produkt nie jest jeszcze aktywny w tym kanale."
         all_rights_reserved: "Wszelkie prawa zastrzeżone"
@@ -271,7 +279,7 @@ Provinces: 'Województwa'
 default: 'Domyślny'
 decimal: 'Dziesiętny'
 Name: 'Nazwa'
-meal: 'Posiłek'
+meal: 'Posiłek' 
 eco: 'Eko'
 gift: 'Prezent'
 app:

@@ -1,4 +1,3 @@
-<script src="https://cdn.jsdelivr.net/npm/@hotwired/turbo@7.3.0/dist/turbo.es2017-umd.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
 <turbo-frame id="productListFrame" class="h-100">
@@ -15,7 +14,7 @@
                         <div class="d-flex align-items-center justify-content-between">
                             <a href="#"
                                class="d-flex align-items-center text-reset text-decoration-none flex-grow-1 me-2"
-                               data-model="{{ asset(product.model3dPath) ~ '?v=' ~ random(100000) }}"
+                               data-model="{{ asset(product.model3dPath) }}"
                                data-product-id="{{ product.id }}"
                                data-product-name="{{ product.translation.name }}"
                                data-variant-id="{{ product.variants.first.code }}">
@@ -25,7 +24,7 @@
                             <button class="btn btn-outline-success btn-sm add-to-stack"
                                     title="Dodaj produkt"
                                     data-bs-toggle="tooltip"
-                                    data-action="configurator#handleAddClick">
+                                    >
                                 <i class="bi bi-plus-lg"></i>
                             </button>
                         </div>

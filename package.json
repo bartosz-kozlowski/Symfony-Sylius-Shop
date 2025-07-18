@@ -15,6 +15,7 @@
     "@symfony/ux-autocomplete": "file:vendor/symfony/ux-autocomplete/assets",
     "@symfony/ux-live-component": "file:vendor/symfony/ux-live-component/assets",
     "bazinga-translator": "^7.0.0",
+    "bootstrap-icons": "^1.13.1",
     "intl-messageformat": "^10.7.16",
     "lodash.get": "^4.4.2",
     "shepherd.js": "11.0",
