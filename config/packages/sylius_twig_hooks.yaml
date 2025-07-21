@@ -3,6 +3,9 @@ sylius_twig_hooks:
         sylius_admin.security.login.page.content.form:
             - _name: submit
               template: 'admin/security/login/page/content/form/submit.html.twig'
+        sylius_admin.dashboard.index.content:
+            - _name: chart
+              template: 'admin/chart/index.html.twig'
         sylius_shop.cart.index.content.form.sections.general.items.head:
             - _name: recurring
               enabled: false

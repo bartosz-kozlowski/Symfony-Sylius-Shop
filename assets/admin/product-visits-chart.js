@@ -1,0 +1,90 @@
+import Chart from 'chart.js/auto';
+if (document.getElementById('productVisitsChart')) {
+  let delayed;
+  console.log('elo');
+  fetch('/admin/product-visit-data')
+    .then(response => response.json())
+    .then(data => {
+      const cleanedLabels = data.labels.map(path =>
+        path.replace(/^\/[a-z]{2}_[A-Z]{2}\/products\//, '')
+      );
+
+      const productLinks = data.labels;
+
+      const ctx = document.getElementById('productVisitsChart').getContext('2d');
+
+      const pastelColors = [
+        '#A8DADC', '#F4A261', '#E76F51', '#2A9D8F', '#E9C46A',
+        '#9E79B9', '#F7B267', '#A4C3B2', '#6D597A', '#FFB5A7'
+      ];
+
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: cleanedLabels,
+          datasets: [{
+            label: 'Odwiedziny',
+            data: data.counts,
+            backgroundColor: pastelColors.slice(0, data.counts.length),
+            borderRadius: 10,
+            borderSkipped: false,
+            hoverBackgroundColor: pastelColors.slice(0, data.counts.length)
+          }]
+        },
+        options: {
+          responsive: true,
+          animation: {
+            onComplete: () => {
+              delayed = true;
+            },
+            delay: (context) => {
+              let delay = 0;
+              if (context.type === 'data' && context.mode === 'default' && !delayed) {
+                delay = context.dataIndex * 300 + context.datasetIndex * 100;
+              }
+              return delay;
+            }
+          },
+          plugins: {
+            legend: {display: false},
+            tooltip: {
+              backgroundColor: '#fff',
+              titleColor: '#000',
+              bodyColor: '#333',
+              borderColor: '#ccc',
+              borderWidth: 1
+            }
+          },
+          scales: {
+            x: {
+              ticks: {
+                autoSkip: false,
+                maxRotation: 30,
+                font: {size: 12}
+              },
+              grid: {display: false}
+            },
+            y: {
+              beginAtZero: true,
+              ticks: {
+                precision: 0,
+                font: {size: 12}
+              },
+              grid: {
+                color: '#f0f0f0'
+              }
+            }
+          },
+          onClick: (evt, activeElements) => {
+            if (activeElements.length > 0) {
+              const index = activeElements[0].index;
+              const targetUrl = productLinks[index];
+              if (targetUrl) {
+                window.location.href = targetUrl;
+              }
+            }
+          }
+        }
+      });
+    });
+}
