@@ -282,6 +282,7 @@ Name: 'Nazwa'
 meal: 'Posiłek' 
 eco: 'Eko'
 gift: 'Prezent'
+Invalid credentials.: 'Nieprawidłowe dane logowania.'
 app:
     admin:
         over: 'Modele 3D'
