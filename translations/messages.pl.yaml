@@ -140,10 +140,10 @@ sylius:
         copyright: "Prawa autorskie"
         discounted_by: "Obniżone o"
         no_main_taxon: "Brak głównej kategorii"
-        missing_translation: "Brak tłumaczenia"
         no_height: "Brak wysokości"
         no_weight: "Brak wagi"
         method: 'Metoda'
+        missing_translation: 'Brak tłumaczenia'
         no_depth: "Brak głębokości"
         catalog_promotion: 'Promocja katalogowa'
         no_width: "Brak szerokości"

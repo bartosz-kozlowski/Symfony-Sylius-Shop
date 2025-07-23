@@ -10,6 +10,21 @@
                         ? image.path|imagine_filter('sylius_shop_product_small_thumbnail')
                         : asset('build/shop/images/200x200.png') %}
 
+                    {% set variantsJson = product.variants
+                    |map(v => {
+                        id:      v.id,
+                        code:    v.code,
+                        color:   v.modelColor,
+                        options: v.optionValues
+                        |map(val => {
+                            code:  val.option.code,
+                            name: val.option.translation.name,
+                            value: val.value
+                        })
+                    })
+                    |json_encode
+                    %}
+
                     <li class="list-group-item p-3 border-0 border-bottom hover-bg-light">
                         <div class="d-flex align-items-center justify-content-between">
                             <a href="#"
@@ -17,7 +32,12 @@
                                data-model="{{ asset(product.model3dPath) }}"
                                data-product-id="{{ product.id }}"
                                data-product-name="{{ product.translation.name }}"
-                               data-variant-id="{{ product.variants.first.code }}">
+                               data-variant-id="{{ product.variants.first.code }}"
+                               data-color="{{ product.variants.first.modelColor }}"
+                               data-variants='{{ variantsJson|e('html_attr') }}'>
+{#                                {{  dump(product.variants) }}#}
+{#                                {{ dump(product.variants.first.modelColor) }}#}
+{#                                {{ dump(variantsJson|raw) }}#}
                                 <img src="{{ path }}" height="70" class="rounded-3 me-3 border" alt="">
                                 <div class="fw-semibold small">{{ product.translation.name }}</div>
                             </a>
@@ -40,5 +60,22 @@
                 </nav>
             </div>
         {% endif %}
+    </div>
+    <div class="modal fade" id="variantSelectModal" tabindex="-1" aria-labelledby="variantSelectModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="variantSelectModalLabel">Wybierz wariant</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zamknij"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="variantForm">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button id="confirmVariantBtn" type="button" class="btn btn-primary">Zmień wariant</button>
+                </div>
+            </div>
+        </div>
     </div>
 </turbo-frame>

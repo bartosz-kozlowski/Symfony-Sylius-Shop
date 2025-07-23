@@ -29,6 +29,9 @@ services:
             $projectDir: '%kernel.project_dir%'
         tags:
             - { name: form.type_extension }
+    App\Form\Extension\ProductVariantTypeExtension:
+        tags:
+            - { name: form.type_extension }
     App\EventListener\AdminMenuSubscriber:
         tags:
             - { name: kernel.event_subscriber }

@@ -6,6 +6,9 @@ sylius_twig_hooks:
         sylius_admin.dashboard.index.content:
             - _name: chart
               template: 'admin/chart/index.html.twig'
+        sylius_admin.product_variant.create.content.form.sections.general.body.options:
+            - _name: color
+              template: 'admin/color/color.html.twig'
         sylius_shop.cart.index.content.form.sections.general.items.head:
             - _name: recurring
               enabled: false
