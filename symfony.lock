@@ -554,6 +554,15 @@
             "config/routes/ux_live_component.yaml"
         ]
     },
+    "symfony/ux-turbo": {
+        "version": "2.27",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "2.20",
+            "ref": "e4b951d7de760751e170c6d2e3b565cf9ed5182f"
+        }
+    },
     "symfony/ux-twig-component": {
         "version": "2.21",
         "recipe": {

@@ -1,37 +1,39 @@
 {% set form = hookable_metadata.context.form %}
 {% set variant = form.vars.value %}
 
-{% block javascripts %}
-    {% if variant.model3dPath %}
-        <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-    {% endif %}
-{% endblock %}
+{#{% block javascripts %}#}
+{#    {% if variant.model3dPath %}#}
+{#        <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>#}
+{#    {% endif %}#}
+{#{% endblock %}#}
 
 <div class="row" {{ sylius_test_html_attribute('variant-model3d') }}>
-    {% if variant.model3dPath %}
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <model-viewer
-                src="{{ asset(variant.model3dPath) ~ '?v=' ~ random(100000) }}"
-                alt="Podgląd modelu 3D"
-                auto-rotate
-                camera-controls
-                style="width: 60%; height: 400px;">
-            </model-viewer>
+{#    {{ dump(variant.model3dPath) }}#}
+{#    {% if variant.model3dPath %}#}
+{#        {{ dump(variant.model3dPath) }}#}
+{#        <div class="d-flex justify-content-between align-items-center mb-3">#}
+{#            <model-viewer#}
+{#                src="{{ asset(variant.model3dPath) ~ '?v=' ~ random(100000) }}"#}
+{#                alt="Podgląd modelu 3D"#}
+{#                auto-rotate#}
+{#                camera-controls#}
+{#                style="width: 60%; height: 400px;">#}
+{#            </model-viewer>#}
 
-            <button type="button"
-                    class="btn btn-outline-danger ml-3"
-                    onclick="document.querySelector('[data-remove-model]').value = '1'; this.closest('form').submit();">
-                Usuń model 3D
-            </button>
-        </div>
-    {% endif %}
-
-    <div class="form-group">
-        {{ form_row(form.modelColor, { 'label': 'Kolor wariantu (hex)' }) }}
-    </div>
+{#            <button type="button"#}
+{#                    class="btn btn-outline-danger ml-3"#}
+{#                    onclick="document.querySelector('[data-remove-model]').value = '1'; this.closest('form').submit();">#}
+{#                Usuń model 3D#}
+{#            </button>#}
+{#        </div>#}
+{#    {% endif %}#}
 
     <div class="form-group">
-        {{ form_row(form.model3dPath, { 'label': 'Ścieżka do modelu 3D (np. /media/models/shirt.glb)' }) }}
+        {{ form_row(form.modelColor, { 'label': 'Kolor wariantu' }) }}
     </div>
+
+{#    <div class="form-group">#}
+{#        {{ form_row(form.model3dPath, { 'label': 'Ścieżka do modelu 3D' }) }}#}
+{#    </div>#}
 
 </div>

@@ -1,0 +1,35 @@
+{% block body %}
+    {% autoescape false %}
+        {% set logo = sylius_channel_url(asset('bundles/syliuscore/images/sylius-logo.png'), channel) %}
+
+        <div style="font-family: Arial, sans-serif; background: #f4f4f4; padding: 30px 0; font-size: 16px; color: #333; line-height: 1.6;">
+            <div style="max-width: 600px; margin: 0 auto; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border-radius: 6px; overflow: hidden;">
+
+                <div style="background: #ffffff; padding: 30px 0; text-align: center;">
+                    {% if sylius_bundle_loaded_checker('SyliusShopBundle') %}
+                        {% set url = sylius_channel_url(path('sylius_shop_homepage', {'_locale': localeCode}), channel) %}
+                        <a href="{{ url|raw }}">
+                            <img src="{{ logo }}" alt="Logo" style="width: 160px;">
+                        </a>
+                    {% else %}
+                        <img src="{{ logo }}" alt="Logo" style="width: 160px;">
+                    {% endif %}
+                </div>
+
+                <div style="background: #ffffff; padding: 40px 30px;">
+                    {% block content %}{% endblock %}
+                </div>
+
+                <div style="background: #fafafa; text-align: center; padding: 20px 30px; font-size: 14px; color: #888;">
+                    <p style="margin: 0;">
+                        Masz pytania? Skontaktuj się z nami: <a href="mailto:kontakt@twojsklep.pl" style="color: #1abb9c; text-decoration: none;">kontakt@twojsklep.pl</a>
+                    </p>
+                    <p style="margin-top: 10px;">
+                        &copy; {{ "now"|date("Y") }} Twoja Firma · <a href="https://twojsklep.pl" style="color: #1abb9c; text-decoration: none;">twojsklep.pl</a>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    {% endautoescape %}
+{% endblock %}

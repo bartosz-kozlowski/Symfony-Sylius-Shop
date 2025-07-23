@@ -18,7 +18,6 @@
     {% endblock %}
 
     {% hook 'head' with { _prefixes: prefixes } %}
-    <script src="https://cdn.jsdelivr.net/npm/@hotwired/turbo@7.3.0/dist/turbo.es2017-umd.js" defer></script>
 </head>
 
 <body data-route="{{ app.request.get('_route') }}">

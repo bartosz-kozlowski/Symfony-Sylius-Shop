@@ -1,0 +1,28 @@
+<div style="text-align: center; font-family: Arial, sans-serif; color: #333; margin-bottom: 40px;">
+    <h2 style="color: #1abb9c; margin-bottom: 10px; font-size: 24px;">
+        {{ 'sylius.email.order_confirmation.your_order_number'|trans({}, null, localeCode) }}
+    </h2>
+    <div style="margin: 10px 0;">
+        <span style="display: inline-block; border: 2px dashed #1abb9c; padding: 12px 20px; font-size: 28px; font-weight: bold; color: #1abb9c;">
+            {{ order.number }}
+        </span>
+    </div>
+    <p style="font-size: 16px; margin-top: 20px;">
+        {{ 'sylius.email.order_confirmation.has_been_successfully_placed'|trans({}, null, localeCode) }}
+    </p>
+</div>
+
+{% if sylius_bundle_loaded_checker('SyliusShopBundle') %}
+    {% set url = sylius_channel_url(path('sylius_shop_order_show', {'tokenValue': order.tokenValue, '_locale': localeCode}), channel) %}
+    <div style="text-align: center; margin-bottom: 40px;">
+        <a href="{{ url|raw }}" style="display: inline-block; background-color: #1abb9c; padding: 16px 32px; color: #fff; font-weight: bold; font-size: 16px; text-decoration: none; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.15);">
+            {{ 'sylius.email.order_confirmation.view_order_or_change_payment_method'|trans({}, null, localeCode) }}
+        </a>
+    </div>
+{% endif %}
+
+<div style="text-align: center; font-size: 16px; color: #555;">
+    <p style="margin: 0;">
+        {{ 'sylius.email.order_confirmation.thank_you'|trans({}, null, localeCode) }}
+    </p>
+</div>

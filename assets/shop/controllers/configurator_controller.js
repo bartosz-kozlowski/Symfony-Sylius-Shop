@@ -18,6 +18,7 @@ export default class extends Controller {
     if (!this.hasViewerTarget || !this.hasListTarget || !this.hasCheckoutTarget) return
     if (this._connected) return
     this._connected = true
+    this.selectedModel = null
 
     this.cartModelMap = this.constructor.cartModelMap
     this.placedX = this.cartModelMap.size ? -3 + 2 * this.cartModelMap.size : -3
@@ -44,6 +45,34 @@ export default class extends Controller {
       new bootstrap.Tooltip(el)
     )
   }
+  highlightModel(model) {
+    if (this.outlineMesh) {
+      this.cartScene.remove(this.outlineMesh)
+      this.outlineMesh.traverse(o => {
+        if (o.material) o.material.dispose()
+        if (o.geometry) o.geometry.dispose()
+      })
+      this.outlineMesh = null
+    }
+
+    const outline = model.clone(true)
+
+    outline.traverse(obj => {
+      if (obj.isMesh) {
+        obj.material = new THREE.MeshBasicMaterial({
+          color: 0xffffff,
+          side: THREE.BackSide,
+          transparent: true,
+          opacity: 0.6
+        })
+      }
+    })
+
+    outline.scale.multiplyScalar(1.05)
+    this.cartScene.add(outline)
+    this.outlineMesh = outline
+  }
+
 
   initViewer (container) {
     const scene = new THREE.Scene()
@@ -57,7 +86,7 @@ export default class extends Controller {
     const controls = new OrbitControls(camera, renderer.domElement)
     controls.enableDamping = true
     controls.autoRotate = true
-    controls.autoRotateSpeed = -0.4
+    controls.autoRotateSpeed = -0.2
     controls.target.set(0, 0.5, 0)
     controls.update()
     const pmrem = new THREE.PMREMGenerator(renderer)
@@ -98,10 +127,19 @@ export default class extends Controller {
       mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1
       raycaster.setFromCamera(mouse, this.cartCamera)
       const hits = raycaster.intersectObjects(this.cartScene.children, true)
-      if (!hits.length) return
-      let obj = hits[0].object
+      if (!hits.length) {
+        if (this.outlineMesh) {
+          this.cartScene.remove(this.outlineMesh)
+          this.outlineMesh = null
+        }
+        return
+      }      let obj = hits[0].object
       while (obj && !obj.userData.productId) obj = obj.parent
-      if (obj?.userData.productId) this.openVariantModal(obj.userData.productId)
+      if (obj?.userData.productId) {
+        const entry = this.cartModelMap.get(obj.userData.productId)
+        if (entry?.model) this.highlightModel(entry.model)
+        this.openVariantModal(obj.userData.productId)
+      }
     })
   }
 
@@ -217,6 +255,10 @@ export default class extends Controller {
     btn.closest('li')?.remove()
     const entry = this.cartModelMap.get(id)
     if (entry) {
+      if (this.outlineMesh && this.outlineMesh.userData?.productId === id) {
+        this.cartScene.remove(this.outlineMesh)
+        this.outlineMesh = null
+      }
       this.removeModelCompletely(entry.model)
       this.cartModelMap.delete(id)
       this.saveCartToStorage()
@@ -334,6 +376,9 @@ export default class extends Controller {
     const spacing = 2
     for (const { model } of this.cartModelMap.values()) {
       if (model) model.position.x = x
+      if (this.outlineMesh && model.userData.productId === this.outlineMesh.userData.productId) {
+        this.outlineMesh.position.x = x
+      }
       x += spacing
     }
     this.placedX = x

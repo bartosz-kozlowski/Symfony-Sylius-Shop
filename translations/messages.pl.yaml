@@ -1,4 +1,8 @@
 sylius:
+    email:
+        order_confirmation:
+            has_been_successfully_placed: 'zostało pomyślnie złożone.'
+            thank_you: 'Dziękujemy za zakupy w naszym sklepie!'
     cart:
         not_recalculated: 'Z powodu nieprawidłowych wartości w Twoim koszyku, nie został on przeliczony.'
     menu:
