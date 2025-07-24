@@ -7,7 +7,6 @@
   },
   "dependencies": {
     "@dimforge/rapier3d-compat": "^0.17.3",
-    "@hotwired/turbo": "^8.0.13",
     "@sylius-ui/admin": "file:vendor/sylius/sylius/src/Sylius/Bundle/AdminBundle",
     "@sylius-ui/shop": "file:vendor/sylius/sylius/src/Sylius/Bundle/ShopBundle",
     "@sylius/admin-bundle": "file:vendor/sylius/sylius/src/Sylius/Bundle/AdminBundle/Resources/assets",
@@ -23,11 +22,15 @@
     "three": "^0.178.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.28.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.20.7",
+    "@babel/preset-env": "^7.28.0",
     "@hotwired/stimulus": "^3.2.2",
     "@symfony/stimulus-bridge": "^3.2.0",
-    "@symfony/ux-turbo": "file:vendor/symfony/ux-turbo/assets",
     "@symfony/webpack-encore": "^5.0.1",
+    "sass-loader": "^16.0.1",
     "tom-select": "^2.2.2",
-    "vite": "^7.0.2"
+    "webpack": "^5.100.2",
+    "webpack-cli": "^6.0.1"
   }
 }

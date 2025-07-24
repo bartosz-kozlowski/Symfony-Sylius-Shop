@@ -1,0 +1,7 @@
+<tbody class="align-middle">
+{% for item in hookable_metadata.context.order.items %}
+    <tr class="border-top" {{ sylius_test_html_attribute('product-row', item.productName) }}>
+        {% hook 'body' with { item } %}
+    </tr>
+{% endfor %}
+</tbody>

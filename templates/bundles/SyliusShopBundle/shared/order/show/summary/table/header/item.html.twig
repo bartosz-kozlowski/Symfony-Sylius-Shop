@@ -1,0 +1,6 @@
+{% set label = hookable_metadata.configuration.label %}
+
+<th class="text-nowrap text-start align-middle {{ hookable_metadata.configuration.class|default('') }}"
+    data-test-table="{{ hookable_metadata.configuration.test_id|default(label) }}">
+    {{ ('sylius.ui.' ~ label)|trans }}
+</th>
