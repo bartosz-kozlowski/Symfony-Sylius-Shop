@@ -1,0 +1,29 @@
+{% extends '@SyliusCore/Email/layout.html.twig' %}
+
+{% block subject %}
+    {{ 'sylius.email.user_registration.subject'|trans({}, null, localeCode)|raw }}
+{% endblock %}
+
+{% block content %}
+    {% if sylius_bundle_loaded_checker('SyliusShopBundle') %}
+        {% set url = sylius_channel_url(path('sylius_shop_homepage', {'_locale': localeCode}), channel) %}
+    {% endif %}
+
+    <div style="text-align: center; font-family: Arial, sans-serif; color: #333; margin-bottom: 40px;">
+        <h2 style="color: #1abb9c; font-size: 24px; margin-bottom: 10px;">
+            {{ 'sylius.email.user_registration.welcome_to_our_store'|trans({}, null, localeCode) }}
+        </h2>
+
+        <p style="font-size: 16px; color: #555; margin-bottom: 20px;">
+            {{ 'sylius.email.user_registration.you_have_just_been_registered'|trans({}, null, localeCode) }}
+            <strong>{{ user.username }}</strong>.
+        </p>
+
+        <a href="{{ url is defined ? url|raw : channel.hostname|raw }}"
+           style="display: inline-block; background-color: #1abb9c; padding: 16px 32px; color: #fff;
+                  font-weight: bold; font-size: 16px; text-decoration: none; border-radius: 5px;
+                  box-shadow: 0 2px 5px rgba(0,0,0,0.15);">
+            {{ 'sylius.email.user_registration.start_shopping'|trans({}, null, localeCode) }}
+        </a>
+    </div>
+{% endblock %}

@@ -1,0 +1,14 @@
+<div style="text-align: center; font-family: Arial, sans-serif; color: #333; margin-bottom: 40px;">
+    <h2 style="color: #1abb9c; margin-bottom: 10px; font-size: 24px;">
+        {{ 'sylius.email.contact_request.message_from'|trans({}, null, localeCode) }}
+    </h2>
+    <p style="font-size: 16px; margin-bottom: 20px; color: #555;">
+        {{ data.email }}
+    </p>
+    <h2 style="color: #1abb9c; margin-bottom: 10px; font-size: 24px;">
+        {{ 'sylius.email.contact_request.content'|trans({}, null, localeCode) }}
+    </h2>
+    <p style="font-size: 16px; color: #555;">
+        {{ data.message|nl2br }}
+    </p>
+</div>

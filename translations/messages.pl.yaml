@@ -1,5 +1,23 @@
 sylius:
     email:
+        user_registration:
+            start_shopping: 'Rozpocznij zakupy'
+            subject: 'Rejestracja użytkownika'
+            welcome_to_our_store: 'Witamy w naszym sklepie!'
+            you_have_just_been_registered: 'Zostałeś właśnie zarejestrowany. Dziękujemy'
+        verification_token:
+            hello: 'Cześć'
+            message: 'Zweryfikuj swoje konto za pomocą tokenu: '
+            subject: 'Weryfikacja adresu e-mail'
+            to_verify_your_email_address: 'Aby zweryfikować swój adres e-mail – kliknij poniższy link'
+            verify_your_email_address: 'Zweryfikuj adres e-mail'
+        user:
+            account_verification:
+                greeting: 'Cześć'
+                message: 'Zweryfikuj swoje konto za pomocą tokenu: '
+                statement: 'Zweryfikuj swój adres e-mail'
+                strategy: 'Aby zweryfikować swój adres e-mail – kliknij poniższy link'
+                subject: 'Weryfikacja adresu e-mail'
         order_confirmation:
             has_been_successfully_placed: 'zostało pomyślnie złożone.'
             thank_you: 'Dziękujemy za zakupy w naszym sklepie!'
@@ -58,6 +76,8 @@ sylius:
             Jeśli reguła jest spełniona, metoda wysyłki może być użyta. Pamiętaj, że jeśli dodasz wiele reguł,
             wszystkie muszą zostać spełnione."
     ui:
+        thank_you_for_registration: 'Dziękujemy za rejestrację'
+        verify_email_address: 'Sprawdź swoją skrzynkę odbiorczą i zweryfikuj adres e-mail'
         tax_rate: 'Stawka podatku'
         delivery_and_shipping: 'Wysyłka i dostawa'
         returns_policy: 'Polityka zwrotów'
