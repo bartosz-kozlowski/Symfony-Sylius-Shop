@@ -16,6 +16,19 @@ services:
             autowire: false
         Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType:
             autowire: false
+            
+    app.twig.component.product.images:
+        class: App\Twig\Components\Product\ProductImagesComponent
+        arguments:
+            - '@sylius.repository.product'
+            - '@sylius.repository.product_variant'
+        calls:
+            -   method: setLiveResponder
+                arguments: [ '@ux.live_component.live_responder' ]
+        tags:
+            -   name: sylius.live_component.shop
+                key: 'app:product:images'
+        autoconfigure: false
 
     # Makes classes in src/ available to be used as services;
     # this creates a service per class whose id is the fully-qualified class name

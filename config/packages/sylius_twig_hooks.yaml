@@ -3,6 +3,15 @@ sylius_twig_hooks:
         sylius_admin.product_variant.update.content.form.side_navigation:
             - _name: mollie_recurring
               enabled: false
+        'sylius_shop.product.show.content.info.overview.images':
+            main_image:
+                enabled: false
+            main_image_using_component:
+                component: 'app:product:images'
+                props:
+                    product: '@=_context.product'
+                    template: 'bundles/SyliusShopBundle/product/show/content/info/overview/images/main_image.html.twig'
+                priority: 0
         sylius_shop.shared.order.show.summary.table.header:
             -   _name: recurring
                 enabled: false
