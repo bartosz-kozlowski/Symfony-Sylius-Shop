@@ -1,5 +1,8 @@
 sylius_twig_hooks:
     hooks:
+        sylius_admin.product_variant.update.content.form.side_navigation:
+            - _name: mollie_recurring
+              enabled: false
         sylius_shop.shared.order.show.summary.table.header:
             -   _name: recurring
                 enabled: false

@@ -43,6 +43,8 @@ sylius:
         latest_deals: "Najnowsze oferty"
         new_collection: "Nowa kolekcja"
     form:
+        variant:
+            tracked_help: 'Jeśli ta opcja jest włączona, Sylius będzie śledzić stan magazynowy i przestanie sprzedawać produkt, gdy zapas osiągnie 0.'
         checkout:
             addressing:
                 different_shipping_address: 'Użyć innego adresu do wysyłki?'
@@ -83,6 +85,7 @@ sylius:
         returns_policy: 'Polityka zwrotów'
         contact_us: 'Skontaktuj się z nami'
         faq: "FAQ"
+        product_variant: 'Wariant produktu'
         privacy_policy: 'Polityka prywatności'
         about: 'O nas'
         terms_and_conditions: 'Regulamin'
