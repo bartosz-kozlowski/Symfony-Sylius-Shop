@@ -12,7 +12,6 @@
 <script>
     if (document.getElementById('productVisitsChart')) {
         let delayed;
-
         fetch('/admin/product-visit-data')
             .then(response => response.json())
             .then(data => {
