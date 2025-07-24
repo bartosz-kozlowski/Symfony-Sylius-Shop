@@ -1,6 +1,6 @@
 {% set slug = hookable_metadata.context.product.slug %}
 
-<a class="mt-1 text-primary text-decoration-none small" href="{{ path('sylius_shop_product_review_create', {'slug': slug}) }}">
+<a class="mt-2 text-primary text-decoration-none small" href="{{ path('sylius_shop_product_review_create', {'slug': slug}) }}">
     <i class="bi bi-star me-1"></i>
     {{ 'sylius.ui.add_your_review'|trans }}
 </a>
