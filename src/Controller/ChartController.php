@@ -19,7 +19,7 @@ class ChartController extends AbstractController
         $sql = "
             SELECT path, COUNT(*) as count
             FROM Click
-            WHERE element = 'PAGELOAD' AND path LIKE '%/products/%'
+            WHERE element = 'PAGELOAD' AND path LIKE '%/products/%' AND path NOT LIKE '%/products/%/%'
             GROUP BY path
             ORDER BY count DESC
             LIMIT 10
