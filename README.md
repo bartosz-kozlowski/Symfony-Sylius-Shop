@@ -1,3 +1,21 @@
+## 🚀 Features (praktyki zawodowe)
+
+- 🧱 Integracja systemu e-commerce Sylius z biblioteką **model-viewer** (GLTF)
+- 🖼️ Przegląd modeli 3D w panelu admina, możliwość uploadu modelu 3D do produktu
+- 🛍️ Wyświetlanie modelu 3D na karcie produktu w sklepie
+- 🌍 Dodanie brakujących tłumaczeń interfejsu użytkownika i panelu admina
+- 🧩 Interaktywny konfigurator 3D produktów z użyciem **Three.js**
+- 🛒 Powiązanie modeli 3D z logiką koszyka w Syliusie (dodawanie wariantów z poziomu sceny 3D)
+- 🎨 Obsługa koloru wariantów i dynamiczna zmiana wyglądu modeli 3D (pole `modelColor`)
+- 🧠 Wybór wariantów poprzez kliknięcie w model 3D (otwierany modal) oraz podświetlenie wybranego modelu
+- 🧾 Integracja z systemem płatności **Mollie** (konfiguracja, formularze, wybór metody)
+- 📈 Zliczanie i wizualizacja odwiedzin produktów (endpoint + wykres **Chart.js** w panelu admina)
+- 💾 Trwałość danych konfiguratora 3D z użyciem `localStorage` + obsługa paginacji produktów
+- 📷 Dynamiczna zmiana zdjęcia produktu po wyborze wariantu bez przeładowania strony
+- 📬 Edycja szablonów e-mailowych (rejestracja, reset hasła, potwierdzenie zamówienia itd.)
+- 🧹 Zmiany i poprawki frontendowe (logowanie, wygląd koszyka, szczegóły zamówienia, ujednolicenie stylu poprzez Bootstrap)
+
+
 <p align="center">
     <a href="https://sylius.com" target="_blank">
         <picture>
